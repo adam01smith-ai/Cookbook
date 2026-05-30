@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Moroccan × Japanese Rice Bowl</title>
+
+<style>
+  body{font-family:Arial,sans-serif;background:#f4f6f8;margin:0;color:#333}
+  
+  .topbar{
+    background:#c04a2b;
+    padding:10px;
+  }
+
+  .backbtn{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    background:rgba(255,255,255,0.2);
+    padding:6px 10px;
+    border-radius:6px;
+  }
+
+  header{background:#c04a2b;color:#fff;padding:18px;text-align:center;font-size:22px;font-weight:800;position:sticky;top:0}
+  .container{max-width:900px;margin:18px auto;padding:10px}
+  .card{background:#fff;border-radius:14px;padding:16px 18px;margin-bottom:14px;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+  h2{color:#8c2f1f;margin:0 0 10px}
+  ul,ol{margin:8px 0 0;padding-left:20px}
+  .muted{color:#666;font-size:14px}
+  .slider{width:100%;margin-top:10px}
+  .row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .kpi{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+  .kpi div{background:#f6f7f8;border-radius:12px;padding:10px 12px;min-width:170px}
+  .kpi b{display:block;font-size:18px}
+  .build{background:#f9fafb;border:2px dashed #ddd}
+  #err{display:none;background:#ffe5e5;border-left:6px solid #c00;padding:12px;border-radius:10px}
+</style>
+</head>
+
+<body>
+
+<!-- ✅ TOP BAR (WORKING) -->
+<div class="topbar">
+  <a href="my-cookbook.html" class="backbtn">⬅ Back</a>
+</div>
+
+<header>🍲 Moroccan × Japanese Rice Bowl</header>
+
+<div class="container">
+
+  <div id="err" class="card"></div>
+
+  <div class="card">
+    <div class="row">
+      <div style="flex:1;min-width:240px">
+        <strong>Servings: <span id="servings">2</span></strong>
+        <input type="range" id="slider" min="1" max="6" value="2" class="slider">
+        <div class="muted">Drag the slider — all ingredients (including rice + water) update.</div>
+
+        <div class="kpi">
+          <div><span class="muted">Rice (total)</span><b><span id="rice">—</span> g</b></div>
+          <div><span class="muted">Water (total)</span><b><span id="water">—</span> ml</b></div>
+          <div><span class="muted">Est. meatballs</span><b>~<span id="mb">—</span></b></div>
+        </div>
+      </div>
+      <div class="muted" style="min-width:220px">
+        <b>Rice rule:</b> 75g rice + 90ml water per person
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🥩 Meatballs</h2>
+    <ul>
+      <li><span class="val" data-base="250" data-kind="g"></span> g mince</li>
+      <li><span class="val" data-base="0.5" data-kind="onion"></span> onion (grated)</li>
+      <li><span class="val" data-base="1" data-kind="clove"></span> garlic cloves</li>
+      <li><span class="val" data-base="0.5" data-kind="tsp"></span> tsp cumin</li>
+      <li><span class="val" data-base="0.5" data-kind="tsp"></span> tsp coriander</li>
+      <li><span class="val" data-base="0.5" data-kind="tsp"></span> tsp smoked paprika</li>
+      <li><span class="val" data-base="0.25" data-kind="tsp"></span> tsp cinnamon</li>
+      <li><span class="val" data-base="0.5" data-kind="egg"></span> egg</li>
+      <li class="muted">Salt & pepper, parsley (to taste)</li>
+    </ul>
+
+    <h3>Method</h3>
+    <ol>
+      <li>Mix, roll small meatballs.</li>
+      <li>Brown in a pan with a little oil; remove.</li>
+      <li>They finish cooking in the sauce.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>🍅 Thick Sauce</h2>
+    <ul>
+      <li><span class="val" data-base="200" data-kind="g"></span> g chopped tomatoes</li>
+      <li><span class="val" data-base="10" data-kind="g"></span> g tomato purée</li>
+      <li><span class="val" data-base="0.5" data-kind="tsp"></span> tsp cumin</li>
+      <li><span class="val" data-base="0.5" data-kind="tsp"></span> tsp paprika</li>
+      <li><span class="val" data-base="5" data-kind="ml"></span> ml honey</li>
+      <li class="muted">Optional: harissa to taste</li>
+    </ul>
+
+    <h3>Method</h3>
+    <ol>
+      <li>Toast spices 30 seconds.</li>
+      <li>Add tomatoes + purée + honey; season.</li>
+      <li>Simmer 5–8 min until thick.</li>
+      <li>Add meatballs; simmer 10–15 min.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>🍚 Japanese Rice (hob)</h2>
+    <ol>
+      <li>Rinse rice 3–4 times until water is mostly clear.</li>
+      <li>Add the calculated water.</li>
+      <li>Boil uncovered, then lid on low heat 10–12 min (don’t lift lid).</li>
+      <li>Rest 10 min (lid on), then fluff.</li>
+    </ol>
+  </div>
+
+  <div class="card build">
+    <h2>🍽 Build the bowl</h2>
+    <ol>
+      <li>Rice</li>
+      <li>Meatballs + sauce</li>
+      <li>Yogurt (lemon + salt)</li>
+      <li>Cucumber/tomato/onion + herbs</li>
+      <li>Crunch (nuts) + chilli oil/harissa</li>
+    </ol>
+  </div>
+
+</div>
+
+<!-- ✅ your script unchanged below -->
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  const slider = document.getElementById("slider");
+  const servingsEl = document.getElementById("servings");
+  const riceEl = document.getElementById("rice");
+  const waterEl = document.getElementById("water");
+  const mbEl = document.getElementById("mb");
+  const vals = document.querySelectorAll(".val");
+
+  const ricePer = 75;
+  const waterPer = 90;
+  const meatballsPer = 8;
+
+  const roundHalf = (v) => Math.round(v * 2) / 2;
+
+  function format(v, kind){
+    if (kind === "g" || kind === "ml") return String(Math.round(v));
+    if (kind === "tsp") return String(roundHalf(v));
+    if (kind === "onion") return String(roundHalf(v));
+    if (kind === "clove" || kind === "egg") return String(Math.max(1, Math.round(v)));
+    return String(v);
+  }
+
+  function update(){
+    const s = Number(slider.value);
+    servingsEl.textContent = s;
+
+    vals.forEach(el => {
+      const base = Number(el.dataset.base);
+      const kind = el.dataset.kind || "";
+      el.textContent = format(base * s, kind);
+    });
+
+    riceEl.textContent = ricePer * s;
+    waterEl.textContent = waterPer * s;
+    mbEl.textContent = meatballsPer * s;
+  }
+
+  slider.addEventListener("input", update);
+  update();
+});
+</script>
+
+</body>
+</html>

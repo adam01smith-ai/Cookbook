@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baked Ziti - My Cookbook</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+  }
+
+  .topbar {
+    background:#c04a2b;
+    padding:10px 12px;
+  }
+
+  .backbtn {
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    background:rgba(255,255,255,0.2);
+    padding:6px 10px;
+    border-radius:6px;
+    display:inline-block;
+  }
+
+  .hero {
+    background:url('https://www.thelittleepicurean.com/wp-content/uploads/2015/01/cheesy-baked-pasta.jpg') center/cover;
+    height:220px;
+    display:flex;
+    align-items:flex-end;
+    color:white;
+    padding:15px;
+    font-size:24px;
+    font-weight:bold;
+  }
+
+  .container {
+    max-width:800px;
+    margin:20px auto;
+    padding:0 12px;
+  }
+
+  .card {
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.08);
+  }
+
+  .slider { width:100%; }
+
+  .tag {
+    display:inline-block;
+    background:#ffe9e3;
+    padding:4px 8px;
+    border-radius:999px;
+    margin-right:6px;
+    font-size:12px;
+  }
+
+  .note { color:#555; }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <a href="my-cookbook.html" class="backbtn">⬅ Back</a>
+</div>
+
+<div class="hero">
+  🍝 Baked Ziti
+</div>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="card">
+    <div style="margin-bottom:10px;">
+      <span class="tag">🔥 Comfort</span>
+      <span class="tag">🧀 Cheesy</span>
+      <span class="tag">🍝 Pasta Bake</span>
+    </div>
+
+    <p><strong>Servings: <span id="servings">2</span></strong></p>
+    <input type="range" id="slider" min="1" max="6" value="2" class="slider">
+
+    <p class="note">
+      Extra cheesy baked ziti with beef + sausage and fresh basil.
+    </p>
+  </div>
+
+  <!-- Ingredients -->
+  <div class="card">
+    <h2>Ingredients</h2>
+    <ul>
+      <li><span class="val" data-base="200"></span> g pasta</li>
+
+      <li><span class="val" data-base="1"></span> tbsp olive oil</li>
+      <li><span class="val" data-base="1"></span> onion</li>
+      <li><span class="val" data-base="2"></span> cloves garlic</li>
+
+      <li><span class="val" data-base="150"></span> g minced beef</li>
+      <li><span class="val" data-base="150"></span> g sausage (crumbled)</li>
+
+      <li><span class="val" data-base="400"></span> g chopped tomatoes</li>
+      <li><span class="val" data-base="1"></span> tbsp tomato purée</li>
+
+      <li><span class="val" data-base="150"></span> g ricotta</li>
+      <li><span class="val" data-base="50"></span> g parmesan</li>
+
+      <li><span class="val" data-base="150"></span> g mozzarella</li>
+
+      <li>salt, pepper, oregano</li>
+      <li>fresh basil</li>
+    </ul>
+  </div>
+
+  <!-- Method -->
+  <div class="card">
+    <h2>Method</h2>
+    <ol>
+
+      <li>Cook pasta until slightly underdone, then drain.</li>
+
+      <li>Heat oil in a pan and cook onion until soft.</li>
+
+      <li>Add garlic, beef and sausage. Cook until browned.</li>
+
+      <li>Stir in tomatoes, purée, seasoning and simmer 15–20 minutes.</li>
+
+      <li>Mix ricotta and parmesan in a bowl.</li>
+
+      <li>
+        Combine pasta with sauce and mix in some mozzarella (for extra cheesiness).
+      </li>
+
+      <li>Layer half the pasta in a baking dish.</li>
+
+      <li>Add spoonfuls of cheese mix.</li>
+
+      <li>Add remaining pasta.</li>
+
+      <li>Top with more mozzarella.</li>
+
+      <li>Bake at 180°C for 25–30 minutes until golden and bubbling.</li>
+
+      <li>Finish with fresh basil before serving.</li>
+
+    </ol>
+
+    <p class="note">
+      Let it rest 10 minutes before serving for perfect slices.
+    </p>
+  </div>
+
+  <!-- Tips -->
+  <div class="card">
+    <h2>Tips</h2>
+    <ul>
+      <li>Use lots of sauce to avoid dryness</li>
+      <li>Undercook pasta so it finishes in the oven</li>
+      <li>Add mozzarella inside AND on top for max cheese pull</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const servings = document.getElementById("servings");
+const values = document.querySelectorAll(".val");
+
+const defaultServings = Number(slider.value);
+
+function update() {
+  const s = Number(slider.value);
+  servings.textContent = s;
+
+  values.forEach(el => {
+    const base = Number(el.dataset.base);
+    const scaled = base * (s / defaultServings);
+    el.textContent = Math.round(scaled * 10) / 10;
+  });
+}
+
+slider.addEventListener("input", update);
+update();
+</script>
+
+</body>
+</html>
