@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vinaigrette - My Cookbook</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+  }
+
+  .topbar {
+    background:#c04a2b;
+    padding:10px 12px;
+  }
+
+  .backbtn {
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    background:rgba(255,255,255,0.2);
+    padding:6px 10px;
+    border-radius:6px;
+    display:inline-block;
+  }
+
+  .container {
+    max-width:800px;
+    margin:20px auto;
+    padding:0 12px;
+  }
+
+  .card {
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  }
+
+  .slider { width:100%; }
+
+  .tag {
+    display:inline-block;
+    background:#e8f1ff;
+    padding:4px 8px;
+    border-radius:999px;
+    margin-right:6px;
+    font-size:12px;
+  }
+
+  .note { color:#555; }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="backbtn">⬅ Back</a>
+</div>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="card">
+    <h1>🥄 Basic Vinaigrette</h1>
+
+    <div style="margin-bottom:10px;">
+      <span class="tag">🥗 Dressing</span>
+      <span class="tag">⚡ 5 mins</span>
+      <span class="tag">📏 Ratio</span>
+    </div>
+
+    <p><strong>Servings: <span id="servings">2</span></strong></p>
+    <input type="range" id="slider" min="1" max="8" value="2" class="slider">
+
+    <p class="note">
+      Simple oil + acid dressing you can use on any salad.
+    </p>
+  </div>
+
+  <!-- Ingredients -->
+  <div class="card">
+    <h2>Ingredients</h2>
+    <ul>
+      <li><span class="val" data-base="3"></span> tbsp olive oil</li>
+      <li><span class="val" data-base="1"></span> tbsp vinegar or lemon juice</li>
+
+      <li><span class="val" data-base="1"></span> tsp Dijon mustard</li>
+      <li><span class="val" data-base="1"></span> tsp honey</li>
+
+      <li>salt & black pepper</li>
+    </ul>
+
+    <p class="note">
+      Classic formula: <strong>3 parts oil : 1 part acid</strong>
+    </p>
+  </div>
+
+  <!-- Method -->
+  <div class="card">
+    <h2>Method</h2>
+    <ol>
+      <li>Add all ingredients to a bowl or jar.</li>
+
+      <li>Whisk or shake until combined.</li>
+
+      <li>Taste and adjust seasoning.</li>
+
+      <li>Use immediately or store in fridge.</li>
+    </ol>
+
+    <p class="note">
+      Shake again before using if it separates.
+    </p>
+  </div>
+
+  <!-- Variations -->
+  <div class="card">
+    <h2>Variations</h2>
+    <ul>
+      <li><strong>Balsamic:</strong> use balsamic vinegar, reduce honey</li>
+      <li><strong>Lemon:</strong> swap vinegar for lemon juice</li>
+      <li><strong>Garlic:</strong> add 1 minced clove</li>
+      <li><strong>Herb:</strong> parsley, basil or oregano</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const servings = document.getElementById("servings");
+const values = document.querySelectorAll(".val");
+
+const defaultServings = Number(slider.value);
+
+function update() {
+  const s = Number(slider.value);
+  servings.textContent = s;
+
+  values.forEach(el => {
+    const base = Number(el.dataset.base);
+    const scaled = base * (s / defaultServings);
+    el.textContent = Math.round(scaled * 10) / 10;
+  });
+}
+
+slider.addEventListener("input", update);
+update();
+</script>
+
+</body>
+</html>

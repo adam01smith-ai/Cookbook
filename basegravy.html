@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Base Gravy - My Cookbook</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+  }
+
+  .topbar {
+    background: #c04a2b;
+    padding: 10px 12px;
+  }
+
+  .backbtn {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    background: rgba(255,255,255,0.2);
+    padding: 6px 10px;
+    border-radius: 6px;
+    display: inline-block;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 12px;
+  }
+
+  .card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  }
+
+  .slider {
+    width: 100%;
+  }
+
+  .note {
+    color: #555;
+    margin-top: 8px;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ✅ TOP BAR -->
+<div class="topbar">
+  <a href="index.html" class="backbtn">⬅ Back</a>
+</div>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="card">
+    <h1>🍲 Base Gravy</h1>
+
+    <p><strong>Servings: <span id="servings">2</span></strong></p>
+    <input type="range" id="slider" min="1" max="6" value="2" class="slider">
+
+    <p class="note">Use this as a base sauce for curries.</p>
+  </div>
+
+  <!-- INGREDIENTS -->
+  <div class="card">
+    <h2>Ingredients</h2>
+    <ul>
+      <li><span class="val" data-base="1"></span> onions</li>
+      <li><span class="val" data-base="0.5"></span> carrot</li>
+      <li><span class="val" data-base="0.5"></span> pepper</li>
+      <li><span class="val" data-base="1.5"></span> garlic cloves</li>
+      <li><span class="val" data-base="200"></span> ml water</li>
+      <li><span class="val" data-base="200"></span> g tomatoes</li>
+    </ul>
+  </div>
+
+  <!-- METHOD -->
+  <div class="card">
+    <h2>Method</h2>
+    <ol>
+      <li>Cook vegetables gently until soft (no browning).</li>
+      <li>Add garlic and cook briefly.</li>
+      <li>Add spices and stir well.</li>
+      <li>Add tomatoes and water.</li>
+      <li>Simmer for 20–30 minutes.</li>
+      <li>Blend until smooth.</li>
+    </ol>
+  </div>
+
+</div>
+
+<!-- SLIDER SCRIPT -->
+<script>
+const slider = document.getElementById("slider");
+const servings = document.getElementById("servings");
+const values = document.querySelectorAll(".val");
+
+const defaultServings = Number(slider.value);
+
+function update() {
+  const s = Number(slider.value);
+  servings.textContent = s;
+
+  values.forEach(el => {
+    const base = Number(el.dataset.base);
+    const scaled = base * (s / defaultServings);
+    el.textContent = Math.round(scaled * 10) / 10;
+  });
+}
+
+slider.addEventListener("input", update);
+update();
+</script>
+
+</body>
+</html>

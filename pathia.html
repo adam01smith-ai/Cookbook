@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pathia Curry - My Cookbook</title>
+
+<style>
+  body { font-family: Arial, sans-serif; background:#f4f6f8; margin:0; }
+
+  .topbar {
+    background:#c04a2b;
+    padding:10px 12px;
+  }
+
+  .backbtn {
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    background:rgba(255,255,255,0.2);
+    padding:6px 10px;
+    border-radius:6px;
+    display:inline-block;
+  }
+
+  .container {
+    max-width:800px;
+    margin:20px auto;
+    padding:0 12px;
+  }
+
+  .card {
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  }
+
+  .slider { width:100%; }
+  .note { color:#555; }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+ <a href="index.html" class="backbtn">⬅ Back</a>
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <h1>🍛 Pathia Curry</h1>
+
+    <p><strong>Servings: <span id="servings">2</span></strong></p>
+    <input type="range" id="slider" min="1" max="6" value="2" class="slider">
+
+    <p class="note">
+      Sweet, sour and spicy tomato-based curry.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Ingredients</h2>
+    <ul>
+      <li><span class="val" data-base="60"></span> ml oil</li>
+      <li><span class="val" data-base="1"></span> cassia bark</li>
+      <li><span class="val" data-base="1"></span> bay leaf (optional)</li>
+
+      <li><span class="val" data-base="70"></span> g onion (finely chopped)</li>
+      <li><span class="val" data-base="2"></span> tsp ginger/garlic paste</li>
+
+      <li><span class="val" data-base="1"></span> tsp chilli powder</li>
+      <li><span class="val" data-base="1"></span> tsp Kashmiri chilli powder</li>
+      <li><span class="val" data-base="1.5"></span> tsp mix powder</li>
+      <li><span class="val" data-base="0.25"></span> tsp smoked paprika</li>
+      <li><span class="val" data-base="0.5"></span> tsp salt</li>
+
+      <li><span class="val" data-base="5"></span> tbsp tomato paste</li>
+      <li><span class="val" data-base="1"></span> tsp kasuri methi</li>
+
+      <li><span class="val" data-base="1"></span> tbsp coriander stalks + leaves</li>
+      <li><span class="val" data-base="330"></span> ml base gravy</li>
+
+      <li>Main ingredient (chicken, lamb, prawns, etc.)</li>
+
+      <li><span class="val" data-base="1.5"></span> tsp mango chutney</li>
+      <li><span class="val" data-base="1.5"></span> tsp brown sugar</li>
+      <li><span class="val" data-base="1.5"></span> tsp lemon juice</li>
+      <li><span class="val" data-base="2"></span> tsp tamarind sauce</li>
+    </ul>
+
+    <p class="note">
+      Ingredients adapted from the Pathia recipe source. 【1-190094】
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Method</h2>
+    <ol>
+      <li>Heat oil and fry the whole spices briefly to flavour the oil.</li>
+
+      <li>Add onion and cook until soft and lightly browned.</li>
+
+      <li>Add ginger/garlic paste and cook until the raw smell goes.</li>
+
+      <li>Add the spices and fry briefly, using a little base gravy to stop burning.</li>
+
+      <li>Add tomato paste and cook on high heat until the oil separates.</li>
+
+      <li>Add your main ingredient and coat in the sauce.</li>
+
+      <li>Add base gravy gradually, letting the sauce reduce between additions.</li>
+
+      <li>Stir in mango chutney, sugar, tamarind and lemon juice.</li>
+
+      <li>Simmer until thick, glossy, and balanced sweet/sour.</li>
+    </ol>
+
+    <p class="note">
+      Method rewritten in your style based on the original cooking stages. 【1-190094】
+    </p>
+  </div>
+
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const servings = document.getElementById("servings");
+const values = document.querySelectorAll(".val");
+
+const defaultServings = Number(slider.value);
+
+function update() {
+  const s = Number(slider.value);
+  servings.textContent = s;
+
+  values.forEach(el => {
+    const base = Number(el.dataset.base);
+    const scaled = base * (s / defaultServings);
+    el.textContent = Math.round(scaled * 10) / 10;
+  });
+}
+
+slider.addEventListener("input", update);
+update();
+</script>
+
+</body>
+</html>
