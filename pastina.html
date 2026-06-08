@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pastina - My Cookbook</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+  }
+
+  .topbar {
+    background:#c04a2b;
+    padding:10px 12px;
+  }
+
+  .backbtn {
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    background:rgba(255,255,255,0.2);
+    padding:6px 10px;
+    border-radius:6px;
+    display:inline-block;
+  }
+
+  .container {
+    max-width:800px;
+    margin:20px auto;
+    padding:0 12px;
+  }
+
+  .title {
+    font-size:24px;
+    font-weight:bold;
+    margin:20px 0 10px;
+  }
+
+  .card {
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.08);
+  }
+
+  .slider { width:100%; }
+
+  .tag {
+    display:inline-block;
+    background:#ffe9e3;
+    padding:4px 8px;
+    border-radius:999px;
+    margin-right:6px;
+    font-size:12px;
+  }
+
+  .note { color:#555; }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+<a href="index.html" class="backbtn">⬅ Back</a>
+</div>
+
+<div class="container">
+
+  <div class="title">🍲 Creamy Pastina</div>
+
+  <!-- Header -->
+  <div class="card">
+    <div style="margin-bottom:10px;">
+      <span class="tag">🍝 Pasta</span>
+      <span class="tag">🥛 Creamy</span>
+      <span class="tag">⚡ Quick</span>
+    </div>
+
+    <p><strong>Servings: <span id="servings">2</span></strong></p>
+    <input type="range" id="slider" min="1" max="6" value="2" class="slider">
+
+    <p class="note">
+      Simple creamy Italian comfort food made with butter, milk and Parmesan.
+    </p>
+  </div>
+
+  <!-- Ingredients -->
+  <div class="card">
+    <h2>Ingredients</h2>
+    <ul>
+
+      <li><span class="val" data-base="90"></span> g pastina</li>
+      <li><span class="val" data-base="500"></span> ml vegetable stock</li>
+
+      <li><span class="val" data-base="1.5"></span> tbsp butter</li>
+      <li><span class="val" data-base="3"></span> tbsp milk or cream</li>
+
+      <li><span class="val" data-base="40"></span> g Parmesan</li>
+
+      <li>salt & pepper</li>
+
+    </ul>
+  </div>
+
+  <!-- Method -->
+  <div class="card">
+    <h2>Method</h2>
+    <ol>
+
+      <li>Bring stock to a boil.</li>
+      <li>Add pastina and cook, stirring often.</li>
+      <li>Cook until soft and most liquid is absorbed.</li>
+      <li>Turn heat to low.</li>
+      <li>Stir in butter and milk or cream.</li>
+      <li>Add Parmesan and mix until creamy.</li>
+      <li>Season with salt and pepper.</li>
+
+    </ol>
+
+    <p class="note">
+      Stir constantly at the end for a smooth, creamy texture.
+    </p>
+  </div>
+
+  <!-- Tips -->
+  <div class="card">
+    <h2>Tips</h2>
+    <ul>
+      <li>Add more milk if too thick</li>
+      <li>Use cream for richer texture</li>
+      <li>Stir often to release starch and thicken</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const servings = document.getElementById("servings");
+const values = document.querySelectorAll(".val");
+
+const defaultServings = Number(slider.value);
+
+function update() {
+  const s = Number(slider.value);
+  servings.textContent = s;
+
+  values.forEach(el => {
+    const base = Number(el.dataset.base);
+    const scaled = base * (s / defaultServings);
+    el.textContent = Math.round(scaled * 10) / 10;
+  });
+}
+
+slider.addEventListener("input", update);
+update();
+</script>
+
+</body>
+</html>

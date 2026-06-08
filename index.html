@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Cookbook</title>
+
+<style>
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Arial, sans-serif;
+  margin:0;
+  background:#f4f6f8;
+  color:#222;
+  transition:0.3s;
+}
+
+/* ✅ DARK MODE */
+body.dark {
+  background:#121212;
+  color:#eee;
+}
+
+/* HEADER */
+header {
+  background: linear-gradient(135deg, #c04a2b, #e76f51);
+  color:white;
+  padding:16px;
+  text-align:center;
+  font-size:22px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+/* DARK BUTTON */
+.toggle {
+  background:white;
+  border:none;
+  padding:6px 10px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:12px;
+}
+
+/* NAV */
+.nav {
+  display:flex;
+  overflow-x:auto;
+  gap:10px;
+  padding:10px;
+  background:white;
+  position:sticky;
+  top:56px;
+}
+
+body.dark .nav {
+  background:#1e1e1e;
+}
+
+.nav a {
+  text-decoration:none;
+  padding:8px 14px;
+  border-radius:20px;
+  background:#ffe9e3;
+  color:#333;
+}
+
+body.dark .nav a {
+  background:#333;
+  color:#eee;
+}
+
+/* CONTENT */
+.container {
+  max-width:800px;
+  margin:20px auto;
+  padding:0 12px;
+}
+
+.section {
+  margin:30px 0 10px;
+  font-weight:bold;
+}
+
+/* CARD */
+.card {
+  background:white;
+  padding:14px;
+  margin-bottom:12px;
+  border-radius:12px;
+  cursor:pointer;
+  transition:0.2s;
+  box-shadow:0 3px 12px rgba(0,0,0,0.08);
+}
+
+body.dark .card {
+  background:#1e1e1e;
+}
+
+.card:hover {
+  transform:scale(1.02);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  📖 My Cookbook
+  <button class="toggle" onclick="toggleDark()">🌙</button>
+</header>
+
+<!-- ✅ WORKING NAV -->
+<div class="nav">
+  <a href="#pasta">🍝 Pasta</a>
+  <a href="#curries">🍛 Curries</a>
+  <a href="#soups">🥣 Soups</a>
+  <a href="#sauces">🍲 Sauces</a>
+  <a href="#fresh">🥗 Fresh</a>
+  <a href="#comfort">🍗 Comfort</a>
+  <a href="#bakes">🥧 Bakes</a>
+</div>
+
+<div class="container">
+
+<!-- 🍝 PASTA -->
+<div id="pasta" class="section">🍝 Pasta</div>
+
+<div class="card" onclick="location.href='pastina.html'">
+  🍲 Creamy Pastina
+  </div>
+
+<div class="card" onclick="location.href='baked-ziti.html'">
+  🧀🍝 Baked Ziti
+</div>
+
+<div class="card" onclick="location.href='carbonara.html'">
+  🍝 Carbonara
+</div>
+
+<div class="card" onclick="location.href='mediterranean-pasta-salad.html'">
+  🌊 Mediterranean Pasta Salad
+</div>
+
+<div class="card" onclick="location.href='pesto-pasta-salad.html'">
+  🌿 Pesto Pasta Salad
+</div>
+
+<!-- 🍛 CURRIES -->
+<div id="curries" class="section">🍛 Curries</div>
+
+<div class="card" onclick="location.href='jalfrezi.html'">
+  🍛 Jalfrezi
+</div>
+
+<div class="card" onclick="location.href='pathia.html'">
+  🍛 Pathia
+</div>
+
+<div class="card" onclick="location.href='basegravy.html'">
+  🍲 Base Gravy
+</div>
+
+<!-- 🥣 SOUPS -->
+<div id="soups" class="section">🥣 Soups</div>
+
+<div class="card" onclick="location.href='carrot-coriander-soup.html'">
+  🥕 Carrot Soup
+</div>
+
+<div class="card" onclick="location.href='broccoli-stilton-soup.html'">
+  🥦 Broccoli Stilton
+</div>
+
+<div class="card" onclick="location.href='roasted-red-pepper-soup.html'">
+  🌶️ Red Pepper Soup
+</div>
+
+<!-- 🍲 SAUCES -->
+<div id="sauces" class="section">🍲 Sauces</div>
+
+<div class="card" onclick="location.href='sofritto-ragu.html'">
+  🍅 Sofritto Ragu
+</div>
+
+<div class="card" onclick="location.href='vinaigrette.html'">
+  🥄 Vinaigrette
+</div>
+
+<div class="card" onclick="location.href='jack-daniels-sauce.html'">
+  🥃 BBQ Sauce
+</div>
+
+<!-- 🥗 FRESH -->
+<div id="fresh" class="section">🥗 Fresh</div>
+
+<div class="card" onclick="location.href='lemon-chicken-salad.html'">
+  🥗 Lemon Chicken Salad
+</div>
+
+<div class="card" onclick="location.href='acai-bowl.html'">
+  🫐 Acai Bowl
+</div>
+
+<div class="card" onclick="location.href='moroccan-meatball-bowl.html'">
+  🍲 Moroccan Meatballs
+</div>
+
+<!-- 🍗 COMFORT -->
+<div id="comfort" class="section">🍗 Comfort</div>
+
+<div class="card" onclick="location.href='cottage-pie.html'">
+  🥔 Cottage Pie
+</div>
+
+<div class="card" onclick="location.href='creamy-garlic-chicken.html'">
+  🍗 Creamy Garlic Chicken
+</div>
+
+<!-- 🥧 BAKES -->
+<div id="bakes" class="section">🥧 Bakes</div>
+
+<div class="card" onclick="location.href='broccoli-quiche.html'">
+  🥦 Broccoli Quiche
+</div>
+
+</div>
+
+<script>
+function toggleDark() {
+  document.body.classList.toggle("dark");
+}
+</script>
+
+</body>
+</html>
