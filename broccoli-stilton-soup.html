@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Broccoli & Stilton Soup - My Cookbook</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+  }
+
+  .topbar {
+    background:#c04a2b;
+    padding:10px 12px;
+  }
+
+  .backbtn {
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    background:rgba(255,255,255,0.2);
+    padding:6px 10px;
+    border-radius:6px;
+    display:inline-block;
+  }
+
+  .container {
+    max-width:800px;
+    margin:20px auto;
+    padding:0 12px;
+  }
+
+  .card {
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  }
+
+  .slider { width:100%; }
+
+  .tag {
+    display:inline-block;
+    background:#ffe9e3;
+    padding:4px 8px;
+    border-radius:999px;
+    margin-right:6px;
+    font-size:12px;
+  }
+
+  .note {
+    color:#555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="backbtn">⬅ Back</a>
+</div>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="card">
+    <h1>🥦 Broccoli & Stilton Soup</h1>
+
+    <div style="margin-bottom:10px;">
+      <span class="tag">🥣 Soup</span>
+      <span class="tag">🧀 Creamy</span>
+      <span class="tag">🥦 Healthy</span>
+    </div>
+
+    <p><strong>Servings: <span id="servings">4</span></strong></p>
+    <input type="range" id="slider" min="2" max="8" value="4" class="slider">
+
+    <p class="note">
+      Creamy soup with broccoli and rich blue cheese flavour.
+    </p>
+  </div>
+
+  <!-- Ingredients -->
+  <div class="card">
+    <h2>Ingredients</h2>
+    <ul>
+      <li><span class="val" data-base="2"></span> tbsp rapeseed oil</li>
+      <li><span class="val" data-base="1"></span> onion, finely chopped</li>
+      <li><span class="val" data-base="1"></span> celery stick, sliced</li>
+      <li><span class="val" data-base="1"></span> leek, sliced</li>
+      <li><span class="val" data-base="1"></span> potato, diced</li>
+      <li>1 knob butter</li>
+      <li><span class="val" data-base="1000"></span> ml vegetable or chicken stock</li>
+      <li><span class="val" data-base="1"></span> head broccoli, chopped</li>
+      <li><span class="val" data-base="140"></span> g stilton (or blue cheese)</li>
+      <li>black pepper</li>
+    </ul>
+  </div>
+
+  <!-- Method -->
+  <div class="card">
+    <h2>Method</h2>
+    <ol>
+      <li>Heat oil in a pan and cook the onion until soft.</li>
+
+      <li>Add celery, leek, potato and butter. Stir until melted, cover and cook gently for 5 minutes.</li>
+
+      <li>Pour in the stock and add the broccoli stalk pieces. Cook for 10–15 minutes until soft.</li>
+
+      <li>Add the rest of the broccoli and cook for another 5 minutes.</li>
+
+      <li>Blend until smooth.</li>
+
+      <li>Stir in the stilton, leaving a few small chunks if you like.</li>
+
+      <li>Season with black pepper and serve.</li>
+    </ol>
+
+    <p class="note">
+      Don’t over-boil after adding cheese — it can split.
+    </p>
+  </div>
+
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const servings = document.getElementById("servings");
+const values = document.querySelectorAll(".val");
+
+const base = Number(slider.value);
+
+slider.addEventListener("input", () => {
+  const s = Number(slider.value);
+  servings.textContent = s;
+
+  values.forEach(el => {
+    const v = Number(el.dataset.base);
+    el.textContent = Math.round((v * s / base) * 10) / 10;
+  });
+});
+
+slider.dispatchEvent(new Event("input"));
+</script>
+
+</body>
+</html>

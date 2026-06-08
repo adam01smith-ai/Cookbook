@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spaghetti Carbonara - My Cookbook</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+  }
+
+  .topbar {
+    background:#c04a2b;
+    padding:10px 12px;
+  }
+
+  .backbtn {
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    background:rgba(255,255,255,0.2);
+    padding:6px 10px;
+    border-radius:6px;
+    display:inline-block;
+  }
+
+  .container {
+    max-width:800px;
+    margin:20px auto;
+    padding:0 12px;
+  }
+
+  .card {
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  }
+
+  .slider { width:100%; }
+
+  .note {
+    color:#555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="backbtn">⬅ Back</a>
+</div>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="card">
+    <h1>🍝 Spaghetti Carbonara</h1>
+
+    <p><strong>Servings: <span id="servings">2</span></strong></p>
+    <input type="range" id="slider" min="1" max="6" value="2" class="slider">
+
+    <p class="note">
+      Creamy Roman pasta with pancetta, eggs and cheese (no cream).
+    </p>
+  </div>
+
+  <!-- INGREDIENTS -->
+  <div class="card">
+    <h2>Ingredients</h2>
+    <ul>
+      <li><span class="val" data-base="100"></span> g pancetta</li>
+      <li><span class="val" data-base="50"></span> g pecorino cheese</li>
+      <li><span class="val" data-base="50"></span> g parmesan</li>
+      <li><span class="val" data-base="3"></span> eggs</li>
+      <li><span class="val" data-base="350"></span> g spaghetti</li>
+      <li><span class="val" data-base="2"></span> garlic cloves</li>
+      <li><span class="val" data-base="50"></span> g butter</li>
+      <li>salt & black pepper</li>
+    </ul>
+  </div>
+
+  <!-- METHOD -->
+  <div class="card">
+    <h2>Method</h2>
+    <ol>
+      <li>Bring a large pan of salted water to a boil.</li>
+
+      <li>Finely chop pancetta and grate cheeses. Mix cheeses together.</li>
+
+      <li>Beat eggs with black pepper and set aside.</li>
+
+      <li>Cook spaghetti in boiling water until al dente.</li>
+
+      <li>Lightly crush garlic cloves.</li>
+
+      <li>Melt butter in a pan, then cook pancetta with garlic until golden.</li>
+
+      <li>Remove and discard garlic.</li>
+
+      <li>Add cooked spaghetti to the pancetta pan, keeping some pasta water.</li>
+
+      <li>Mix most of the cheese into the eggs.</li>
+
+      <li>Remove pan from heat, then add egg mixture and mix quickly.</li>
+
+      <li>Add a little pasta water to loosen into a creamy sauce.</li>
+
+      <li>Season and serve with remaining cheese.</li>
+    </ol>
+
+    <p class="note">
+      The heat from the pasta cooks the eggs — do not overcook or it will scramble.
+    </p>
+  </div>
+
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const servings = document.getElementById("servings");
+const values = document.querySelectorAll(".val");
+
+const base = Number(slider.value);
+
+slider.addEventListener("input", () => {
+  const s = Number(slider.value);
+  servings.textContent = s;
+
+  values.forEach(el => {
+    const v = Number(el.dataset.base);
+    el.textContent = Math.round((v * s / base) * 10) / 10;
+  });
+});
+
+slider.dispatchEvent(new Event("input"));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roasted Red Pepper Soup - My Cookbook</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+  }
+
+  .topbar {
+    background:#c04a2b;
+    padding:10px 12px;
+  }
+
+  .backbtn {
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    background:rgba(255,255,255,0.2);
+    padding:6px 10px;
+    border-radius:6px;
+    display:inline-block;
+  }
+
+  .container {
+    max-width:800px;
+    margin:20px auto;
+    padding:0 12px;
+  }
+
+  .card {
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  }
+
+  .slider { width:100%; }
+
+  .tag {
+    display:inline-block;
+    background:#ffe9e3;
+    padding:4px 8px;
+    border-radius:999px;
+    margin-right:6px;
+    font-size:12px;
+  }
+
+  .note {
+    color:#555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="backbtn">⬅ Back</a>
+</div>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="card">
+    <h1>🌶️ Roasted Red Pepper Soup</h1>
+
+    <div style="margin-bottom:10px;">
+      <span class="tag">🥣 Soup</span>
+      <span class="tag">🔥 Roasted</span>
+      <span class="tag">🌿 Flavourful</span>
+    </div>
+
+    <p><strong>Servings: <span id="servings">4</span></strong></p>
+    <input type="range" id="slider" min="2" max="8" value="4" class="slider">
+
+    <p class="note">
+      Deep, smoky soup made from roasted peppers and tomatoes.
+    </p>
+  </div>
+
+  <!-- Ingredients -->
+  <div class="card">
+    <h2>Ingredients</h2>
+    <ul>
+      <li><span class="val" data-base="3"></span> red peppers, halved & deseeded</li>
+      <li><span class="val" data-base="1"></span> white onion, halved</li>
+      <li><span class="val" data-base="4"></span> garlic cloves</li>
+      <li><span class="val" data-base="2"></span> celery sticks, chopped</li>
+      <li><span class="val" data-base="500"></span> g plum tomatoes</li>
+      <li><span class="val" data-base="450"></span> ml vegetable stock</li>
+      <li><span class="val" data-base="2"></span> tbsp olive oil</li>
+      <li><span class="val" data-base="2"></span> tbsp tomato purée</li>
+      <li><span class="val" data-base="1"></span> tbsp sundried tomato paste</li>
+      <li><span class="val" data-base="1"></span> tsp chilli flakes</li>
+      <li><span class="val" data-base="25"></span> g butter</li>
+      <li>salt & black pepper</li>
+    </ul>
+  </div>
+
+  <!-- Method -->
+  <div class="card">
+    <h2>Method</h2>
+    <ol>
+      <li>Preheat oven to 200°C.</li>
+
+      <li>Place peppers, onion (cut side down), tomatoes and garlic on a baking tray. Drizzle with olive oil.</li>
+
+      <li>Roast for 30 minutes until soft and slightly charred.</li>
+
+      <li>Meanwhile, melt butter in a large pan and gently cook celery for 4–5 minutes.</li>
+
+      <li>Mix the stock with tomato purée, sundried tomato paste and chilli flakes, then add to the pan.</li>
+
+      <li>Peel the roasted onion and garlic, roughly chop, and add them along with the roasted tomatoes.</li>
+
+      <li>Blend until smooth using a hand blender.</li>
+
+      <li>Gently heat without boiling, then season to taste.</li>
+
+      <li>Serve warm, ideally with crusty bread.</li>
+    </ol>
+
+    <p class="note">
+      Roasting the vegetables gives this soup its deep flavour.
+    </p>
+  </div>
+
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const servings = document.getElementById("servings");
+const values = document.querySelectorAll(".val");
+
+const base = Number(slider.value);
+
+slider.addEventListener("input", () => {
+  const s = Number(slider.value);
+  servings.textContent = s;
+
+  values.forEach(el => {
+    const v = Number(el.dataset.base);
+    el.textContent = Math.round((v * s / base) * 10) / 10;
+  });
+});
+
+slider.dispatchEvent(new Event("input"));
+</script>
+
+</body>
+</html>

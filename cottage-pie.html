@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cottage Pie - My Cookbook</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+  }
+
+  .topbar {
+    background:#c04a2b;
+    padding:10px 12px;
+  }
+
+  .backbtn {
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    background:rgba(255,255,255,0.2);
+    padding:6px 10px;
+    border-radius:6px;
+    display:inline-block;
+  }
+
+  .container {
+    max-width:800px;
+    margin:20px auto;
+    padding:0 12px;
+  }
+
+  .card {
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  }
+
+  .slider {
+    width:100%;
+  }
+
+  .tag {
+    display:inline-block;
+    background:#ffe9e3;
+    padding:4px 8px;
+    border-radius:999px;
+    margin-right:6px;
+    font-size:12px;
+  }
+
+  .note {
+    color:#555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="backbtn">⬅ Back</a>
+</div>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="card">
+    <h1>🥔 Cottage Pie</h1>
+
+    <div style="margin-bottom:10px;">
+      <span class="tag">🔥 Comfort</span>
+      <span class="tag">🥩 Beef</span>
+      <span class="tag">🧀 Cheesy Mash</span>
+    </div>
+
+    <p><strong>Servings: <span id="servings">6</span></strong></p>
+    <input type="range" id="slider" min="2" max="12" value="6" class="slider">
+
+    <p class="note">
+      Rich beef filling with buttery cheesy mash baked until golden.
+    </p>
+  </div>
+
+  <!-- Filling -->
+  <div class="card">
+    <h2>Filling</h2>
+    <ul>
+      <li><span class="val" data-base="3"></span> tbsp olive oil</li>
+      <li><span class="val" data-base="1250"></span> g beef mince</li>
+      <li><span class="val" data-base="2"></span> onions, finely chopped</li>
+      <li><span class="val" data-base="3"></span> carrots, chopped</li>
+      <li><span class="val" data-base="3"></span> celery sticks, chopped</li>
+      <li><span class="val" data-base="2"></span> garlic cloves, finely chopped</li>
+      <li><span class="val" data-base="3"></span> tbsp plain flour</li>
+      <li><span class="val" data-base="1"></span> tbsp tomato purée</li>
+      <li><span class="val" data-base="250"></span> ml red wine (optional)</li>
+      <li><span class="val" data-base="850"></span> ml beef stock</li>
+      <li><span class="val" data-base="4"></span> tbsp Worcestershire sauce</li>
+      <li><span class="val" data-base="4"></span> thyme sprigs (approx.)</li>
+      <li><span class="val" data-base="2"></span> bay leaves</li>
+    </ul>
+  </div>
+
+  <!-- Mash -->
+  <div class="card">
+    <h2>Mash Topping</h2>
+    <ul>
+      <li><span class="val" data-base="750"></span> g potatoes, peeled and chopped</li>
+      <li><span class="val" data-base="225"></span> ml milk</li>
+      <li><span class="val" data-base="25"></span> g butter</li>
+      <li><span class="val" data-base="200"></span> g strong cheddar, grated</li>
+      <li>salt, black pepper and a little nutmeg</li>
+    </ul>
+  </div>
+
+  <!-- Method -->
+  <div class="card">
+    <h2>Method</h2>
+    <ol>
+      <li>Heat <strong>1 tbsp oil</strong> in a large saucepan and brown the beef mince. Do this in batches if needed, then set aside.</li>
+
+      <li>Add the remaining <strong>2 tbsp oil</strong> to the pan. Add onions, carrots and celery, then cook gently for about 20 minutes until soft.</li>
+
+      <li>Add garlic, flour and tomato purée. Turn the heat up slightly and cook for a few minutes, then return the beef to the pan.</li>
+
+      <li>Pour in the red wine, if using, and let it reduce slightly. Add beef stock, Worcestershire sauce, thyme and bay leaves.</li>
+
+      <li>Bring to a simmer and cook uncovered for 45 minutes until the gravy is thick and coating the meat. If it still looks too loose after about 30 minutes, turn the heat up a little to reduce it further. Season well, then remove the herb stalks and bay leaves.</li>
+
+      <li>Meanwhile, make the mash. Put the potatoes in a large saucepan, cover with salted cold water, bring to the boil and simmer until tender.</li>
+
+      <li>Drain well and let the potatoes steam dry for a few minutes. Mash with the milk, butter and <strong>three-quarters</strong> of the cheddar. Season with nutmeg, salt and pepper.</li>
+
+      <li>Spoon the meat mixture into ovenproof dish(es). Top with the mash and spread or pipe it over the filling. Sprinkle with the remaining cheese.</li>
+
+      <li>If cooking straight away, bake at <strong>220°C / 200°C fan / gas 7</strong> for 25–30 minutes until golden.</li>
+
+      <li>If using a slow cooker, brown the mince first, then put it into the slow cooker with the vegetables, flour, purée, wine, stock, Worcestershire sauce and herbs. Cook on High for 4–5 hours, then top with mash and finish in the oven as above.</li>
+    </ol>
+
+    <p class="note">
+      You want the filling thick before topping it with mash, not watery.
+    </p>
+  </div>
+
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const servings = document.getElementById("servings");
+const values = document.querySelectorAll(".val");
+
+const defaultServings = Number(slider.value);
+
+function update() {
+  const s = Number(slider.value);
+  servings.textContent = s;
+
+  values.forEach(el => {
+    const base = Number(el.dataset.base);
+    const scaled = base * (s / defaultServings);
+    el.textContent = Math.round(scaled * 10) / 10;
+  });
+}
+
+slider.addEventListener("input", update);
+update();
+</script>
+
+</body>
+</html>
+``

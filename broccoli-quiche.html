@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Broccoli Quiche - My Cookbook</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+  }
+
+  .topbar {
+    background:#c04a2b;
+    padding:10px 12px;
+  }
+
+  .backbtn {
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    background:rgba(255,255,255,0.2);
+    padding:6px 10px;
+    border-radius:6px;
+    display:inline-block;
+  }
+
+  .container {
+    max-width:800px;
+    margin:20px auto;
+    padding:0 12px;
+  }
+
+  .card {
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  }
+
+  .slider { width:100%; }
+
+  .tag {
+    display:inline-block;
+    background:#ffe9e3;
+    padding:4px 8px;
+    border-radius:999px;
+    margin-right:6px;
+    font-size:12px;
+  }
+
+  .note {
+    color:#555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="backbtn">⬅ Back</a>
+</div>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="card">
+    <h1>🥦 Broccoli Quiche</h1>
+
+    <div style="margin-bottom:10px;">
+      <span class="tag">🥧 Pastry</span>
+      <span class="tag">🧀 Cheesy</span>
+      <span class="tag">🥦 Healthy</span>
+    </div>
+
+    <p><strong>Servings: <span id="servings">6</span></strong></p>
+    <input type="range" id="slider" min="2" max="10" value="6" class="slider">
+
+    <p class="note">
+      Easy quiche using store-bought pastry with broccoli and cheese.
+    </p>
+  </div>
+
+  <!-- Ingredients -->
+  <div class="card">
+    <h2>Ingredients</h2>
+    <ul>
+      <li><span class="val" data-base="1"></span> ready-made pastry case (or rolled pastry)</li>
+      <li><span class="val" data-base="1"></span> head broccoli, chopped</li>
+      <li><span class="val" data-base="1"></span> onion, finely chopped</li>
+      <li><span class="val" data-base="3"></span> eggs</li>
+      <li><span class="val" data-base="200"></span> ml milk or cream</li>
+      <li><span class="val" data-base="100"></span> g cheddar cheese, grated</li>
+      <li><span class="val" data-base="1"></span> tbsp butter or oil</li>
+      <li>salt & black pepper</li>
+    </ul>
+  </div>
+
+  <!-- Method -->
+  <div class="card">
+    <h2>Method</h2>
+    <ol>
+      <li>Preheat oven to 180°C.</li>
+
+      <li>If using raw pastry, line a baking dish and blind bake for 10–15 minutes.</li>
+
+      <li>Cook broccoli in boiling water for a few minutes until just tender, then drain well.</li>
+
+      <li>Heat butter or oil in a pan and soften the onion.</li>
+
+      <li>Whisk together eggs, milk, salt and pepper.</li>
+
+      <li>Add broccoli, onion and cheese into the pastry case.</li>
+
+      <li>Pour over the egg mixture.</li>
+
+      <li>Bake for 35–45 minutes until set and golden.</li>
+
+      <li>Cool slightly before slicing and serving.</li>
+    </ol>
+
+    <p class="note">
+      Let it rest before cutting — helps it set properly like a classic quiche.
+    </p>
+  </div>
+
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const servings = document.getElementById("servings");
+const values = document.querySelectorAll(".val");
+
+const base = Number(slider.value);
+
+slider.addEventListener("input", () => {
+  const s = Number(slider.value);
+  servings.textContent = s;
+
+  values.forEach(el => {
+    const v = Number(el.dataset.base);
+    el.textContent = Math.round((v * s / base) * 10) / 10;
+  });
+});
+
+slider.dispatchEvent(new Event("input"));
+</script>
+
+</body>
+</html>
