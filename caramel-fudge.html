@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caramel Fudge - My Cookbook</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+  }
+
+  .topbar {
+    background:#c04a2b;
+    padding:10px 12px;
+  }
+
+  .backbtn {
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    background:rgba(255,255,255,0.2);
+    padding:6px 10px;
+    border-radius:6px;
+    display:inline-block;
+  }
+
+  .container {
+    max-width:800px;
+    margin:20px auto;
+    padding:0 12px;
+  }
+
+  .title {
+    font-size:24px;
+    font-weight:bold;
+    margin:20px 0 10px;
+  }
+
+  .card {
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.08);
+  }
+
+  .slider { width:100%; }
+
+  .tag {
+    display:inline-block;
+    background:#ffe9e3;
+    padding:4px 8px;
+    border-radius:999px;
+    margin-right:6px;
+    font-size:12px;
+  }
+
+  .note { color:#555; }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+<a href="index.html" class="backbtn">⬅ Back</a>
+</div>
+
+<div class="container">
+
+<div class="title">🍬 Caramel Fudge</div>
+
+<!-- Header -->
+<div class="card">
+  <div style="margin-bottom:10px;">
+    <span class="tag">🍰 Dessert</span>
+    <span class="tag">🍬 Sweet</span>
+    <span class="tag">🔥 Treat</span>
+  </div>
+
+  <p><strong>Pieces: <span id="servings">36</span></strong></p>
+  <input type="range" id="slider" min="12" max="72" value="36" class="slider">
+
+  <p class="note">
+    Smooth, creamy fudge with a caramel swirl and a touch of sea salt.
+  </p>
+</div>
+
+<!-- Ingredients -->
+<div class="card">
+  <h2>Ingredients</h2>
+  <ul>
+
+    <li><span class="val" data-base="450"></span> g caster sugar</li>
+    <li><span class="val" data-base="400"></span> ml double cream</li>
+    <li><span class="val" data-base="50"></span> g butter</li>
+
+    <li><span class="val" data-base="1"></span> tbsp glucose syrup</li>
+    <li><span class="val" data-base="1"></span> tbsp vanilla paste</li>
+
+    <li><span class="val" data-base="2"></span> tbsp caramel</li>
+
+    <li><span class="val" data-base="1"></span> tsp sea salt</li>
+
+  </ul>
+</div>
+
+<!-- Method -->
+<div class="card">
+  <h2>Method</h2>
+  <ol>
+
+    <li>Line a 20cm square tin with baking parchment.</li>
+
+    <li>Add sugar, cream, butter and glucose syrup to a pan.</li>
+    <li>Heat gently until sugar dissolves and butter melts.</li>
+
+    <li>Increase heat and bring to a boil.</li>
+    <li>Cook until mixture reaches 116°C (soft ball stage).</li>
+
+    <li>Remove from heat and leave for 5 minutes.</li>
+
+    <li>When temperature drops slightly, stir in vanilla and a pinch of salt.</li>
+
+    <li>Beat vigorously until mixture thickens and loses its shine.</li>
+
+    <li>Pour into tin and smooth the surface.</li>
+
+    <li>Dot caramel on top and swirl through.</li>
+
+    <li>Sprinkle sea salt over.</li>
+
+    <li>Leave to cool overnight at room temperature.</li>
+
+    <li>Cut into squares.</li>
+
+  </ol>
+
+  <p class="note">
+    Beating the mixture properly gives the fudge its smooth texture.
+  </p>
+</div>
+
+<!-- Tips -->
+<div class="card">
+  <h2>Tips</h2>
+  <ul>
+    <li>Use a thermometer for accuracy</li>
+    <li>Do not refrigerate — it affects texture</li>
+    <li>Store in airtight container up to 2 months</li>
+  </ul>
+</div>
+
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const servings = document.getElementById("servings");
+const values = document.querySelectorAll(".val");
+
+const defaultServings = Number(slider.value);
+
+function update() {
+  const s = Number(slider.value);
+  servings.textContent = s;
+
+  values.forEach(el => {
+    const base = Number(el.dataset.base);
+    const scaled = base * (s / defaultServings);
+    el.textContent = Math.round(scaled * 10) / 10;
+  });
+}
+
+slider.addEventListener("input", update);
+update();
+</script>
+
+</body>
+</html>
+``

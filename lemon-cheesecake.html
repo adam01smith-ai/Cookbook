@@ -1,0 +1,189 @@
+<!DOCTYPE html>< lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lemon Cheesecake - My Cookbook</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+  }
+
+  .topbar {
+    background:#c04a2b;
+    padding:10px 12px;
+  }
+
+  .backbtn {
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    background:rgba(255,255,255,0.2);
+    padding:6px 10px;
+    border-radius:6px;
+    display:inline-block;
+  }
+
+  .container {
+    max-width:800px;
+    margin:20px auto;
+    padding:0 12px;
+  }
+
+  .title {
+    font-size:24px;
+    font-weight:bold;
+    margin:20px 0 10px;
+  }
+
+  .card {
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.08);
+  }
+
+  .slider { width:100%; }
+
+  .tag {
+    display:inline-block;
+    background:#ffe9e3;
+    padding:4px 8px;
+    border-radius:999px;
+    margin-right:6px;
+    font-size:12px;
+  }
+
+  .note { color:#555; }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+<a href="index.html" class="backbtn">⬅ Back</a>
+</div>
+
+<div class="container">
+
+<div class="title">🍋 Baked Lemon Cheesecake</div>
+
+<!-- Header -->
+<div class="card">
+  <div style="margin-bottom:10px;">
+    <span class="tag">🍰 Dessert</span>
+    <span class="tag">🍋 Citrus</span>
+    <span class="tag">🔥 Baked</span>
+  </div>
+
+  <p><strong>Servings: <span id="servings">10</span></strong></p>
+  <input type="range" id="slider" min="4" max="14" value="10" class="slider">
+
+  <p class="note">
+    Creamy lemon cheesecake with a biscuit base and fresh raspberry topping.
+  </p>
+</div>
+
+<!-- Ingredients -->
+<div class="card">
+  <h2>Ingredients</h2>
+  <ul>
+
+    <li><span class="val" data-base="225"></span> g digestive biscuits</li>
+    <li><span class="val" data-base="100"></span> g butter (melted)</li>
+
+    <li><span class="val" data-base="250"></span> g mascarpone</li>
+    <li><span class="val" data-base="600"></span> g soft cheese</li>
+
+    <li><span class="val" data-base="2"></span> eggs</li>
+    <li><span class="val" data-base="2"></span> egg yolks</li>
+
+    <li>zest of <span class="val" data-base="3"></span> lemons</li>
+    <li>juice of <span class="val" data-base="1"></span> lemon</li>
+
+    <li><span class="val" data-base="4"></span> tbsp plain flour</li>
+    <li><span class="val" data-base="175"></span> g caster sugar</li>
+
+    <li><strong>Topping:</strong></li>
+    <li><span class="val" data-base="142"></span> ml soured cream</li>
+    <li><span class="val" data-base="3"></span> tbsp lemon curd</li>
+    <li>raspberries (optional)</li>
+
+  </ul>
+</div>
+
+<!-- Method -->
+<div class="card">
+  <h2>Method</h2>
+  <ol>
+
+    <li>Preheat oven to 180°C (160°C fan).</li>
+
+    <li>Line a 23cm springform tin with greaseproof paper.</li>
+
+    <li>Blitz biscuits and mix with melted butter.</li>
+    <li>Press into the base and chill.</li>
+
+    <li>Whisk mascarpone, soft cheese, eggs, yolks, lemon zest and juice.</li>
+
+    <li>Add flour and sugar and mix until smooth.</li>
+
+    <li>Pour into the tin.</li>
+
+    <li>Bake for 35–40 minutes until slightly wobbly in the centre.</li>
+
+    <li>Turn off oven and leave inside to cool completely.</li>
+
+    <li>Remove from tin and spread over soured cream.</li>
+
+    <li>Swirl lemon curd on top.</li>
+
+    <li>Decorate with raspberries if using.</li>
+
+  </ol>
+
+  <p class="note">
+    Cooling in the oven prevents cracks and keeps the texture creamy.
+  </p>
+</div>
+
+<!-- Tips -->
+<div class="card">
+  <h2>Tips</h2>
+  <ul>
+    <li>Don’t overbake — centre should still wobble</li>
+    <li>Use room temperature ingredients</li>
+    <li>Chill before serving for best texture</li>
+  </ul>
+</div>
+
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const servings = document.getElementById("servings");
+const values = document.querySelectorAll(".val");
+
+const defaultServings = Number(slider.value);
+
+function update() {
+  const s = Number(slider.value);
+  servings.textContent = s;
+
+  values.forEach(el => {
+    const base = Number(el.dataset.base);
+    const scaled = base * (s / defaultServings);
+    el.textContent = Math.round(scaled * 10) / 10;
+  });
+}
+
+slider.addEventListener("input", update);
+update();
+</script>
+
+</body>
+</html>
+``

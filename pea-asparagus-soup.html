@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pea & Asparagus Soup - My Cookbook</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+  }
+
+  .topbar {
+    background:#c04a2b;
+    padding:10px 12px;
+  }
+
+  .backbtn {
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    background:rgba(255,255,255,0.2);
+    padding:6px 10px;
+    border-radius:6px;
+    display:inline-block;
+  }
+
+  .container {
+    max-width:800px;
+    margin:20px auto;
+    padding:0 12px;
+  }
+
+  .title {
+    font-size:24px;
+    font-weight:bold;
+    margin:20px 0 10px;
+  }
+
+  .card {
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.08);
+  }
+
+  .slider { width:100%; }
+
+  .tag {
+    display:inline-block;
+    background:#ffe9e3;
+    padding:4px 8px;
+    border-radius:999px;
+    margin-right:6px;
+    font-size:12px;
+  }
+
+  .note { color:#555; }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+<a href="index.html" class="backbtn">⬅ Back</a>
+</div>
+
+<div class="container">
+
+<div class="title">🥣 Pea & Asparagus Soup</div>
+
+<!-- Header -->
+<div class="card">
+  <div style="margin-bottom:10px;">
+    <span class="tag">🥣 Soup</span>
+    <span class="tag">🌱 Fresh</span>
+    <span class="tag">🍃 Light</span>
+  </div>
+
+  <p><strong>Servings: <span id="servings">8</span></strong></p>
+  <input type="range" id="slider" min="2" max="12" value="8" class="slider">
+
+  <p class="note">
+    Smooth, fresh pea and asparagus soup finished with cream and chives.
+  </p>
+</div>
+
+<!-- Ingredients -->
+<div class="card">
+  <h2>Ingredients</h2>
+  <ul>
+
+    <li><span class="val" data-base="3"></span> tbsp olive oil</li>
+    <li><span class="val" data-base="2"></span> onions (finely diced)</li>
+    <li><span class="val" data-base="1"></span> clove garlic</li>
+
+    <li><span class="val" data-base="1000"></span> ml chicken stock</li>
+
+    <li><span class="val" data-base="500"></span> g peas</li>
+    <li><span class="val" data-base="500"></span> g asparagus</li>
+
+    <li><span class="val" data-base="200"></span> ml double cream</li>
+
+    <li>salt & black pepper</li>
+    <li><span class="val" data-base="3"></span> tbsp chives</li>
+
+  </ul>
+</div>
+
+<!-- Method -->
+<div class="card">
+  <h2>Method</h2>
+  <ol>
+
+    <li>Heat olive oil in a large saucepan over medium heat.</li>
+    <li>Add onion and garlic and cook gently for 10 minutes until soft.</li>
+    <li>Add stock and bring to the boil.</li>
+
+    <li>Add peas. When boiling again, add asparagus.</li>
+    <li>Simmer for 20 minutes until very soft.</li>
+
+    <li>Blend until smooth, then strain through a sieve.</li>
+
+    <li>Stir in half the cream and season to taste.</li>
+
+    <li>Reheat if serving hot, or chill if serving cold.</li>
+
+    <li>Mix chives into remaining cream and swirl into soup before serving.</li>
+
+  </ol>
+
+  <p class="note">
+    Straining gives an extra smooth, restaurant-quality finish.
+  </p>
+</div>
+
+<!-- Tips -->
+<div class="card">
+  <h2>Tips</h2>
+  <ul>
+    <li>Use frozen peas for consistent sweetness</li>
+    <li>Don’t overcook asparagus to keep colour bright</li>
+    <li>Add extra stock for a thinner soup</li>
+  </ul>
+</div>
+
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const servings = document.getElementById("servings");
+const values = document.querySelectorAll(".val");
+
+const defaultServings = Number(slider.value);
+
+function update() {
+  const s = Number(slider.value);
+  servings.textContent = s;
+
+  values.forEach(el => {
+    const base = Number(el.dataset.base);
+    const scaled = base * (s / defaultServings);
+    el.textContent = Math.round(scaled * 10) / 10;
+  });
+}
+
+slider.addEventListener("input", update);
+update();
+</script>
+
+</body>
+</html>

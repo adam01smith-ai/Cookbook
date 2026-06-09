@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crème Brûlée - My Cookbook</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+  }
+
+  .topbar {
+    background:#c04a2b;
+    padding:10px 12px;
+  }
+
+  .backbtn {
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    background:rgba(255,255,255,0.2);
+    padding:6px 10px;
+    border-radius:6px;
+    display:inline-block;
+  }
+
+  .container {
+    max-width:800px;
+    margin:20px auto;
+    padding:0 12px;
+  }
+
+  .title {
+    font-size:24px;
+    font-weight:bold;
+    margin:20px 0 10px;
+  }
+
+  .card {
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.08);
+  }
+
+  .slider { width:100%; }
+
+  .tag {
+    display:inline-block;
+    background:#ffe9e3;
+    padding:4px 8px;
+    border-radius:999px;
+    margin-right:6px;
+    font-size:12px;
+  }
+
+  .note { color:#555; }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+<a href="index.html" class="backbtn">⬅ Back</a>
+</div>
+
+<div class="container">
+
+<div class="title">🔥 Crème Brûlée</div>
+
+<!-- Header -->
+<div class="card">
+  <div style="margin-bottom:10px;">
+    <span class="tag">🍰 Dessert</span>
+    <span class="tag">🍮 Classic</span>
+    <span class="tag">🔥 Torch</span>
+  </div>
+
+  <p><strong>Servings: <span id="servings">4</span></strong></p>
+  <input type="range" id="slider" min="2" max="8" value="4" class="slider">
+
+  <p class="note">
+    Classic creamy custard with a crisp caramelised sugar topping.
+  </p>
+</div>
+
+<!-- Ingredients -->
+<div class="card">
+  <h2>Ingredients</h2>
+  <ul>
+
+    <li><span class="val" data-base="426"></span> ml double cream</li>
+    <li><span class="val" data-base="100"></span> ml whole milk</li>
+
+    <li>1 vanilla pod</li>
+
+    <li><span class="val" data-base="5"></span> egg yolks</li>
+    <li><span class="val" data-base="50"></span> g caster sugar</li>
+
+    <li>extra sugar for topping</li>
+
+  </ul>
+</div>
+
+<!-- Method -->
+<div class="card">
+  <h2>Method</h2>
+  <ol>
+
+    <li>Preheat oven to 180°C (160°C fan).</li>
+
+    <li>Place ramekins in a deep roasting tin.</li>
+
+    <li>Heat cream and milk in a pan.</li>
+
+    <li>Split vanilla pod and scrape seeds into the cream.</li>
+
+    <li>Whisk egg yolks and sugar until pale.</li>
+
+    <li>Heat cream until just below boiling.</li>
+
+    <li>Slowly pour hot cream into eggs, whisking.</li>
+
+    <li>Strain mixture through a sieve.</li>
+
+    <li>Remove foam from the surface.</li>
+
+    <li>Pour mixture into ramekins.</li>
+
+    <li>Add hot water to the tray (bain-marie).</li>
+
+    <li>Bake 30–35 minutes until just set with a slight wobble.</li>
+
+    <li>Cool slightly, then chill in fridge until fully set.</li>
+
+    <li>Sprinkle sugar evenly over the top.</li>
+
+    <li>Use a blowtorch to caramelise until crisp.</li>
+
+  </ol>
+
+  <p class="note">
+    The centre should wobble slightly — overbaking makes it firm.
+  </p>
+</div>
+
+<!-- Tips -->
+<div class="card">
+  <h2>Tips</h2>
+  <ul>
+    <li>Use a bain-marie for even cooking</li>
+    <li>Chill overnight for best texture</li>
+    <li>Caramelise just before serving</li>
+  </ul>
+</div>
+
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const servings = document.getElementById("servings");
+const values = document.querySelectorAll(".val");
+
+const defaultServings = Number(slider.value);
+
+function update() {
+  const s = Number(slider.value);
+  servings.textContent = s;
+
+  values.forEach(el => {
+    const base = Number(el.dataset.base);
+    const scaled = base * (s / defaultServings);
+    el.textContent = Math.round(scaled * 10) / 10;
+  });
+}
+
+slider.addEventListener("input", update);
+update();
+</script>
+
+</body>
+</html>

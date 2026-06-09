@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang><html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chocolate Chip Cookies - My Cookbook</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+  }
+
+  .topbar {
+    background:#c04a2b;
+    padding:10px 12px;
+  }
+
+  .backbtn {
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    background:rgba(255,255,255,0.2);
+    padding:6px 10px;
+    border-radius:6px;
+    display:inline-block;
+  }
+
+  .container {
+    max-width:800px;
+    margin:20px auto;
+    padding:0 12px;
+  }
+
+  .title {
+    font-size:24px;
+    font-weight:bold;
+    margin:20px 0 10px;
+  }
+
+  .card {
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.08);
+  }
+
+  .slider { width:100%; }
+
+  .tag {
+    display:inline-block;
+    background:#ffe9e3;
+    padding:4px 8px;
+    border-radius:999px;
+    margin-right:6px;
+    font-size:12px;
+  }
+
+  .note { color:#555; }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+<a href="index.html" class="backbtn">⬅ Back</a>
+</div>
+
+<div class="container">
+
+<div class="title">🍪 Chocolate Chip Cookies</div>
+
+<!-- Header -->
+<div class="card">
+  <div style="margin-bottom:10px;">
+    <span class="tag">🍰 Dessert</span>
+    <span class="tag">🍪 Bake</span>
+    <span class="tag">🍫 Sweet</span>
+  </div>
+
+  <p><strong>Servings: <span id="servings">12</span></strong></p>
+  <input type="range" id="slider" min="6" max="24" value="12" class="slider">
+
+  <p class="note">
+    Soft in the middle, slightly crisp on the edges, loaded with chocolate chunks.
+  </p>
+</div>
+
+<!-- Ingredients -->
+<div class="card">
+  <h2>Ingredients</h2>
+  <ul>
+
+    <li><span class="val" data-base="150"></span> g butter</li>
+    <li><span class="val" data-base="150"></span> g soft brown / caster sugar</li>
+
+    <li><span class="val" data-base="1"></span> egg</li>
+    <li>1 tsp vanilla extract</li>
+
+    <li><span class="val" data-base="190"></span> g plain flour</li>
+    <li>½ tsp baking powder</li>
+
+    <li><span class="val" data-base="200"></span> g chocolate chips</li>
+
+    <li>¼ tsp salt</li>
+
+  </ul>
+</div>
+
+<!-- Method -->
+<div class="card">
+  <h2>Method</h2>
+  <ol>
+
+    <li>Cream butter and sugar until light and fluffy.</li>
+
+    <li>Beat in egg and vanilla.</li>
+
+    <li>Fold in flour, baking powder, chocolate and salt.</li>
+
+    <li>Mix gently — do not overwork the dough.</li>
+
+    <li>Chill dough overnight for best flavour (optional but recommended).</li>
+
+    <li>Preheat oven to 180°C (160°C fan).</li>
+
+    <li>Roll into rough balls and space on baking trays.</li>
+
+    <li>Bake:
+      <ul>
+        <li>Fresh dough: 8–10 minutes</li>
+        <li>Chilled dough: 10–12 minutes</li>
+      </ul>
+    </li>
+
+    <li>Bake until golden at edges but soft in the centre.</li>
+
+    <li>Cool on tray briefly before transferring.</li>
+
+  </ol>
+
+  <p class="note">
+    Cookies will firm up as they cool — don’t overbake.
+  </p>
+</div>
+
+<!-- Tips -->
+<div class="card">
+  <h2>Tips</h2>
+  <ul>
+    <li>Chilling improves flavour and texture</li>
+    <li>Rough dough = better looking cookies</li>
+    <li>Slightly underbake for soft centres</li>
+  </ul>
+</div>
+
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const servings = document.getElementById("servings");
+const values = document.querySelectorAll(".val");
+
+const defaultServings = Number(slider.value);
+
+function update() {
+  const s = Number(slider.value);
+  servings.textContent = s;
+
+  values.forEach(el => {
+    const base = Number(el.dataset.base);
+    const scaled = base * (s / defaultServings);
+    el.textContent = Math.round(scaled * 10) / 10;
+  });
+}
+
+slider.addEventListener("input", update);
+update();
+</script>
+
+</body>
+</html>

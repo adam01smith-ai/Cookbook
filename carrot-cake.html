@@ -1,0 +1,196 @@
+<!DOCTYPE html><!DOCTYPE="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carrot Cake - My Cookbook</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+  }
+
+  .topbar {
+    background:#c04a2b;
+    padding:10px 12px;
+  }
+
+  .backbtn {
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    background:rgba(255,255,255,0.2);
+    padding:6px 10px;
+    border-radius:6px;
+    display:inline-block;
+  }
+
+  .container {
+    max-width:800px;
+    margin:20px auto;
+    padding:0 12px;
+  }
+
+  .title {
+    font-size:24px;
+    font-weight:bold;
+    margin:20px 0 10px;
+  }
+
+  .card {
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.08);
+  }
+
+  .slider { width:100%; }
+
+  .tag {
+    display:inline-block;
+    background:#ffe9e3;
+    padding:4px 8px;
+    border-radius:999px;
+    margin-right:6px;
+    font-size:12px;
+  }
+
+  .note { color:#555; }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+<a href="index.html" class="backbtn">⬅ Back</a>
+</div>
+
+<div class="container">
+
+<div class="title">🥕 Carrot Cake</div>
+
+<!-- Header -->
+<div class="card">
+  <div style="margin-bottom:10px;">
+    <span class="tag">🍰 Dessert</span>
+    <span class="tag">🥕 Bake</span>
+    <span class="tag">🧀 Iced</span>
+  </div>
+
+  <p><strong>Servings: <span id="servings">10</span></strong></p>
+  <input type="range" id="slider" min="4" max="16" value="10" class="slider">
+
+  <p class="note">
+    Moist spiced carrot cake with cream cheese icing and optional nuts.
+  </p>
+</div>
+
+<!-- Ingredients -->
+<div class="card">
+  <h2>Ingredients</h2>
+  <ul>
+
+    <li><span class="val" data-base="230"></span> ml vegetable oil</li>
+    <li><span class="val" data-base="100"></span> g natural yoghurt</li>
+
+    <li><span class="val" data-base="4"></span> eggs</li>
+    <li>1½ tsp vanilla extract</li>
+
+    <li>zest of ½ orange</li>
+
+    <li><span class="val" data-base="265"></span> g self-raising flour</li>
+    <li><span class="val" data-base="335"></span> g light muscovado sugar</li>
+
+    <li><span class="val" data-base="2.5"></span> tsp cinnamon</li>
+    <li>¼ nutmeg (finely grated)</li>
+
+    <li><span class="val" data-base="265"></span> g carrots (grated)</li>
+    <li><span class="val" data-base="100"></span> g raisins</li>
+
+    <li><span class="val" data-base="100"></span> g walnuts (optional)</li>
+
+    <li><strong>Icing:</strong></li>
+    <li><span class="val" data-base="100"></span> g butter</li>
+    <li><span class="val" data-base="300"></span> g icing sugar</li>
+    <li><span class="val" data-base="100"></span> g soft cheese</li>
+
+  </ul>
+</div>
+
+<!-- Method -->
+<div class="card">
+  <h2>Method</h2>
+  <ol>
+
+    <li>Preheat oven to 180°C (160°C fan).</li>
+
+    <li>Oil and line two 20cm cake tins.</li>
+
+    <li>Whisk oil, yoghurt, eggs, vanilla and orange zest.</li>
+
+    <li>Mix flour, sugar, cinnamon, nutmeg and a pinch of salt.</li>
+
+    <li>Combine wet and dry ingredients.</li>
+
+    <li>Stir in carrots, raisins and half the nuts.</li>
+
+    <li>Divide mixture between tins.</li>
+
+    <li>Bake for 25–30 minutes until a skewer comes out clean.</li>
+
+    <li>Cool in tins.</li>
+
+    <li>Beat butter and sugar until smooth.</li>
+
+    <li>Add soft cheese gradually and mix until creamy.</li>
+
+    <li>Sandwich cakes with half the icing.</li>
+
+    <li>Spread remaining icing on top and finish with nuts.</li>
+
+  </ol>
+
+  <p class="note">
+    Add the soft cheese gradually to stop the icing splitting.
+  </p>
+</div>
+
+<!-- Tips -->
+<div class="card">
+  <h2>Tips</h2>
+  <ul>
+    <li>Use freshly grated carrots for moisture</li>
+    <li>Don’t overbake — keeps cake soft</li>
+    <li>Best eaten at room temperature</li>
+  </ul>
+</div>
+
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const servings = document.getElementById("servings");
+const values = document.querySelectorAll(".val");
+
+const defaultServings = Number(slider.value);
+
+function update() {
+  const s = Number(slider.value);
+  servings.textContent = s;
+
+  values.forEach(el => {
+    const base = Number(el.dataset.base);
+    const scaled = base * (s / defaultServings);
+    el.textContent = Math.round(scaled * 10) / 10;
+  });
+}
+
+slider.addEventListener("input", update);
+update();
+</script>
+
+</body>
+</html>
+
