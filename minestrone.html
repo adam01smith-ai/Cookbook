@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minestrone - My Cookbook</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+  }
+
+  .topbar {
+    background:#c04a2b;
+    padding:10px 12px;
+  }
+
+  .backbtn {
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    background:rgba(255,255,255,0.2);
+    padding:6px 10px;
+    border-radius:6px;
+    display:inline-block;
+  }
+
+  .container {
+    max-width:800px;
+    margin:20px auto;
+    padding:0 12px;
+  }
+
+  .title {
+    font-size:24px;
+    font-weight:bold;
+    margin:20px 0 10px;
+  }
+
+  .card {
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.08);
+  }
+
+  .slider { width:100%; }
+
+  .tag {
+    display:inline-block;
+    background:#ffe9e3;
+    padding:4px 8px;
+    border-radius:999px;
+    margin-right:6px;
+    font-size:12px;
+  }
+
+  .note { color:#555; }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+<a href="index.html" class="backbtn">⬅ Back</a>
+</div>
+
+<div class="container">
+
+<div class="title">🍲 Minestrone</div>
+
+<!-- Header -->
+<div class="card">
+  <div style="margin-bottom:10px;">
+    <span class="tag">🥣 Soup</span>
+    <span class="tag">🇮🇹 Italian</span>
+    <span class="tag">🍝 Hearty</span>
+  </div>
+
+  <p><strong>Servings: <span id="servings">4</span></strong></p>
+  <input type="range" id="slider" min="2" max="8" value="4" class="slider">
+
+  <p class="note">
+    Classic Italian vegetable soup with beans, pasta and greens.
+  </p>
+</div>
+
+<!-- Ingredients -->
+<div class="card">
+  <h2>Ingredients</h2>
+  <ul>
+
+    <li><span class="val" data-base="3"></span> tbsp olive oil</li>
+
+    <li><span class="val" data-base="1"></span> onion</li>
+    <li><span class="val" data-base="1"></span> celery stick</li>
+    <li><span class="val" data-base="1"></span> carrot</li>
+    <li><span class="val" data-base="1"></span> courgette</li>
+
+    <li><span class="val" data-base="70"></span> g pancetta</li>
+
+    <li><span class="val" data-base="1"></span> garlic clove</li>
+    <li>½ tsp dried oregano</li>
+
+    <li><span class="val" data-base="400"></span> g cannellini beans</li>
+    <li><span class="val" data-base="400"></span> g chopped tomatoes</li>
+
+    <li><span class="val" data-base="2"></span> tbsp tomato purée</li>
+    <li><span class="val" data-base="1200"></span> ml vegetable stock</li>
+
+    <li>1 bay leaf</li>
+
+    <li><span class="val" data-base="70"></span> g small pasta</li>
+
+    <li><span class="val" data-base="100"></span> g greens</li>
+
+    <li>basil (to serve)</li>
+    <li>parmesan (to serve)</li>
+
+  </ul>
+</div>
+
+<!-- Method -->
+<div class="card">
+  <h2>Method</h2>
+  <ol>
+
+    <li>Heat olive oil in a large saucepan.</li>
+
+    <li>Add onion, celery, carrot, courgette and pancetta.</li>
+    <li>Cook gently for 10 minutes until softened.</li>
+
+    <li>Stir in garlic and oregano and cook for 1 minute.</li>
+
+    <li>Add beans, tomatoes, purée, stock and bay leaf.</li>
+    <li>Season and simmer for 30 minutes.</li>
+
+    <li>Add pasta and greens.</li>
+    <li>Cook for a further 10 minutes.</li>
+
+    <li>Serve with basil, parmesan and a drizzle of olive oil.</li>
+
+  </ol>
+
+  <p class="note">
+    Add extra stock if the soup thickens too much while cooking.
+  </p>
+</div>
+
+<!-- Tips -->
+<div class="card">
+  <h2>Tips</h2>
+  <ul>
+    <li>Use seasonal vegetables where possible</li>
+    <li>Add parmesan rind while simmering for depth</li>
+    <li>Tastes even better the next day</li>
+  </ul>
+</div>
+
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const servings = document.getElementById("servings");
+const values = document.querySelectorAll(".val");
+
+const defaultServings = Number(slider.value);
+
+function update() {
+  const s = Number(slider.value);
+  servings.textContent = s;
+
+  values.forEach(el => {
+    const base = Number(el.dataset.base);
+    const scaled = base * (s / defaultServings);
+    el.textContent = Math.round(scaled * 10) / 10;
+  });
+}
+
+slider.addEventListener("input", update);
+update();
+</script>
+
+</body>
+</html>
