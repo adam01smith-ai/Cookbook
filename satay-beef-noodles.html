@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Satay Beef Noodles - My Cookbook</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+  }
+
+  .topbar {
+    background:#c04a2b;
+    padding:10px 12px;
+  }
+
+  .backbtn {
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    background:rgba(255,255,255,0.2);
+    padding:6px 10px;
+    border-radius:6px;
+    display:inline-block;
+  }
+
+  .container {
+    max-width:800px;
+    margin:20px auto;
+    padding:0 12px;
+  }
+
+  .title {
+    font-size:24px;
+    font-weight:bold;
+    margin:20px 0 10px;
+  }
+
+  .card {
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.08);
+  }
+
+  .slider { width:100%; }
+
+  .tag {
+    display:inline-block;
+    background:#ffe9e3;
+    padding:4px 8px;
+    border-radius:999px;
+    margin-right:6px;
+    font-size:12px;
+  }
+
+  .note { color:#555; }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+<a href="index.html" class="backbtn">⬅ Back</a>
+</div>
+
+<div class="container">
+
+<div class="title">🥜 Satay Beef Noodles</div>
+
+<!-- Header -->
+<div class="card">
+  <div style="margin-bottom:10px;">
+    <span class="tag">🍜 Noodles</span>
+    <span class="tag">🥜 Satay</span>
+    <span class="tag">🌶️ Spicy</span>
+  </div>
+
+  <p><strong>Servings: <span id="servings">2</span></strong></p>
+  <input type="range" id="slider" min="1" max="8" value="2" class="slider">
+
+  <p class="note">
+    Sweet, spicy satay-style beef noodles with crunchy peanuts and vegetables.
+  </p>
+</div>
+
+<!-- Ingredients -->
+<div class="card">
+  <h2>Ingredients</h2>
+  <ul>
+
+    <li><span class="val" data-base="1"></span> red pepper</li>
+    <li><span class="val" data-base="0.5"></span> lime</li>
+    <li><span class="val" data-base="1"></span> garlic clove</li>
+
+    <li><span class="val" data-base="2"></span> nests noodles</li>
+
+    <li><span class="val" data-base="1"></span> tbsp peanut butter</li>
+    <li><span class="val" data-base="1"></span> tbsp ketjap manis</li>
+    <li><span class="val" data-base="2"></span> tbsp chilli sauce</li>
+    <li><span class="val" data-base="1"></span> tbsp soy sauce</li>
+
+    <li><span class="val" data-base="1"></span> red onion</li>
+
+    <li><span class="val" data-base="240"></span> g beef mince</li>
+
+    <li><span class="val" data-base="1"></span> handful mangetout</li>
+
+    <li><span class="val" data-base="2"></span> tbsp peanuts</li>
+
+  </ul>
+</div>
+
+<!-- Method -->
+<div class="card">
+  <h2>Method</h2>
+  <ol>
+
+    <li>Thinly slice the red pepper and red onion.</li>
+
+    <li>Zest the lime and cut the remaining lime into wedges.</li>
+
+    <li>Crush or finely chop the peanuts.</li>
+
+    <li>Brown the beef mince in a large pan, then remove and set aside.</li>
+
+    <li>Cook the noodles according to packet instructions.</li>
+
+    <li>Add onion and pepper to the pan and cook until softened.</li>
+
+    <li>Add the mangetout and cook for 1–2 minutes.</li>
+
+    <li>In a bowl, mix together the peanut butter, ketjap manis, chilli sauce, soy sauce and lime zest.</li>
+
+    <li>Return the beef mince to the pan.</li>
+
+    <li>Add the cooked noodles.</li>
+
+    <li>Pour over the sauce and toss everything together until coated.</li>
+
+    <li>Serve with crushed peanuts and lime wedges.</li>
+
+  </ol>
+
+  <p class="note">
+    Add a splash of water if the sauce becomes too thick.
+  </p>
+</div>
+
+<!-- Tips -->
+<div class="card">
+  <h2>Tips</h2>
+  <ul>
+    <li>Use crunchy peanut butter for extra texture</li>
+    <li>Add extra chilli sauce if you like more heat</li>
+    <li>Fresh lime juice brightens the finished dish</li>
+  </ul>
+</div>
+
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const servings = document.getElementById("servings");
+const values = document.querySelectorAll(".val");
+
+const defaultServings = Number(slider.value);
+
+function update() {
+  const s = Number(slider.value);
+  servings.textContent = s;
+
+  values.forEach(el => {
+    const base = Number(el.dataset.base);
+    const scaled = base * (s / defaultServings);
+    el.textContent = Math.round(scaled * 10) / 10;
+  });
+}
+
+slider.addEventListener("input", update);
+update();
+</script>
+
+</body>
+</html>
