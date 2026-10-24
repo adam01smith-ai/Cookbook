@@ -1,157 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f4ee"><meta name="color-scheme" content="light">
 <title>Roasted Red Pepper Soup - My Cookbook</title>
-
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    background:#f4f6f8;
-    margin:0;
-  }
-
-  .topbar {
-    background:#c04a2b;
-    padding:10px 12px;
-  }
-
-  .backbtn {
-    color:white;
-    text-decoration:none;
-    font-weight:bold;
-    background:rgba(255,255,255,0.2);
-    padding:6px 10px;
-    border-radius:6px;
-    display:inline-block;
-  }
-
-  .container {
-    max-width:800px;
-    margin:20px auto;
-    padding:0 12px;
-  }
-
-  .card {
-    background:white;
-    padding:20px;
-    margin-bottom:15px;
-    border-radius:10px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.06);
-  }
-
-  .slider { width:100%; }
-
-  .tag {
-    display:inline-block;
-    background:#ffe9e3;
-    padding:4px 8px;
-    border-radius:999px;
-    margin-right:6px;
-    font-size:12px;
-  }
-
-  .note {
-    color:#555;
-  }
+:root{--bg:#f7f4ee;--paper:#fffefa;--ink:#262822;--muted:#6c6b63;--line:#dedbd3;--accent:#b9472b;--soft:#fff1e7}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,a{touch-action:manipulation}button{font:inherit;cursor:pointer}button:disabled{cursor:default;opacity:.35}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:4px}a{color:inherit}header{border-bottom:1px solid var(--line)}.bar{max-width:1140px;margin:auto;padding:18px 30px;display:flex;align-items:center;justify-content:space-between;gap:20px}.back{text-decoration:none;font-size:18px;display:flex;gap:15px;align-items:center}.back span{font-size:24px}.outline{background:transparent;border:1px solid #b9b6ac;border-radius:9px;padding:9px 15px;color:var(--ink);display:inline-flex;gap:9px;align-items:center;justify-content:center}.outline:hover{background:#ece8df}.outline svg{width:19px;height:19px;flex-shrink:0}main{max-width:1140px;margin:auto;padding:32px 30px 50px}.eyebrow{color:var(--accent);font-size:12px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;margin:0 0 9px}h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:500;line-height:1.15}h1{font-size:clamp(35px,5vw,57px);letter-spacing:-1.8px;margin:0 0 13px}h2{font-size:32px;letter-spacing:-.8px;margin:0}h3{font-size:23px;margin:0 0 9px}.description{font-size:17px;color:var(--muted);margin:0;max-width:820px}.times{display:grid;grid-template-columns:repeat(3,1fr);margin:30px 0}.time{border-left:1px solid #ccc8bd;padding:0 20px}.time span{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);display:block}.time strong{font-size:19px;font-weight:600;display:block;margin-top:3px}.panel{background:var(--paper);border:1px solid var(--line);border-radius:14px}.servings-panel{padding:20px 25px;margin-bottom:20px;display:grid;grid-template-columns:210px 1fr;gap:25px;align-items:center}.servings-title{font:26px Georgia,serif;margin-bottom:9px}.serving-controls{display:flex;align-items:center;gap:17px}.round{width:43px;height:43px;border:1px solid #bbb6aa;border-radius:50%;background:transparent;color:var(--accent);font-size:28px;line-height:1}.round:hover:not(:disabled){background:var(--soft)}.serving-number{text-align:center;min-width:45px}#servings{font:44px/1 Georgia,serif;display:block}.people{font-size:12px;color:var(--muted);display:block;margin-top:3px}.slider{--fill:0%;width:100%;height:7px;margin:15px 0 0;appearance:none;-webkit-appearance:none;background:linear-gradient(to right,var(--accent) 0%,var(--accent) var(--fill),#dcd9d2 var(--fill),#dcd9d2 100%);border-radius:10px;cursor:pointer;display:block}.slider::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:26px;height:26px;background:var(--accent);border:3px solid var(--paper);border-radius:50%;box-shadow:0 1px 5px #0003}.slider::-moz-range-thumb{width:22px;height:22px;background:var(--accent);border:3px solid var(--paper);border-radius:50%;box-shadow:0 1px 5px #0003}.ticks{display:flex;justify-content:space-between;padding:0 1px;margin-top:13px;font-size:12px;color:var(--muted)}.ticks span:before{content:'';display:block;width:1px;height:6px;background:#b6b1a6;margin:0 auto 3px}.scale-note{color:var(--muted);font-size:12px;text-align:center;margin:9px 0 0}.recipe-layout{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.4fr);gap:18px;align-items:start}.ingredients-panel,.method-panel{padding:25px}.panel-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}.text-button{color:var(--accent);border:0;background:none;padding:5px 0;font-size:13px;text-decoration:underline;text-underline-offset:3px}.ingredients-panel h3{font:600 11px/1.5 system-ui,sans-serif;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin:0 0 12px}.ingredient-list{list-style:none;padding:0;margin:0 0 25px}.ingredient-list+h3{border-top:1px solid var(--line);padding-top:23px}.ingredient-list li{margin:0}.ingredient-list label{display:flex;gap:13px;align-items:flex-start;padding:7px 0;cursor:pointer;font-size:14px;line-height:1.6}.ingredient-list input{appearance:none;-webkit-appearance:none;flex:0 0 18px;width:18px;height:18px;border:1.5px solid #a6a294;border-radius:4px;margin:3px 0 0;background:transparent;display:grid;place-content:center;cursor:pointer}.ingredient-list input:checked{background:var(--accent);border-color:var(--accent)}.ingredient-list input:checked:after{content:'✓';color:white;font-size:13px;line-height:1}.ingredient-list input:checked+.ingredient-text{color:var(--muted);text-decoration:line-through}.val{font-weight:700;font-variant-numeric:tabular-nums}.note{font-size:12px;color:var(--muted);line-height:1.65}.method-panel .outline{font-size:12px;padding:8px 10px;white-space:nowrap}.steps{list-style:none;padding:0;margin:0;counter-reset:steps}.step{display:grid;grid-template-columns:36px 1fr;gap:15px;padding:22px 0;border-top:1px solid var(--line);scroll-margin-top:30px}.step:first-child{border-top:0;padding-top:0}.step-number{background:var(--accent);color:white;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font:20px Georgia,serif}.step p{font-size:14px;margin:0;color:#4c4c44;line-height:1.75}.tip{background:var(--soft);border:1px solid #edc4ac;border-radius:10px;padding:15px 18px;margin:0 0 20px}.tip strong{font:21px Georgia,serif;color:#963b22;display:block;margin-bottom:5px}.tip p{font-size:13px;margin:0;color:#625044}.serve{background:#f7f5f0;border:1px solid var(--line);border-radius:10px;padding:17px}.serve h3{font-size:23px;margin:0 0 5px}.serve p{font-size:13px;margin:0;color:var(--muted)}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}[hidden]{display:none!important}footer{text-align:center;font-size:12px;color:var(--muted);margin:28px 0 0}@media(max-width:800px){.recipe-layout{grid-template-columns:minmax(0,.9fr) minmax(0,1.2fr)}.ingredients-panel,.method-panel{padding:20px}.method-panel .panel-heading{align-items:flex-start;flex-direction:column}.servings-panel{grid-template-columns:180px 1fr}}@media(max-width:620px){.bar{padding:14px 18px}.back{font-size:15px;gap:8px}.outline{font-size:12px;padding:8px 11px}main{padding:25px 16px 35px}h1{font-size:38px;letter-spacing:-1.1px}.description{font-size:15px}.times{margin:24px 0;gap:5px}.time{padding:0 10px}.time strong{font-size:15px}.time span{font-size:9px}.servings-panel{grid-template-columns:1fr;padding:20px;gap:14px}.servings-title{font-size:24px}.serving-controls{justify-content:center}.servings-title{text-align:center}.slider{margin-top:8px}.recipe-layout{grid-template-columns:1fr}.method-panel .panel-heading{flex-direction:row;align-items:center}.ingredients-panel,.method-panel{padding:22px}h2{font-size:30px}.step{gap:12px}.step h3{font-size:23px}.step p,.ingredient-list label{font-size:15px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}@media print{@page{margin:14mm}body{background:white;color:black;font-size:11px}.bar,.slider,.ticks,.scale-note,.servings-title,.round,.text-button,header{display:none}main{max-width:none;padding:0}h1{font-size:32px}h2{font-size:23px}.description{font-size:12px}.times{margin:15px 0}.time strong{font-size:14px}.servings-panel{display:block;border:0;padding:0;margin:0 0 15px}.serving-controls{justify-content:flex-start;gap:0}.serving-number{display:flex;gap:5px;align-items:center}#servings{font:inherit;font-weight:700}.people{margin:0}.recipe-layout{display:block}.panel{background:white;border:0;border-radius:0}.ingredients-panel,.method-panel{padding:0}.panel-heading{margin:15px 0 10px}.ingredient-list{margin-bottom:15px}.ingredient-list label{font-size:11px;padding:2px 0;gap:7px}.ingredient-list input{width:12px;height:12px;flex-basis:12px;margin-top:3px}.ingredient-list input:checked+.ingredient-text{color:black;text-decoration:none}.step,.step-number{width:24px;height:24px;border:1px solid #aaa;color:black;background:white;font-size:14px}.step h3{font-size:17px}.step p,.tip,.serve{background:white;border:1px solid #ccc;break-inside:avoid}.tip strong{font-size:17px}.tip p,.serve p,.note{font-size:10px}}
+.step-copy{font-size:14px;color:#4c4c44;line-height:1.75}.step-copy ul{padding-left:18px}.method-group{font-family:system-ui,sans-serif;font-weight:650;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin:24px 0 18px}.method-group:first-of-type{margin-top:0}.recipe-layout .note{margin-top:15px}@media(max-width:620px){.step-copy{font-size:15px}}@media print{.step-copy{font-size:11px}}
 </style>
 </head>
-
 <body>
+<header><div class="bar"><a class="back" href="index.html"><span aria-hidden="true">←</span> My Cookbook</a><button type="button" class="outline" id="print"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7z"/><path d="M17 11h1"/></svg>Print recipe</button></div></header>
+<main>
+<p class="eyebrow">Soups</p>
+<h1>Roasted Red Pepper Soup</h1>
+<p class="description">Deep, smoky soup made from roasted peppers and tomatoes.</p>
 
-<div class="topbar">
-  <a href="index.html" class="backbtn">⬅ Back</a>
-</div>
-
-<div class="container">
-
-  <!-- Header -->
-  <div class="card">
-    <h1>🌶️ Roasted Red Pepper Soup</h1>
-
-    <div style="margin-bottom:10px;">
-      <span class="tag">🥣 Soup</span>
-      <span class="tag">🔥 Roasted</span>
-      <span class="tag">🌿 Flavourful</span>
-    </div>
-
-    <p><strong>Servings: <span id="servings">4</span></strong></p>
-    <input type="range" id="slider" min="2" max="8" value="4" class="slider">
-
-    <p class="note">
-      Deep, smoky soup made from roasted peppers and tomatoes.
-    </p>
-  </div>
-
-  <!-- Ingredients -->
-  <div class="card">
-    <h2>Ingredients</h2>
-    <ul>
-      <li><span class="val" data-base="3"></span> red peppers, halved & deseeded</li>
-      <li><span class="val" data-base="1"></span> white onion, halved</li>
-      <li><span class="val" data-base="4"></span> garlic cloves</li>
-      <li><span class="val" data-base="2"></span> celery sticks, chopped</li>
-      <li><span class="val" data-base="500"></span> g plum tomatoes</li>
-      <li><span class="val" data-base="450"></span> ml vegetable stock</li>
-      <li><span class="val" data-base="2"></span> tbsp olive oil</li>
-      <li><span class="val" data-base="2"></span> tbsp tomato purée</li>
-      <li><span class="val" data-base="1"></span> tbsp sundried tomato paste</li>
-      <li><span class="val" data-base="1"></span> tsp chilli flakes</li>
-      <li><span class="val" data-base="25"></span> g butter</li>
-      <li>salt & black pepper</li>
-    </ul>
-  </div>
-
-  <!-- Method -->
-  <div class="card">
-    <h2>Method</h2>
-    <ol>
-      <li>Preheat oven to 200°C.</li>
-
-      <li>Place peppers, onion (cut side down), tomatoes and garlic on a baking tray. Drizzle with olive oil.</li>
-
-      <li>Roast for 30 minutes until soft and slightly charred.</li>
-
-      <li>Meanwhile, melt butter in a large pan and gently cook celery for 4–5 minutes.</li>
-
-      <li>Mix the stock with tomato purée, sundried tomato paste and chilli flakes, then add to the pan.</li>
-
-      <li>Peel the roasted onion and garlic, roughly chop, and add them along with the roasted tomatoes.</li>
-
-      <li>Blend until smooth using a hand blender.</li>
-
-      <li>Gently heat without boiling, then season to taste.</li>
-
-      <li>Serve warm, ideally with crusty bread.</li>
-    </ol>
-
-    <p class="note">
-      Roasting the vegetables gives this soup its deep flavour.
-    </p>
-  </div>
-
-</div>
-
+<section class="panel servings-panel" aria-label="Adjust recipe servings"><div><div class="servings-title"><label for="slider">Servings</label></div><div class="serving-controls"><button type="button" class="round" id="minus" aria-label="Decrease servings">−</button><div class="serving-number"><output id="servings" for="slider" aria-live="polite">4</output><span class="people">person</span></div><button type="button" class="round" id="plus" aria-label="Increase servings">+</button></div></div><div><input type="range" min="2" max="8" value="4" step="1" id="slider" class="slider" aria-describedby="scale-note"><div class="ticks" aria-hidden="true"><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div><p class="scale-note" id="scale-note">Ingredient quantities update automatically</p></div></section>
+<div class="recipe-layout"><section class="panel ingredients-panel" aria-labelledby="ingredients-heading"><div class="panel-heading"><h2 id="ingredients-heading">Ingredients</h2><button type="button" class="text-button" id="reset">Reset</button></div><ul class="ingredient-list"><li><label><input type="checkbox"><span class="ingredient-text"><span class="val" data-base="3"></span> red peppers, halved &amp; deseeded</span></label></li>
+<li><label><input type="checkbox"><span class="ingredient-text"><span class="val" data-base="1"></span> white onion, halved</span></label></li>
+<li><label><input type="checkbox"><span class="ingredient-text"><span class="val" data-base="4"></span> garlic cloves</span></label></li>
+<li><label><input type="checkbox"><span class="ingredient-text"><span class="val" data-base="2"></span> celery sticks, chopped</span></label></li>
+<li><label><input type="checkbox"><span class="ingredient-text"><span class="val" data-base="500"></span> g plum tomatoes</span></label></li>
+<li><label><input type="checkbox"><span class="ingredient-text"><span class="val" data-base="450"></span> ml vegetable stock</span></label></li>
+<li><label><input type="checkbox"><span class="ingredient-text"><span class="val" data-base="2"></span> tbsp olive oil</span></label></li>
+<li><label><input type="checkbox"><span class="ingredient-text"><span class="val" data-base="2"></span> tbsp tomato purée</span></label></li>
+<li><label><input type="checkbox"><span class="ingredient-text"><span class="val" data-base="1"></span> tbsp sundried tomato paste</span></label></li>
+<li><label><input type="checkbox"><span class="ingredient-text"><span class="val" data-base="1"></span> tsp chilli flakes</span></label></li>
+<li><label><input type="checkbox"><span class="ingredient-text"><span class="val" data-base="25"></span> g butter</span></label></li>
+<li><label><input type="checkbox"><span class="ingredient-text">salt &amp; black pepper</span></label></li></ul></section>
+<section class="panel method-panel" aria-labelledby="method-heading"><div class="panel-heading"><h2 id="method-heading">Method</h2></div><ol class="steps" start="1"><li class="step"><span class="step-number" aria-hidden="true">1</span><div><div class="step-copy">Preheat oven to 200°C.</div></div></li>
+<li class="step"><span class="step-number" aria-hidden="true">2</span><div><div class="step-copy">Place peppers, onion (cut side down), tomatoes and garlic on a baking tray. Drizzle with olive oil.</div></div></li>
+<li class="step"><span class="step-number" aria-hidden="true">3</span><div><div class="step-copy">Roast for 30 minutes until soft and slightly charred.</div></div></li>
+<li class="step"><span class="step-number" aria-hidden="true">4</span><div><div class="step-copy">Meanwhile, melt butter in a large pan and gently cook celery for 4–5 minutes.</div></div></li>
+<li class="step"><span class="step-number" aria-hidden="true">5</span><div><div class="step-copy">Mix the stock with tomato purée, sundried tomato paste and chilli flakes, then add to the pan.</div></div></li>
+<li class="step"><span class="step-number" aria-hidden="true">6</span><div><div class="step-copy">Peel the roasted onion and garlic, roughly chop, and add them along with the roasted tomatoes.</div></div></li>
+<li class="step"><span class="step-number" aria-hidden="true">7</span><div><div class="step-copy">Blend until smooth using a hand blender.</div></div></li>
+<li class="step"><span class="step-number" aria-hidden="true">8</span><div><div class="step-copy">Gently heat without boiling, then season to taste.</div></div></li>
+<li class="step"><span class="step-number" aria-hidden="true">9</span><div><div class="step-copy">Serve warm, ideally with crusty bread.</div></div></li></ol><p class="note">Roasting the vegetables gives this soup its deep flavour.</p></section></div>
+<footer>My Cookbook</footer>
+</main>
 <script>
-const slider = document.getElementById("slider");
-const servings = document.getElementById("servings");
-const values = document.querySelectorAll(".val");
-
-const base = Number(slider.value);
-
-slider.addEventListener("input", () => {
-  const s = Number(slider.value);
-  servings.textContent = s;
-
-  values.forEach(el => {
-    const v = Number(el.dataset.base);
-    el.textContent = Math.round((v * s / base) * 10) / 10;
-  });
-});
-
-slider.dispatchEvent(new Event("input"));
+const slider=document.getElementById('slider'),servings=document.getElementById('servings'),values=document.querySelectorAll('.val'),ranges=document.querySelectorAll('.range'),minus=document.getElementById('minus'),plus=document.getElementById('plus');
+const baseServings=4;
+function formatAmount(value){const whole=Math.floor(value),fraction=Math.round((value-whole)*8),fractions={1:'⅛',2:'¼',3:'⅜',4:'½',5:'⅝',6:'¾',7:'⅞'};if(Math.abs(value*8-Math.round(value*8))<.00001&&fraction>0&&fraction<8)return(whole?whole+' ':'')+fractions[fraction];return String(Math.round(value*100)/100)}
+function update(){const s=Math.max(Number(slider.min),Math.min(Number(slider.max),Number(slider.value)||4));slider.value=s;servings.textContent=s;const factor=s/baseServings;values.forEach(el=>el.textContent=formatAmount(Number(el.dataset.base)*factor));ranges.forEach(el=>el.textContent=formatAmount(Number(el.dataset.min)*factor)+'–'+formatAmount(Number(el.dataset.max)*factor));slider.style.setProperty('--fill',((s-Number(slider.min))/(Number(slider.max)-Number(slider.min))*100)+'%');const unit="people";document.querySelector('.people').textContent=unit==='pieces'?(s===1?'piece':'pieces'):unit==='cookies'?(s===1?'cookie':'cookies'):(s===1?'person':'people');slider.setAttribute('aria-valuetext',s+' '+document.querySelector('.people').textContent);minus.disabled=s===Number(slider.min);plus.disabled=s===Number(slider.max)}
+slider.addEventListener('input',update);minus.addEventListener('click',()=>{slider.value=Number(slider.value)-1;update()});plus.addEventListener('click',()=>{slider.value=Number(slider.value)+1;update()});document.getElementById('reset').addEventListener('click',()=>document.querySelectorAll('.ingredient-list input').forEach(el=>el.checked=false));document.getElementById('print').addEventListener('click',()=>window.print());update();
 </script>
-
 </body>
 </html>
