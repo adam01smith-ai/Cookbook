@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ginger and Lime Chicken Noodle Soup - My Cookbook</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f6f8;margin:0}
+.topbar{background:#c04a2b;padding:10px 12px}
+.backbtn{color:white;text-decoration:none;font-weight:bold;background:rgba(255,255,255,.2);padding:6px 10px;border-radius:6px;display:inline-block}
+.container{max-width:800px;margin:20px auto;padding:0 12px}
+.card{background:white;padding:20px;margin-bottom:15px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.slider{width:100%;accent-color:#c04a2b}
+.tag{display:inline-block;background:#fff1e6;padding:4px 8px;border-radius:999px;margin-right:6px;font-size:12px}
+.note{color:#555}li{margin-bottom:8px;line-height:1.5}h1{font-size:clamp(25px,5vw,32px)}
+a:focus-visible,input:focus-visible{outline:3px solid #c04a2b;outline-offset:4px}
+@media print{.topbar,.slider{display:none}.card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}body{background:white}}
+</style>
+</head>
+<body>
+<div class="topbar"><a href="index.html" class="backbtn">⬅ Back</a></div>
+<main class="container">
+<div class="card">
+<h1>🍜 Ginger and Lime Chicken Noodle Soup</h1>
+<div style="margin-bottom:10px"><span class="tag">🍜 Noodles</span><span class="tag">🥥 Coconut</span><span class="tag">🍋 Lime</span></div>
+<p><strong><label for="slider">Servings: <span id="servings" aria-live="polite">2</span></label></strong></p>
+<input type="range" id="slider" min="1" max="6" step="1" value="2" class="slider">
+<p class="note">Chicken, udon noodles and spinach in a coconut broth with ginger, garlic and lime.</p>
+</div>
+<section class="card"><h2>Ingredients</h2>
+<ul>
+<li><span class="val" data-base="1">1</span> bell pepper</li>
+<li><span class="val" data-base="1.5">1½</span> tbsp ginger and garlic paste</li>
+<li><span class="val" data-base="1">1</span> tbsp tomato purée</li>
+<li><span class="val" data-base="15">15</span> ml soy sauce</li>
+<li><span class="val" data-base="1">1</span> lime</li>
+<li><span class="val" data-base="1">1</span> pack baby spinach</li>
+<li>Thai spice mix</li>
+<li><span class="val" data-base="180">180</span> ml coconut milk</li>
+<li>Diced chicken breast</li>
+<li><span class="val" data-base="1">1</span> pack udon noodles</li>
+<li><span class="val" data-base="1">1</span> tbsp honey</li>
+<li><span class="val" data-base="300">300</span> ml water</li>
+<li>A drizzle of oil, for frying</li>
+<li>Salt and pepper, to season</li>
+</ul>
+<p class="note">Chicken and Thai spice mix quantities weren’t specified. The slider scales the ingredients with listed amounts; adjust the chicken and spice mix to suit.</p>
+</section>
+<section class="card"><h2>Method</h2>
+<ol>
+<li>Slice the bell pepper into thin strips.</li>
+<li>Heat a drizzle of oil in a pan over a high heat. Once hot, add the pepper and stir-fry until charred.</li>
+<li>Add the tomato purée, ginger and garlic paste, and Thai spice mix. Fry for 30 seconds.</li>
+<li>Stir in the coconut milk, soy sauce, honey and water.</li>
+<li>Bring to the boil, then lower the heat to a simmer.</li>
+<li>Add the diced chicken and simmer for about 10–12 minutes, or until fully cooked through. The exact time will depend on the size of the pieces.</li>
+<li>Cut the lime into wedges.</li>
+<li>Once the chicken is cooked, add the udon noodles and the spinach, a handful at a time. Cook until the spinach has wilted and the noodles are hot and cooked according to their packet instructions.</li>
+<li>Squeeze in the juice from half the lime, stir the broth, then season with salt and pepper. Serve with the remaining lime wedges.</li>
+</ol>
+</section>
+</main>
+<script>
+const slider=document.getElementById('slider');
+const servings=document.getElementById('servings');
+const values=document.querySelectorAll('.val');
+function formatAmount(value){
+ const whole=Math.floor(value), fraction=Math.round((value-whole)*8);
+ const fractions={1:'⅛',2:'¼',3:'⅜',4:'½',5:'⅝',6:'¾',7:'⅞'};
+ if(Math.abs(value*8-Math.round(value*8))<0.00001&&fraction>0&&fraction<8)return (whole?whole+' ':'')+fractions[fraction];
+ return String(Math.round(value*100)/100);
+}
+function update(){const s=Number(slider.value);servings.textContent=s;values.forEach(el=>el.textContent=formatAmount(Number(el.dataset.base)*s/2))}
+slider.addEventListener('input',update);update();
+</script>
+</body>
+</html>

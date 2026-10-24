@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indonesian Chicken Poke Bowl - My Cookbook</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f6f8;margin:0}
+.topbar{background:#c04a2b;padding:10px 12px}
+.backbtn{color:white;text-decoration:none;font-weight:bold;background:rgba(255,255,255,.2);padding:6px 10px;border-radius:6px;display:inline-block}
+.container{max-width:800px;margin:20px auto;padding:0 12px}
+.card{background:white;padding:20px;margin-bottom:15px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.slider{width:100%;accent-color:#c04a2b}
+.tag{display:inline-block;background:#fff1e6;padding:4px 8px;border-radius:999px;margin-right:6px;font-size:12px}
+.note{color:#555}li{margin-bottom:8px;line-height:1.5}h1{font-size:clamp(25px,5vw,32px)}
+a:focus-visible,input:focus-visible{outline:3px solid #c04a2b;outline-offset:4px}
+@media print{.topbar,.slider{display:none}.card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}body{background:white}}
+</style>
+</head>
+<body>
+<div class="topbar"><a href="index.html" class="backbtn">⬅ Back</a></div>
+<main class="container">
+<div class="card">
+<h1>🍚 Indonesian Chicken Poke Bowl</h1>
+<div style="margin-bottom:10px"><span class="tag">🍚 Rice &amp; Bowls</span><span class="tag">🌶️ Sambal</span><span class="tag">🍠 Sweet potato</span></div>
+<p><strong><label for="slider">Servings: <span id="servings" aria-live="polite">2</span></label></strong></p>
+<input type="range" id="slider" min="1" max="6" step="1" value="2" class="slider">
+<p class="note">Jasmine rice with spiced air-fried chicken, sweet potato, crunchy cabbage and edamame, finished with sambal sweet chilli sauce.</p>
+</div>
+<section class="card"><h2>Ingredients</h2><ul>
+<li><span class="val" data-base="1">1</span> sweet potato</li>
+<li><span class="val" data-base="2">2</span> chicken breasts</li>
+<li><span class="val" data-base="15">15</span> ml soy sauce</li>
+<li><span class="val" data-base="120">120</span> g sliced red cabbage</li>
+<li><span class="val" data-base="15">15</span> g sambal paste</li>
+<li>Indonesian spice mix, divided equally between the sweet potato and chicken</li>
+<li><span class="val" data-base="1">1</span> pack microwave jasmine rice</li>
+<li><span class="val" data-base="22">22</span> ml rice vinegar</li>
+<li><span class="val" data-base="80">80</span> g shelled edamame beans</li>
+<li><span class="val" data-base="50">50</span> g sweet chilli sauce</li>
+<li>Oil, for the air fryer</li>
+<li>Olive oil, for the dressing</li>
+<li>Salt and pepper, to season</li>
+</ul><p class="note">Serves 2 as written. Spice mix and oil amounts were not specified; use enough to coat and dress the ingredients. The slider scales the measured ingredients.</p></section>
+<section class="card"><h2>Method</h2><ol>
+<li>Cut the sweet potato into 2 cm chunks. Place in the air fryer, drizzle with oil and season with salt, pepper and half the Indonesian spice mix. Shake to coat, then cook for about 20–25 minutes, shaking during cooking, until tender.</li>
+<li>Dice the chicken breasts. Place in a separate air fryer basket or cook in a separate batch. Drizzle with oil and season with salt, pepper and the remaining Indonesian spice mix. Shake to coat, then cook for about 16–18 minutes, turning during cooking, until cooked through. Air fryer temperatures were not specified; use your appliance’s instructions for chicken and sweet potato, and adjust the timings as needed.</li>
+<li>Prepare the edamame according to the packet instructions if cooking is required. In a medium bowl, mix the soy sauce, rice vinegar and a little olive oil. Add the red cabbage and edamame, stir to coat, then season with salt and pepper.</li>
+<li>In a small bowl, mix the sambal paste and sweet chilli sauce.</li>
+<li>Cook the jasmine rice according to the packet instructions, then divide between two bowls, or your chosen number of servings.</li>
+<li>Top the rice with the chicken, sweet potato and dressed cabbage and edamame. Drizzle over the sambal sweet chilli sauce and serve.</li>
+</ol></section>
+</main>
+<script>
+const slider=document.getElementById('slider');
+const servings=document.getElementById('servings');
+const values=document.querySelectorAll('.val');
+function formatAmount(value){
+ const whole=Math.floor(value), fraction=Math.round((value-whole)*8);
+ const fractions={1:'⅛',2:'¼',3:'⅜',4:'½',5:'⅝',6:'¾',7:'⅞'};
+ if(Math.abs(value*8-Math.round(value*8))<0.00001&&fraction>0&&fraction<8)return (whole?whole+' ':'')+fractions[fraction];
+ return String(Math.round(value*100)/100);
+}
+function update(){const s=Number(slider.value);servings.textContent=s;values.forEach(el=>el.textContent=formatAmount(Number(el.dataset.base)*s/2))}
+slider.addEventListener('input',update);update();
+</script>
+</body>
+</html>
