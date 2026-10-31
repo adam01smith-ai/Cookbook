@@ -18,7 +18,7 @@ function recipeOptions(index){const d=state.days[index],available=choices(index)
 for(const r of available)html+='<option value="'+esc(r.id)+'"'+(r.id===d.recipeId?' selected':'')+'>'+esc(r.mealName)+'</option>';return html;}
 function renderMeals(){settings();$('meals').innerHTML=state.days.map((d,i)=>{
  const r=catalog.find(x=>x.id===d.recipeId),title=P.mealTitle(d,catalog,state.days),daydate=P.addDays(state.week,i);
- const image=d.type==='recipe'&&r?'<img class="thumb" src="'+esc(r.image)+'" alt="'+esc(r.name)+' — AI-generated illustration" loading="lazy" decoding="async">':'<div class="thumb placeholder" aria-hidden="true">'+esc(d.type==='out'?'Out':d.type==='leftovers'?'Leftovers':d.type==='custom'?'Your meal':'Open')+'</div>';
+ const image=d.type==='recipe'&&r?'<img class="thumb" src="'+esc(r.image+'?v=whole-dish-1')+'" alt="'+esc(r.name)+' — AI-generated illustration" loading="lazy" decoding="async">':'<div class="thumb placeholder" aria-hidden="true">'+esc(d.type==='out'?'Out':d.type==='leftovers'?'Leftovers':d.type==='custom'?'Your meal':'Open')+'</div>';
  let copy='<div class="name">'+esc(title)+'</div>';
  if(d.type==='recipe'){
   copy+='<select aria-label="Recipe for '+DAYS[i]+'" data-i="'+i+'" data-action="recipe">'+recipeOptions(i)+'</select>';
