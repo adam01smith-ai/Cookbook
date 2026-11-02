@@ -26,3 +26,11 @@
 
 /* Every photo has a complete rectangular boundary, including older planner markup. */
 .recipe-card,.card-link,.recipe-figure,.feature-figure,.menu-preview-card{border-radius:0;clip-path:none;mask:none;-webkit-mask:none;overflow:visible}
+
+
+
+/* Vibe cooking coach */
+.vibe-intro{max-width:760px}.vibe-intro h1{font-size:clamp(2.8rem,7vw,4.8rem)}
+.vibe-moods{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:16px 0 24px}.vibe-moods>span{font-size:.85rem;margin-right:5px}.vibe-moods button{border:1px solid #b7ccc3;border-radius:22px;background:#f4f8f4;color:#175b50;padding:9px 15px;cursor:pointer;font:inherit;font-size:.86rem}.vibe-moods button:hover{background:#e0eee5}.vibe-moods button:focus-visible,.vibe-coach input:focus-visible{outline:3px solid #175b50;outline-offset:3px}
+.vibe-coach{background:#f4ebe2;border:1px solid #e8d4c2;padding:18px 20px;margin:18px 0 24px;border-radius:6px}.vibe-coach summary{cursor:pointer;font-weight:600;color:#175b50}.vibe-coach summary span{font-size:.75rem;font-weight:400;margin-left:8px}.vibe-coach>p{font-size:.9rem;line-height:1.6}.vibe-coach-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}.vibe-coach-fields label{display:block;font-size:.85rem;font-weight:600;margin-bottom:7px}.vibe-coach-fields input{box-sizing:border-box;width:100%;min-width:0;background:#fffdfa;color:#173e36;border:1px solid #b7c6bb;border-radius:3px;padding:12px;font:inherit;font-size:.94rem}.vibe-coach .note{margin-bottom:0}.pantry-status:empty{display:none}.generated-ingredients li{display:list-item}
+@media(max-width:560px){.vibe-coach-fields{grid-template-columns:1fr}.vibe-coach{padding:16px}.vibe-moods{gap:7px}.vibe-moods button{padding:9px 12px}.pantry-actions{align-items:stretch}.pantry-actions button{width:100%}}
