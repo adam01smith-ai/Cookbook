@@ -6,7 +6,7 @@ Choose 0-7 cookbook dinners, 1-12 people and a repeat gap of 1, 2 or 4 weeks. Da
 
 History is per device/browser, not an online account. Other visitors have independent plans. Export/import JSON backups from History to move data between browsers. Clearing site data removes local history. No automatic cross-device or household sync is provided.
 
-35 recipes are eligible dinner choices (34 with No fish enabled). Base gravy, vinaigrette, BBQ sauce, orange chicken sauce, acai bowl and desserts are excluded. Ragu is paired with pasta. Main dishes can have a chosen side; soup can be paired with bread.
+37 recipes are eligible dinner choices (36 with No fish enabled). Base gravy, vinaigrette, BBQ sauce, orange chicken sauce, acai bowl and desserts are excluded. Ragu is paired with pasta. Main dishes can have a chosen side; soup can be paired with bread.
 
 Indian curry side defaults per person: 125g microwave basmati rice and one naan. Shopping totals use 250g rice pouches, rounded up after combining. Koshihikari rice is only offered for rice bowls. Other rice sides use microwave basmati without naan. Other defaults: 75g dry pasta, 250g potatoes, 2 slices bread. Edit sides on each meal. Linked leftovers add extra portions to an earlier cooking day, including accompaniments.
 
@@ -18,3 +18,5 @@ INSTALL UPDATE: upload index.html, meal-planner.html, recipe-data.js, planner-co
 `nPLAIN TEXT: in Shopping list, choose Plain text, then Copy shopping list. The export has one item per line, excludes checked items, and includes extra shopping. Select all is available if automatic clipboard access is blocked.
 
 AUTOMATIC GRAVY BATCHES: the planner totals curry portions (including linked leftovers), divides by the base recipe's six servings and rounds up to full batches. Two curries for two people mean four curry portions and a recommendation of one full batch. Suggestions update when meals/people/leftovers change. You can make extra batches, but not fewer than the servings-based recommendation. Exact ml requirements are still shown because the base recipe does not state a finished yield. Prep notes on the menu and shopping page say to make base gravy first.
+
+SOFRITTO VARIATIONS: Sofritto Ragù Lasagne and Sofritto Ragù with Tagliatelle are complete Pasta meals. Their shopping ingredients include the original ragù quantities scaled to the planned portions, plus the appropriate pasta, béchamel and Parmesan. No additional pasta side is added.
