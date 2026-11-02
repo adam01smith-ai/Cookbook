@@ -57,17 +57,38 @@ function describe(r,pantry){const input=new Set(pantry),matched=new Set(),missin
 function rank(catalog,text,noFish=true){const pantry=parse(text);if(!pantry.length)return [];return catalog.filter(r=>r.eligible&&(!noFish||!r.fish)).map(r=>describe(r,pantry)).filter(r=>r.matched.length).sort((a,b)=>(b.matched.length*100-b.missing.length*2)-(a.matched.length*100-a.missing.length*2)||a.recipe.name.localeCompare(b.recipe.name));}
 function cleanAI(data,catalog,text,noFish=true){if(!data||!Array.isArray(data.suggestions)||typeof data.summary!=='string')throw Error('The AI returned an unreadable suggestion.');const allowed=new Map(rank(catalog,text,noFish).map(x=>[x.recipe.id,x])),seen=new Set();const suggestions=[];for(const s of data.suggestions){if(!s||typeof s.id!=='string'||typeof s.reason!=='string'||!allowed.has(s.id)||seen.has(s.id))continue;seen.add(s.id);suggestions.push({...allowed.get(s.id),reason:s.reason.slice(0,240)});if(suggestions.length===3)break;}return {summary:data.summary.slice(0,320),suggestions};}
 function mealPrompt(ingredients,servings,noFish){return 'Create three new dinner recipes for '+servings+' people using: '+ingredients+'. Respect the amounts I mention, including partial vegetables. '+(noFish?'No fish; prawns and calamari are fine. ':'')+'Prefer boneless meat. Oil, salt, black pepper and water are available. Keep extra purchases modest and list them. Give each meal a name, description, approximate prep and cooking times, measured ingredients in g, ml, tsp, tbsp or counts, and plain numbered instructions. Avoid handfuls, knobs, splashes, pinches or packs. Invent new meals rather than searching an existing cookbook.';}
-function validateMeals(data,servings,noFish,available,existingNames=[]){
+function validateMeals(data,servings,noFish,available,existingNames=[],options={}){
  if(!data||typeof data.summary!=='string'||!Array.isArray(data.meals)||!data.meals.length||data.meals.length>3)throw Error('The AI did not return complete recipes.');
  const units=new Set(['g','ml','tsp','tbsp','item']),seen=new Set(),old=new Set(existingNames.map(norm)),have=new Set(parse(available));const fish=/\b(?:fish|salmon|cod|haddock|tuna|mackerel|sardines?|anchov(?:y|ies)|trout|sea\s*bass)\b/i;
  const meals=data.meals.map(m=>{
   if(!m||typeof m.name!=='string'||m.name.trim().length<3||m.name.length>120||typeof m.description!=='string'||m.description.length>500||m.servings!==servings||!Number.isInteger(m.prepMinutes)||m.prepMinutes<0||m.prepMinutes>180||!Number.isInteger(m.cookMinutes)||m.cookMinutes<0||m.cookMinutes>720||!Array.isArray(m.ingredients)||m.ingredients.length<2||m.ingredients.length>25||!Array.isArray(m.steps)||m.steps.length<2||m.steps.length>15)throw Error('The AI returned an incomplete recipe. Please try again.');
   const title=norm(m.name);if(seen.has(title)||old.has(title))throw Error('Please try again for fresh meal ideas.');seen.add(title);
   const ingredients=m.ingredients.map(i=>{if(!i||typeof i.name!=='string'||!i.name.trim()||i.name.length>160||/\b(?:handful|knob|splash|pinch|pack|packet|bunch)s?\b/i.test(i.name)||typeof i.quantity!=='number'||!Number.isFinite(i.quantity)||i.quantity<=0||i.quantity>10000||!units.has(i.unit))throw Error('The AI returned an ingredient without a usable measurement.');const k=keys(i.name),staple=k.length>0&&k.every(x=>essential.has(x)),supplied=k.length?k.some(x=>have.has(x)):norm(available).includes(norm(i.name));return {name:i.name.trim(),quantity:i.quantity,unit:i.unit,source:staple?'staple':supplied?'have':'extra'};});
-  if(!ingredients.some(i=>i.source==='have'))throw Error('The AI did not use the ingredients you supplied. Please try again.');const steps=m.steps.map(step=>{if(typeof step!=='string'||!step.trim()||step.length>1200)throw Error('The AI returned an incomplete method.');return step.trim();});if(noFish&&fish.test(m.name+' '+ingredients.map(i=>i.name).join(' ')))throw Error('The AI included fish despite your preference. Please try again.');return {name:m.name.trim(),description:m.description.trim(),servings,prepMinutes:m.prepMinutes,cookMinutes:m.cookMinutes,ingredients,steps};
+  if(!options.vibe&&!ingredients.some(i=>i.source==='have'))throw Error('The AI did not use the ingredients you supplied. Please try again.');const steps=m.steps.map(step=>{if(typeof step!=='string'||!step.trim()||step.length>1200)throw Error('The AI returned an incomplete method.');return step.trim();});if(noFish&&fish.test(m.name+' '+ingredients.map(i=>i.name).join(' ')))throw Error('The AI included fish despite your preference. Please try again.');return {name:m.name.trim(),description:m.description.trim(),servings,prepMinutes:m.prepMinutes,cookMinutes:m.cookMinutes,ingredients,steps};
  });return {summary:data.summary.slice(0,400),meals};
 }
+function vibePrompt(prompt,servings,noFish,mustUse=[],avoid=[]){
+ return 'Create three distinct new dinner recipes for '+servings+' people. My cooking brief: '+prompt+'\n'+(mustUse.length?'Every recipe must use: '+mustUse.join(', ')+'.\n':'')+(avoid.length?'Leave these ingredients out of every recipe: '+avoid.join(', ')+'.\n':'')+(noFish?'No fish; prawns and calamari are fine unless my brief excludes them. ':'')+'Follow my exclusions, preferred heat, cuisine, available time and equipment. When I ask for wild suggestions, be inventive but keep the meals practical. A craving or mood is enough; I do not have to list ingredients. Give complete measured ingredients and plain numbered methods. Invent new meals rather than searching an existing cookbook.';
+}
+function ingredientMatches(term,name){
+ const groups={dairy:/\b(?:milk|cream|butter|cheese|yogh?urt|parmesan|pecorino|cheddar|feta|mozzarella|stilton|ricotta|ghee|whey)\b/i,nuts:/\b(?:nuts?|peanuts?|almonds?|cashews?|walnuts?|pistachios?|pecans?|hazelnuts?)\b/i,peanuts:/\bpeanut(?:s| butter| oil)?\b/i,fish:/\b(?:fish|salmon|cod|haddock|tuna|mackerel|sardines?|anchov(?:y|ies)|trout|sea\s*bass)\b/i};
+ const t=norm(term);if(t==='dairy'&&/\b(?:(?:coconut|almond|soy|soya|oat|cashew|plant[- ]based|dairy[- ]free)\s+(?:milk|cream|butter|cheese|yogh?urt)|peanut butter|cocoa butter)\b/i.test(name))return false;
+ if(groups[t])return groups[t].test(name);
+ const wanted=keys(t),actual=keys(name);if(wanted.length)return wanted.some(k=>actual.includes(k));
+ const escaped=t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+ const pattern=escaped.endsWith('s')?escaped.slice(0,-1)+'s?':escaped+'s?';
+ return new RegExp('\\b'+pattern+'\\b','i').test(norm(name));
+}
+function validateVibeMeals(data,servings,noFish,prompt,mustUse=[],avoid=[],existingNames=[]){
+ const result=validateMeals(data,servings,noFish,prompt,existingNames,{vibe:true});
+ for(const meal of result.meals){
+  for(const term of mustUse)if(!meal.ingredients.some(i=>ingredientMatches(term,i.name)))throw Error('A recipe missed an ingredient you asked to use. Please try again.');
+  for(const term of avoid)if(meal.ingredients.some(i=>ingredientMatches(term,i.name)))throw Error('A recipe included an ingredient you asked to leave out. Please try again.');
+ }
+ return result;
+}
+
 function quantity(i){const f={0.25:'¼',0.5:'½',0.75:'¾',1.5:'1½',2.5:'2½'};return (f[i.quantity]||String(Math.round(i.quantity*100)/100))+(i.unit==='item'?' ':' '+i.unit+' ')+i.name;}
 function recipeText(m){return m.name+'\nServes '+m.servings+' · Prep '+m.prepMinutes+' mins · Cook '+m.cookMinutes+' mins\n\n'+m.description+'\n\nIngredients\n'+m.ingredients.map(quantity).join('\n')+'\n\nMethod\n'+m.steps.map((s,i)=>(i+1)+'. '+s).join('\n\n');}
-return {parse,keys,label,entries,describe,rank,cleanAI,titles,mealPrompt,validateMeals,quantity,recipeText};
+return {parse,keys,label,entries,describe,rank,cleanAI,titles,mealPrompt,validateMeals,vibePrompt,validateVibeMeals,ingredientMatches,quantity,recipeText};
 });
