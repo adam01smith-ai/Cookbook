@@ -22,6 +22,9 @@ Upload the contents, not the ZIP or an extra containing folder.
 Keep index.html, adam-cooks.css, the JavaScript files and all recipe HTML files together in the repository's main folder.
 
 PLANNER HISTORY
-Existing history is kept in the same browser using the same storage key. History is not stored inside this ZIP and does not sync between devices. Export a backup from Meal planner > History for a separate copy. Do not clear website data if you want to retain local history.
+Existing history is kept in the same browser using the same storage key. Enable Remember my planner in Privacy settings to restore and update it. Rejecting optional saving leaves old data dormant without reading or overwriting it. The planner still works for the current visit; export a backup to keep that plan. History is not stored inside this ZIP and does not sync between devices. Do not clear website data if you want to retain local history.
+
+PRIVACY
+All pages have Accept optional, Reject optional and Settings controls. Optional planner/history and Vibe draft storage are disabled until permission is given. Choice is remembered for 180 days. Footer Privacy settings lets visitors change choices or explicitly clear saved data. privacy.html explains storage and the AI service. There are no live ads or analytics; Google-certified CMP/account integration is still required before introducing AdSense. See PRIVACY-SETUP.md. Add a dedicated private contact email to the notice; no personal email has been published automatically.
 
 See PLANNER-README.txt for planner features.
