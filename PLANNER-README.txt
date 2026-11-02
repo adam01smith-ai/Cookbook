@@ -16,3 +16,5 @@ The shopping list scales source quantities and combines matching ingredients in 
 
 INSTALL UPDATE: upload index.html, meal-planner.html, recipe-data.js, planner-core.js and planner-app.js to the same folder as existing recipe HTML files. Keep your existing images folder. No server setup or installation is needed.
 `nPLAIN TEXT: in Shopping list, choose Plain text, then Copy shopping list. The export has one item per line, excludes checked items, and includes extra shopping. Select all is available if automatic clipboard access is blocked.
+
+AUTOMATIC GRAVY BATCHES: the planner totals curry portions (including linked leftovers), divides by the base recipe's six servings and rounds up to full batches. Two curries for two people mean four curry portions and a recommendation of one full batch. Suggestions update when meals/people/leftovers change. You can make extra batches, but not fewer than the servings-based recommendation. Exact ml requirements are still shown because the base recipe does not state a finished yield. Prep notes on the menu and shopping page say to make base gravy first.
