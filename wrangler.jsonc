@@ -1,0 +1,30 @@
+{
+  "name": "adam-cooks-pantry",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-31",
+  "vars": {
+    "ALLOWED_ORIGIN": "https://adam01smith-ai.github.io",
+    "OPENAI_MODEL": "gpt-5.4-mini",
+    "OPENAI_REASONING_EFFORT": "none",
+    "DAILY_REQUEST_LIMIT": "10",
+    "MONTHLY_REQUEST_LIMIT": "100"
+  },
+  "d1_databases": [
+    {
+      "binding": "PANTRY_DB",
+      "database_name": "adam-cooks-ai-usage",
+      "database_id": "8bbfe697-3c2b-43a8-b08e-c49e97789f11",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "ratelimits": [
+    {
+      "name": "PANTRY_LIMITER",
+      "namespace_id": "10101",
+      "simple": {
+        "limit": 5,
+        "period": 60
+      }
+    }
+  ]
+}
