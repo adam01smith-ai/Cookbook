@@ -6,7 +6,7 @@ All 45 food photographs have been regenerated to show the full bowl, plate or ba
 All 90 full-size images and thumbnails must replace your old images.
 Photos display without CSS cropping.
 Recipe categories use visible buttons, with no category dropdown.
-The pantry.html page is connected to the live AI recipe service. Visitors enter available ingredients, choose servings and create up to three NEW recipes with measured ingredients, numbered methods and Copy recipe buttons.
+The pantry.html page is now Vibe cooking. Visitors describe what they fancy, add optional Use these / Leave these out ingredients, choose a mood and servings, and create up to three NEW recipes with measured ingredients, numbered methods and Copy recipe buttons. Mood-only requests and wild suggestions are supported.
 The service is already deployed at https://adam-cooks-pantry.adam01smith-cooks.workers.dev/suggest. No API key is included in this website.
 Initial limits are 10 generation attempts per UTC day and 100 per calendar month across all visitors. Provider failures also count. Usage is charged to the owner's OpenAI API account.
 Copy request to ChatGPT remains available as a manual alternative. See AI-SETUP.md for maintenance information.
