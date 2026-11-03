@@ -14,11 +14,11 @@ function newDay(type='empty'){return {type,recipeId:'',side:'none',sideAmount:nu
 function initial(now=new Date()){const week=monday(localDate(now));return {version:1,week,people:2,count:5,gap:1,noFish:true,weekendFakeaway:false,optional:false,gravyChoice:'ask',gravyBatches:1,days:Array.from({length:7},()=>newDay()),history:[],checked:[],extras:'',confirmed:false};}
 function validate(raw,catalog){
  if(!raw||raw.version!==1||!Array.isArray(raw.days)||raw.days.length!==7||!Array.isArray(raw.history)||raw.history.length>1000)throw Error('This is not a supported planner backup.');
- const ids=new Set(catalog.map(r=>r.id)),s=initial();s.week=monday(raw.week);
+ const ids=new Set(catalog.map(r=>r.id)),s=initial();s.week=localDate(parseDate(raw.week));
  for(const [k,min,max]of [['people',1,12],['count',0,7],['gap',1,4]]){const v=Number(raw[k]);if(!Number.isInteger(v)||v<min||v>max)throw Error('Invalid '+k+' in backup.');s[k]=v;}
  if(![1,2,4].includes(s.gap))throw Error('Invalid repeat gap.');
  function day(v){if(!v||!TYPES.includes(v.type))throw Error('Invalid day type.');const d=newDay(v.type);d.recipeId=ids.has(v.recipeId)?v.recipeId:'';d.side=SIDES[v.side]?v.side:'none';const recipe=catalog.find(r=>r.id===d.recipeId),side=sideFor(d,recipe);if(side!==d.side){d.side=side;v={...v,sideAmount:null};}d.sideAmount=v.sideAmount===null||v.sideAmount===undefined?null:Math.max(0,Math.min(2000,Number(v.sideAmount)||0));d.locked=!!v.locked;d.title=String(v.title||'').slice(0,200);d.ingredients=String(v.ingredients||'').slice(0,10000);d.customBase=Math.max(1,Math.min(12,Number(v.customBase)||2));d.source=Number.isInteger(v.source)&&v.source>=0&&v.source<7?v.source:null;d.status=['planned','cooked','skipped'].includes(v.status)?v.status:'planned';return d;}
- s.days=raw.days.map(day);s.history=raw.history.map(w=>{if(!w||!Array.isArray(w.days)||w.days.length!==7)throw Error('Invalid history week.');return {week:monday(w.week),people:Math.max(1,Math.min(12,Number(w.people)||2)),days:w.days.map(day),gravyChoice:['have','make'].includes(w.gravyChoice)?w.gravyChoice:'ask',gravyBatches:Math.max(1,Math.min(20,Math.floor(Number(w.gravyBatches)||1))),confirmedAt:String(w.confirmedAt||'')};});
+ s.days=raw.days.map(day);s.history=raw.history.map(w=>{if(!w||!Array.isArray(w.days)||w.days.length!==7)throw Error('Invalid history week.');return {week:localDate(parseDate(w.week)),people:Math.max(1,Math.min(12,Number(w.people)||2)),days:w.days.map(day),gravyChoice:['have','make'].includes(w.gravyChoice)?w.gravyChoice:'ask',gravyBatches:Math.max(1,Math.min(20,Math.floor(Number(w.gravyBatches)||1))),confirmedAt:String(w.confirmedAt||'')};});
  s.gravyChoice=['have','make'].includes(raw.gravyChoice)?raw.gravyChoice:'ask';s.gravyBatches=Math.max(1,Math.min(20,Math.floor(Number(raw.gravyBatches)||1)));s.noFish=raw.noFish!==false;s.weekendFakeaway=raw.weekendFakeaway===true;s.optional=!!raw.optional;s.extras=String(raw.extras||'').slice(0,15000);s.checked=Array.isArray(raw.checked)?raw.checked.filter(x=>typeof x==='string').slice(0,2000):[];s.confirmed=!!raw.confirmed;return s;
 }
 function usesBaseGravy(recipe){return !!recipe&&recipe.ingredients.some(item=>/\bbase gravy\b/i.test(item.template));}
@@ -42,7 +42,8 @@ function generate(state,catalog,rng=Math.random){
  const candidates=shuffled(eligible(state,catalog).filter(r=>!fixedIds.has(r.id)),rng);
  if(candidates.length<needed)throw Error('Only '+(candidates.length+fixed.length)+' eligible dinners remain. Choose fewer dinners or shorten the repeat gap; no meals were repeated.');
  if (state.weekendFakeaway && needed > 0) {
-  const weekend = [5,4];
+  const firstDay = parseDate(state.week).getDay();
+  const weekend = [6,5].map(day => (day - firstDay + 7) % 7);
   const alreadyPlanned = weekend.some(i => days[i].locked && catalog.some(r => r.id === days[i].recipeId && r.fakeaway));
   const day = weekend.find(i => slots.includes(i));
   const pick = candidates.findIndex(recipe => recipe.fakeaway);
