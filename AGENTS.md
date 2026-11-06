@@ -10,4 +10,4 @@ When adding a recipe, include its food image in the same update without asking A
 
 This is the workflow for recipe additions made by the assistant. The public Vibe cooking service does not generate or publish images.
 
-All non-Bread recipe sliders must open at 2 servings. Keep original baseServings and data-base quantities for correct scaling; Bread keeps its loaf defaults.
+Slow Cooker recipe sliders must open at 6 servings. All other non-Bread recipe sliders must open at 2 servings. Keep original baseServings and data-base quantities for correct scaling; Bread keeps its loaf defaults.
