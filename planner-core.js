@@ -30,7 +30,8 @@ function gravyBatchCount(state,catalog){const recommended=recommendedGravyBatche
 function gravyPending(state,catalog){return gravyNeeds(state,catalog).max>0&&!['have','make'].includes(state.gravyChoice);}
 
 function excluded(state){const min=addDays(state.week,-7*state.gap),ids=new Set();for(const w of state.history){if(w.week<min||w.week>=state.week)continue;for(const d of w.days){if(d.status!=='skipped'&&d.recipeId&&(d.type==='recipe'||d.type==='leftovers'))ids.add(d.recipeId);}}return ids;}
-function eligible(state,catalog){const omit=excluded(state);return catalog.filter(r=>r.eligible&&(!state.noFish||!r.fish)&&!omit.has(r.id));}
+function isDinner(recipe){return !!recipe&&recipe.eligible&&recipe.category!=='Bread';}
+function eligible(state,catalog){const omit=excluded(state);return catalog.filter(r=>isDinner(r)&&(!state.noFish||!r.fish)&&!omit.has(r.id));}
 function shuffled(a,rng=Math.random){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function generate(state,catalog,rng=Math.random){
  const days=clone(state.days),fixed=days.filter(d=>d.type==='recipe'&&d.locked),fixedIds=new Set(fixed.map(d=>d.recipeId));
@@ -64,7 +65,7 @@ function mealTitle(d,catalog,days){const r=catalog.find(r=>r.id===d.recipeId);if
 function confirmWeek(state,catalog){
  if(gravyPending(state,catalog))throw Error('Do you need base gravy? Choose whether you already have it or want to make it before confirming your week.');
  const ids=new Set(),recent=excluded(state);
- for(let i=0;i<7;i++){const d=state.days[i];if(d.type==='recipe'){const r=catalog.find(r=>r.id===d.recipeId);if(!r||!r.eligible)throw Error('Choose a dinner for every recipe day.');if(ids.has(r.id))throw Error('The week contains a duplicate recipe. Swap or remove it.');if(recent.has(r.id))throw Error(r.name+' is inside your repeat gap. Swap it or shorten the gap.');if(state.noFish&&r.fish)throw Error('A fish meal is selected while No fish is enabled.');ids.add(r.id);}if(d.type==='custom'&&!d.title.trim())throw Error('Give your own meal a name.');if(d.type==='leftovers'&&(d.source===null||d.source>=i||state.days[d.source].type!=='recipe'))throw Error('Link each leftovers day to an earlier recipe day.');}
+ for(let i=0;i<7;i++){const d=state.days[i];if(d.type==='recipe'){const r=catalog.find(r=>r.id===d.recipeId);if(!isDinner(r))throw Error('Choose a dinner for every recipe day.');if(ids.has(r.id))throw Error('The week contains a duplicate recipe. Swap or remove it.');if(recent.has(r.id))throw Error(r.name+' is inside your repeat gap. Swap it or shorten the gap.');if(state.noFish&&r.fish)throw Error('A fish meal is selected while No fish is enabled.');ids.add(r.id);}if(d.type==='custom'&&!d.title.trim())throw Error('Give your own meal a name.');if(d.type==='leftovers'&&(d.source===null||d.source>=i||state.days[d.source].type!=='recipe'))throw Error('Link each leftovers day to an earlier recipe day.');}
  const next=clone(state);const days=clone(state.days);for(const d of days)if(d.type==='leftovers')d.recipeId=days[d.source].recipeId;
  const record={week:state.week,people:state.people,days,gravyChoice:state.gravyChoice,gravyBatches:state.gravyBatches,confirmedAt:new Date().toISOString()};next.history=state.history.filter(w=>w.week!==state.week).concat(record).sort((a,b)=>a.week.localeCompare(b.week));next.days=days;next.confirmed=true;return next;
 }
