@@ -15,3 +15,5 @@ Slow Cooker recipe sliders must open at 6 servings. All other non-Bread recipe s
 Food photographs must show the entire serving bowl, plate or platter, including handles, with generous tabletop margin on all four sides. Use a wide pulled-back view; never crop dish edges. Apply the same complete framing to thumbnails.
 
 Adam only wants chicken breast in recipes. Never use chicken thighs in new or revised recipes; use diced or sliced chicken breast as appropriate.
+
+For assistant-created recipe ideas, show Adam the full recipe and image before publishing and wait for his approval.
