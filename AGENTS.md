@@ -13,3 +13,5 @@ This is the workflow for recipe additions made by the assistant. The public Vibe
 Slow Cooker recipe sliders must open at 6 servings. All other non-Bread recipe sliders must open at 2 servings. Keep original baseServings and data-base quantities for correct scaling; Bread keeps its loaf defaults.
 
 Food photographs must show the entire serving bowl, plate or platter, including handles, with generous tabletop margin on all four sides. Use a wide pulled-back view; never crop dish edges. Apply the same complete framing to thumbnails.
+
+Adam only wants chicken breast in recipes. Never use chicken thighs in new or revised recipes; use diced or sliced chicken breast as appropriate.
