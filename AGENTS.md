@@ -17,3 +17,5 @@ Food photographs must show the entire serving bowl, plate or platter, including 
 Adam only wants chicken breast in recipes. Never use chicken thighs in new or revised recipes; use diced or sliced chicken breast as appropriate.
 
 For assistant-created recipe ideas, show Adam the full recipe and image before publishing and wait for his approval.
+
+Breakfast & Brunch recipes belong on breakfast.html and must set eligible: false. The meal planner excludes the whole breakfast category from dinner choices. Keep breakfast defaults at 2 servings.
