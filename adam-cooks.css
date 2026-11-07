@@ -26,3 +26,5 @@
 
 /* Every photo has a complete rectangular boundary, including older planner markup. */
 .recipe-card,.card-link,.recipe-figure,.feature-figure,.menu-preview-card{border-radius:0;clip-path:none;mask:none;-webkit-mask:none;overflow:visible}
+
+.site-nav,.planner-page .site-nav{flex-wrap:wrap;row-gap:4px;min-width:0}.site-nav a{white-space:nowrap}
