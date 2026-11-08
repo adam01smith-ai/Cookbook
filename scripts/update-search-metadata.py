@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-"""Refresh static search metadata from visible recipes; no third-party packages needed.
+"""Refresh static search metadata from visible recipes; Pillow also exports JPEG social previews from existing recipe photographs.
 
 Run after recipe/content updates: python scripts/update-search-metadata.py
 Optional cooking times are included only where the displayed time is unambiguous.
 Never invent ratings, authorship, nutrition, publication dates or testing claims.
 """
 import json
+import hashlib
+import io
+from PIL import Image
 import re
 from html import escape
 from html.parser import HTMLParser
@@ -168,6 +171,32 @@ def recipe_schema(recipe, source):
     return schema
 
 
+def social_metadata(schema):
+    """Use static tags and a JPEG encoding of the complete existing photograph."""
+    image_path = unquote(urlsplit(schema['image'][0]).path.lstrip('/'))
+    original = ROOT / image_path
+    target = ROOT / 'images' / 'social' / (original.stem + '.jpg')
+    target.parent.mkdir(parents=True, exist_ok=True)
+    with Image.open(original) as image:
+        width, height = image.size
+        buffer = io.BytesIO()
+        image.convert('RGB').save(buffer, format='JPEG', quality=82, optimize=True, progressive=True)
+    encoded = buffer.getvalue()
+    if not target.exists() or target.read_bytes() != encoded:
+        target.write_bytes(encoded)
+    image_url = BASE + quote(target.relative_to(ROOT).as_posix(), safe='/-._~') + '?v=' + hashlib.sha256(encoded).hexdigest()[:10]
+    description = schema.get('description') or (schema['name'] + ' — ' + schema['recipeCategory'] + '. Ingredients and step-by-step method on Adam Cooks.')
+    values = [('og:type', 'article'), ('og:site_name', 'Adam Cooks'), ('og:locale', 'en_GB'),
+              ('og:title', schema['name']), ('og:description', description), ('og:url', schema['url']),
+              ('og:image', image_url), ('og:image:secure_url', image_url), ('og:image:type', 'image/jpeg'),
+              ('og:image:width', str(width)), ('og:image:height', str(height)), ('og:image:alt', schema['name'])]
+    tags = ['<meta property="' + key + '" content="' + escape(value, quote=True) + '">' for key, value in values]
+    for key, value in [('twitter:card','summary_large_image'), ('twitter:title',schema['name']),
+                       ('twitter:description',description), ('twitter:image',image_url), ('twitter:image:alt',schema['name'])]:
+        tags.append('<meta name="' + key + '" content="' + escape(value, quote=True) + '">')
+    return tags
+
+
 def update():
     raw = (ROOT / 'recipe-data.js').read_text()
     recipes = json.loads(raw[raw.index('['):raw.rindex(']') + 1])
@@ -183,6 +212,7 @@ def update():
             schema = recipe_schema(by_file[page.name], source)
             payload = json.dumps(schema, ensure_ascii=False, separators=(',', ':')).replace('<', '\\u003c')
             metadata.append('<script type="application/ld+json">' + payload + '</script>')
+            metadata.extend(social_metadata(schema))
         block = MARKER_START + '\n' + '\n'.join(metadata) + '\n' + MARKER_END + '\n'
         assert source.count('</head>') == 1, page.name
         updated = source.replace('</head>', block + '</head>', 1)

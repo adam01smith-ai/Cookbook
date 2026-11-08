@@ -29,6 +29,8 @@ function start(){
  dialog.querySelector('.privacy-clear').onclick=()=>{if(!window.confirm('Delete saved meal plans, shopping ticks, previous weeks and cooking prompts from this device? This cannot be undone. Your current open page stays usable.'))return;choose(false,false,allowed('analytics'));try{for(const key of Object.values(KEYS))localStorage.removeItem(key);feedback.textContent='Saved plans and prompts cleared from this device. Planner and prompt saving are off.';}catch{feedback.textContent='Your browser prevented clearing storage. Use its site data settings to remove it.';}};
  update();scheduleExpiry();
 }
+const shareStyle=document.createElement('link');shareStyle.rel='stylesheet';shareStyle.href='recipe-share.css?v=1';document.head.append(shareStyle);
+const shareScript=document.createElement('script');shareScript.src='recipe-share.js?v=1';document.head.append(shareScript);
 const favouritesStyle=document.createElement('link');favouritesStyle.rel='stylesheet';favouritesStyle.href='favourites.css?v=1';document.head.append(favouritesStyle);
 const favouritesScript=document.createElement('script');favouritesScript.src='favourites.js?v=1';document.head.append(favouritesScript);
 const analyticsScript=document.createElement('script');analyticsScript.src='site-analytics.js?v=1';analyticsScript.async=true;document.head.append(analyticsScript);
