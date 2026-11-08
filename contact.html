@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f7f4ee">
+<title>Contact — Adam Cooks</title>
+<meta name="description" content="Send Adam recipe requests, feedback or questions about Adam Cooks.">
+<link rel="stylesheet" href="adam-cooks.css?v=6">
+<link rel="stylesheet" href="site-privacy.css?v=1">
+<script src="site-privacy.js?v=2"></script>
+<script src="contact-config.js" defer></script><script src="contact.js" defer></script>
+<style>
+.contact-copy{max-width:720px;margin:auto;padding:clamp(32px,6vw,72px) 20px}
+.contact-copy h1{color:var(--accent);font-size:clamp(36px,6vw,60px);margin:.2em 0}
+.contact-copy p{line-height:1.65}.contact-form{margin-top:28px}
+.contact-form label{display:block;font-weight:600;margin:20px 0 8px}
+.contact-form input,.contact-form select,.contact-form textarea{box-sizing:border-box;width:100%;padding:13px;border:1px solid var(--line,#b5c3b9);border-radius:8px;background:white;color:var(--ink,#193e35);font:inherit;font-size:16px}
+.contact-form textarea{resize:vertical;min-height:160px}
+.contact-form button{margin-top:16px;min-height:48px;padding:12px 24px;font:inherit;border:0;border-radius:8px;background:var(--accent,#285f50);color:white}
+.contact-form button:disabled{opacity:.55;cursor:not-allowed}
+.contact-form :focus-visible{outline:3px solid var(--accent,#285f50);outline-offset:3px}
+.contact-form fieldset{border:0;padding:0;margin:0;min-width:0}
+.contact-form .contact-honey{display:none}
+.contact-small{font-size:14px}.contact-status{padding:12px 16px;background:#e8eee6;border-radius:8px}
+</style>
+<!-- search-metadata:start -->
+<link rel="canonical" href="https://www.adamcooks.co.uk/contact.html">
+<!-- search-metadata:end -->
+</head>
+<body><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="site-bar"><a class="site-brand" href="index.html">Adam Cooks<span>.</span><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M16 8C12 5 6 5 3 6v20c4-1 9-1 13 2 4-3 9-3 13-2V6c-3-1-9-1-13 2v20"/></svg></a><nav class="site-nav" aria-label="Main navigation"><a href="index.html#all-recipes">Recipes</a><a href="breakfast.html">Breakfast</a><a href="lunches.html">Lunches</a><a href="fakeaway.html">Fakeaway</a><a href="desserts.html">Desserts</a><a href="meal-planner.html">Meal planner</a><a href="pantry.html">Vibe cooking</a></nav></div></header>
+<main id="main" class="contact-copy"><p class="eyebrow">Get in touch</p><h1>What's cooking?</h1>
+<p>Got a recipe you'd love to see, something that needs fixing, or feedback on the cookbook? Send me a message.</p>
+<p id="contact-status" class="contact-status" role="status">The contact form is being connected. Messages cannot be sent yet.</p>
+<noscript><p>JavaScript is needed to send this form.</p></noscript>
+<form class="contact-form" id="contact-form" method="post" aria-describedby="contact-privacy">
+<fieldset id="contact-fields" disabled>
+<label for="contact-name">Your name</label><input id="contact-name" name="name" autocomplete="name" maxlength="100" required>
+<label for="contact-email">Your email</label><input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+<label for="contact-kind">What is it about?</label><select id="contact-kind" name="topic"><option>Recipe request</option><option>Feedback</option><option>Report a problem</option><option>Privacy question</option></select>
+<label for="contact-message">Your message</label><textarea id="contact-message" name="message" maxlength="5000" required placeholder="Tell me what you have in mind…"></textarea>
+<div class="contact-honey" aria-hidden="true"><label for="contact-website">Leave this empty</label><input id="contact-website" name="_honey" tabindex="-1" autocomplete="off"></div>
+<input type="hidden" name="_subject" value="Adam Cooks — contact message">
+<input type="hidden" name="_template" value="table">
+<p id="contact-privacy" class="contact-small">Your message goes privately to Adam through <a href="https://formsubmit.co/privacy.pdf">FormSubmit</a>. It will not appear on the website. Your name, email and message are used to handle your enquiry. FormSubmit says it retains submissions for 30 days; emails delivered to Adam remain in his inbox until deleted. Please do not include sensitive personal information.</p>
+<button type="submit">Send message</button>
+</fieldset></form><p class="contact-small"><a href="index.html#all-recipes">Back to the recipes</a></p></main></body></html>
