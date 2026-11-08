@@ -99,7 +99,7 @@
   },
   "pastina.html": {
     "storage": "Cool promptly, refrigerate covered within 2 hours and eat within 48 hours.",
-    "freezing": "Freeze cooled portions for up to 2 months for best quality. Pasta softens after freezing; freezing the sauce separately gives a better result. The small pasta absorbs liquid, so expect a thicker, softer result.",
+    "freezing": "Freeze cooled portions in sealed labelled containers for up to 2 months for best quality. The small pasta absorbs liquid and becomes softer; add milk or stock as needed after thawing and heating.",
     "reheating": "Reheat once in a pan with a splash of water, stirring until steaming hot throughout. Add fresh herbs or cheese after heating. Add milk or stock little by little to bring back the creamy texture.",
     "substitutions": "Use another tiny soup pasta and follow its packet cooking time. Milk gives a lighter finish than cream. Use vegetarian hard cheese and vegetable stock for a vegetarian version.",
     "safety": "general"
@@ -351,7 +351,7 @@
   },
   "smash-cheeseburgers.html": {
     "storage": "Best freshly cooked. Cool leftovers, refrigerate covered within 2 hours and use within 48 hours. Keep sauce and cold garnishes separate where possible. Store cooked patties separately from buns, pickles and burger sauce.",
-    "freezing": "Freeze cooled cooked meat separately from sauce and salad for up to 2 months for best quality. The coating will be less crisp after thawing. Wrap cooled patties individually; freeze buns separately.",
+    "freezing": "Wrap cooled cooked patties individually and freeze in a sealed container for up to 2 months for best quality. Freeze buns separately. Add fresh burger sauce, pickles and any salad after reheating; do not freeze assembled burgers for the best texture.",
     "reheating": "Reheat the meat once on a tray in an oven at 180°C / 160°C fan until steaming hot throughout. Turn as needed; add sauce only at the end. Microwaving softens the coating. Reheat patties fully before building a fresh burger; toast buns separately.",
     "substitutions": "Use the beef mince as written for the smash texture. Swap burger cheese for thin cheddar slices. Lettuce or sliced tomato can be added fresh; avoid mixing vegetables into the mince.",
     "safety": "general"
@@ -435,7 +435,7 @@
   },
   "jack-daniels-glazed-chicken.html": {
     "storage": "Best freshly cooked. Cool leftovers, refrigerate covered within 2 hours and use within 48 hours. Keep sauce and cold garnishes separate where possible. Keep coleslaw chilled separately; do not warm it with the chicken.",
-    "freezing": "Freeze cooled cooked meat separately from sauce and salad for up to 2 months for best quality. The coating will be less crisp after thawing. Freeze the glaze separately from the chicken and potatoes; make or buy fresh coleslaw.",
+    "freezing": "Freeze cooled cooked chicken, glaze and potato wedges separately in labelled containers for up to 2 months for best quality. Make or buy fresh coleslaw when serving. The wedges will be less crisp after thawing.",
     "reheating": "Reheat the meat once on a tray in an oven at 180°C / 160°C fan until steaming hot throughout. Turn as needed; add sauce only at the end. Microwaving softens the coating. The sugary glaze can burn: heat chicken fully first, then brush with heated glaze at the end.",
     "substitutions": "Keep chicken breast as the meat. Replace whiskey with pineapple juice for an alcohol-free glaze and check the teriyaki sauce. Use sweet potato wedges instead of ordinary potatoes, adjusting cooking time.",
     "safety": "general"
