@@ -5,10 +5,10 @@ Run after recipe/content updates: python scripts/update-search-metadata.py
 Optional cooking times are included only where the displayed time is unambiguous.
 Never invent ratings, authorship, nutrition, publication dates or testing claims.
 """
+import argparse
 import json
 import hashlib
 import io
-from PIL import Image
 import re
 from html import escape
 from html.parser import HTMLParser
@@ -173,6 +173,7 @@ def recipe_schema(recipe, source):
 
 def social_metadata(schema):
     """Use static tags and a JPEG encoding of the complete existing photograph."""
+    from PIL import Image
     image_path = unquote(urlsplit(schema['image'][0]).path.lstrip('/'))
     original = ROOT / image_path
     target = ROOT / 'images' / 'social' / (original.stem + '.jpg')
@@ -197,13 +198,24 @@ def social_metadata(schema):
     return tags
 
 
-def update():
+def update(selected=None):
     raw = (ROOT / 'recipe-data.js').read_text()
     recipes = json.loads(raw[raw.index('['):raw.rindex(']') + 1])
     by_file = {recipe['file']: recipe for recipe in recipes}
     # Ownership verification files must remain byte-for-byte as Google supplied.
     pages = sorted(page for page in ROOT.glob('*.html')
                    if not re.fullmatch(r'google-site-verification:\s*google[\da-f]+\.html\s*', page.read_text()))
+    if selected:
+        selected = set(selected)
+        known = {page.name for page in pages}
+        missing = selected - known
+        if missing:
+            raise ValueError(f'Unknown pages: {sorted(missing)}')
+        if selected & set(by_file):
+            raise ValueError('Recipe updates require a full metadata refresh.')
+        if not (ROOT / 'sitemap.xml').is_file():
+            raise ValueError('Scoped updates require the existing sitemap.')
+        pages = [page for page in pages if page.name in selected]
     for page in pages:
         original = page.read_text()
         source = re.sub(re.escape(MARKER_START) + r'.*?' + re.escape(MARKER_END) + r'\n?', '', original, flags=re.S)
@@ -222,15 +234,22 @@ def update():
             page.write_text(updated)
     namespace = 'http://www.sitemaps.org/schemas/sitemap/0.9'
     ET.register_namespace('', namespace)
-    sitemap = ET.Element(f'{{{namespace}}}urlset')
+    sitemap = ET.parse(ROOT / 'sitemap.xml').getroot() if selected else ET.Element(f'{{{namespace}}}urlset')
+    existing = {entry.findtext(f'{{{namespace}}}loc') for entry in sitemap}
     for page in pages:
+        if url(page.name) in existing:
+            continue
         entry = ET.SubElement(sitemap, f'{{{namespace}}}url')
         ET.SubElement(entry, f'{{{namespace}}}loc').text = url(page.name)
+        existing.add(url(page.name))
     ET.indent(sitemap, space='  ')
     (ROOT / 'sitemap.xml').write_bytes(ET.tostring(sitemap, encoding='utf-8', xml_declaration=True) + b'\n')
     (ROOT / 'robots.txt').write_text('User-agent: *\nAllow: /\n\nSitemap: ' + BASE + 'sitemap.xml\n')
-    print(f'Updated {len(recipes)} recipes, {len(pages)} canonical URLs and sitemap entries.')
+    print(f'Updated {0 if selected else len(recipes)} recipes, {len(pages)} canonical URLs; sitemap has {len(sitemap)} URLs.')
 
 
 if __name__ == '__main__':
-    update()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--pages', nargs='+', help='Refresh named non-recipe pages while preserving the existing sitemap.')
+    update(parser.parse_args().pages)
+
