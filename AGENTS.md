@@ -21,3 +21,5 @@ For assistant-created recipe ideas, show Adam the full recipe and image before p
 Breakfast & Brunch recipes belong on breakfast.html and must set eligible: false. The meal planner excludes the whole breakfast category from dinner choices. Keep breakfast defaults at 2 servings.
 
 Lunch recipes belong on lunches.html with category Lunches and eligible: false. Lunches must stay out of suggested dinners and manual dinner choices. Keep defaults at 2 servings.
+
+After adding or changing recipes or public pages, run `python scripts/update-search-metadata.py` after images and catalogue entries are ready. Publish the refreshed recipe JSON-LD, canonical links, sitemap.xml and robots.txt with the change. Metadata must match visible recipes and default servings; do not invent ratings, nutrition, authorship or dates.
