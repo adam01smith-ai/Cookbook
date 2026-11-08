@@ -172,7 +172,9 @@ def update():
     raw = (ROOT / 'recipe-data.js').read_text()
     recipes = json.loads(raw[raw.index('['):raw.rindex(']') + 1])
     by_file = {recipe['file']: recipe for recipe in recipes}
-    pages = sorted(ROOT.glob('*.html'))
+    # Ownership verification files must remain byte-for-byte as Google supplied.
+    pages = sorted(page for page in ROOT.glob('*.html')
+                   if not re.fullmatch(r'google-site-verification:\s*google[\da-f]+\.html\s*', page.read_text()))
     for page in pages:
         original = page.read_text()
         source = re.sub(re.escape(MARKER_START) + r'.*?' + re.escape(MARKER_END) + r'\n?', '', original, flags=re.S)

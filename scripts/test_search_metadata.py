@@ -62,6 +62,8 @@ class SearchMetadataTests(unittest.TestCase):
     def test_all_public_pages_have_unique_canonicals_and_matching_sitemap(self):
         locations = []
         for page in ROOT.glob('*.html'):
+            if re.fullmatch(r'google-site-verification:\s*google[\da-f]+\.html\s*', page.read_text()):
+                continue
             matches = re.findall(r'<link rel="canonical" href="([^"]+)">', page.read_text())
             self.assertEqual(len(matches), 1, page.name)
             locations.append(matches[0])
@@ -83,6 +85,16 @@ class SearchMetadataTests(unittest.TestCase):
         before = {p: p.read_bytes() for p in paths}
         subprocess.run([sys.executable, str(ROOT / 'scripts/update-search-metadata.py')], check=True, capture_output=True)
         self.assertEqual(before, {p: p.read_bytes() for p in paths})
+
+    def test_google_verification_files_are_not_modified_or_indexed(self):
+        verification = ROOT / 'google3f183cf2d21fd763.html'
+        if not verification.exists():
+            self.skipTest('No Google verification file present')
+        original = verification.read_bytes()
+        subprocess.run([sys.executable, str(ROOT / 'scripts/update-search-metadata.py')], check=True, capture_output=True)
+        self.assertEqual(verification.read_bytes(), original)
+        self.assertEqual(original.strip(), b'google-site-verification: google3f183cf2d21fd763.html')
+        self.assertNotIn(verification.name, (ROOT / 'sitemap.xml').read_text())
 
 
 if __name__ == '__main__':
