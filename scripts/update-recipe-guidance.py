@@ -2,6 +2,7 @@
 """Render the reviewed, recipe-specific guidance into static recipe pages."""
 from pathlib import Path
 from html import escape
+import argparse
 import json,re
 ROOT=Path(__file__).resolve().parents[1]
 CHILL='https://www.gov.uk/government/publications/how-to-chill-freeze-and-defrost-food-safely/how-to-chill-freeze-and-defrost-food-safely'
@@ -14,10 +15,14 @@ SAFETY={
  'baking':'Cool baked cookies fully before sealing to avoid condensation. Use clean containers and keep them dry. Do not eat raw flour or raw cookie dough. If adding fresh cream or another perishable topping, refrigerate and follow that ingredient’s shorter storage instructions.',
  'cold':'Keep chilled food at 0–5°C and follow the shortest ingredient use-by or opened-pack instruction. For cooked desserts, cool promptly and refrigerate within 2 hours; do not leave them out overnight. Freeze suitable portions promptly, keep the freezer around −18°C, defrost in the fridge and use within 24 hours. Do not refreeze a thawed serving.'
 }
-def render():
+def render(selected=None):
  notes=json.loads((ROOT/'recipe-guidance.json').read_text())
  src=(ROOT/'recipe-data.js').read_text();recipes=json.loads(src[src.index('=')+1:].rstrip(';\n'))
  if set(notes)!={r['file'] for r in recipes}:raise ValueError('Every catalogue recipe needs reviewed guidance; remove stale guidance entries too.')
+ if selected:
+  missing=set(selected)-set(notes)
+  if missing:raise ValueError(f'Unknown recipes: {sorted(missing)}')
+  notes={file:note for file,note in notes.items() if file in selected}
  changed=0
  for file,note in notes.items():
   path=ROOT/file;s=path.read_text();before=s
@@ -47,4 +52,7 @@ def render():
   s=s[:at]+block+s[at:]
   if s!=before:path.write_text(s);changed+=1
  print(f'Rendered {len(notes)} recipe guidance sections; {changed} pages changed.')
-if __name__=='__main__':render()
+if __name__=='__main__':
+ parser=argparse.ArgumentParser()
+ parser.add_argument('--pages',nargs='+',help='Render guidance only for the named recipes.')
+ render(parser.parse_args().pages)

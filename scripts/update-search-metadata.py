@@ -211,8 +211,6 @@ def update(selected=None):
         missing = selected - known
         if missing:
             raise ValueError(f'Unknown pages: {sorted(missing)}')
-        if selected & set(by_file):
-            raise ValueError('Recipe updates require a full metadata refresh.')
         if not (ROOT / 'sitemap.xml').is_file():
             raise ValueError('Scoped updates require the existing sitemap.')
         pages = [page for page in pages if page.name in selected]
@@ -245,11 +243,11 @@ def update(selected=None):
     ET.indent(sitemap, space='  ')
     (ROOT / 'sitemap.xml').write_bytes(ET.tostring(sitemap, encoding='utf-8', xml_declaration=True) + b'\n')
     (ROOT / 'robots.txt').write_text('User-agent: *\nAllow: /\n\nSitemap: ' + BASE + 'sitemap.xml\n')
-    print(f'Updated {0 if selected else len(recipes)} recipes, {len(pages)} canonical URLs; sitemap has {len(sitemap)} URLs.')
+    print(f'Updated {sum(page.name in by_file for page in pages)} recipes, {len(pages)} canonical URLs; sitemap has {len(sitemap)} URLs.')
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--pages', nargs='+', help='Refresh named non-recipe pages while preserving the existing sitemap.')
+    parser.add_argument('--pages', nargs='+', help='Refresh named pages and recipe metadata while preserving the existing sitemap.')
     update(parser.parse_args().pages)
 
