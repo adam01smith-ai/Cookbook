@@ -26,6 +26,8 @@ After adding or changing recipes or public pages, run `python scripts/update-sea
 
 After adding or removing recipes or changing card metadata, run `python scripts/update-favourites-page.py` before `python scripts/update-search-metadata.py` to keep the favourites page in sync with recipe-data.js.
 
+Recipe discovery uses `recipe-discovery.json` for reviewed total-time allowances. Add a timing entry for every new recipe. Label estimates clearly, include required waiting where known, and explain prepared bases or sauces. Run `python scripts/update-recipe-discovery.py` after the favourites updater and before the metadata updater. It builds the ingredient search data, time filters and consistent cards for all collections. Keep method text, planner eligibility and recipe photos intact.
+
 Every published recipe must include recipe-specific Storage, Freezing, Reheating and Substitutions notes. Add or update its entry in `recipe-guidance.json`, checking food-safety guidance and any recipe-specific exceptions (especially rice and previously reheated ingredients). Run `python scripts/update-recipe-guidance.py` before refreshing search metadata. Bread storage and chilled desserts must not inherit generic cooked-meal advice. Keep notes and methods consistent.
 
 The search metadata updater also exports JPEG copies of complete recipe photos for Open Graph and Twitter sharing. Publish changed `images/social/*.jpg` files and static social tags with recipe updates. Do not crop or regenerate existing photos for this export. Recipe sharing uses the canonical URL without queries or fragments.

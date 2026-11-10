@@ -1,0 +1,538 @@
+{
+  "korean-style-gochujang-beef-pork-bibimbap.html": {
+    "minMinutes": 30,
+    "maxMinutes": 30,
+    "estimated": true,
+    "note": ""
+  },
+  "indonesian-chicken-poke-bowl.html": {
+    "minMinutes": 35,
+    "maxMinutes": 55,
+    "estimated": true,
+    "note": "Allow the longer time if the chicken and sweet potato need separate air-fryer batches."
+  },
+  "moroccan-meatball-bowl.html": {
+    "minMinutes": 45,
+    "maxMinutes": 45,
+    "estimated": true,
+    "note": ""
+  },
+  "thai-curry-bowl.html": {
+    "minMinutes": 40,
+    "maxMinutes": 40,
+    "estimated": true,
+    "note": ""
+  },
+  "truffle pasta.html": {
+    "minMinutes": 25,
+    "maxMinutes": 25,
+    "estimated": true,
+    "note": ""
+  },
+  "harissa-prawn-orzo.html": {
+    "minMinutes": 35,
+    "maxMinutes": 35,
+    "estimated": true,
+    "note": ""
+  },
+  "pastina.html": {
+    "minMinutes": 20,
+    "maxMinutes": 20,
+    "estimated": true,
+    "note": ""
+  },
+  "baked-ziti.html": {
+    "minMinutes": 75,
+    "maxMinutes": 75,
+    "estimated": true,
+    "note": ""
+  },
+  "carbonara.html": {
+    "minMinutes": 25,
+    "maxMinutes": 25,
+    "estimated": true,
+    "note": ""
+  },
+  "mediterranean-pasta-salad.html": {
+    "minMinutes": 25,
+    "maxMinutes": 25,
+    "estimated": true,
+    "note": ""
+  },
+  "pesto-pasta-salad.html": {
+    "minMinutes": 25,
+    "maxMinutes": 25,
+    "estimated": true,
+    "note": ""
+  },
+  "jalfrezi.html": {
+    "minMinutes": 25,
+    "maxMinutes": 25,
+    "estimated": true,
+    "note": "Uses prepared base gravy and pre-cooked main ingredients."
+  },
+  "basegravy.html": {
+    "minMinutes": 90,
+    "maxMinutes": 90,
+    "estimated": true,
+    "note": ""
+  },
+  "pathia.html": {
+    "minMinutes": 25,
+    "maxMinutes": 25,
+    "estimated": true,
+    "note": "Uses prepared base gravy and pre-cooked main ingredients."
+  },
+  "moghul.html": {
+    "minMinutes": 20,
+    "maxMinutes": 20,
+    "estimated": true,
+    "note": "Uses prepared base gravy and pre-cooked meat."
+  },
+  "slow-cooker-beef-rendang.html": {
+    "minMinutes": 485,
+    "maxMinutes": 590,
+    "estimated": false,
+    "note": "Includes the final high-heat stage."
+  },
+  "slow-cooker-tuscan-chicken.html": {
+    "minMinutes": 210,
+    "maxMinutes": 280,
+    "estimated": false,
+    "note": "Includes the cream and spinach finish."
+  },
+  "slow-cooker-chicken-chorizo-butter-bean-stew.html": {
+    "minMinutes": 215,
+    "maxMinutes": 285,
+    "estimated": false,
+    "note": "Includes the final high-heat stage."
+  },
+  "slow-cooker-smoky-hot-chilli-con-carne.html": {
+    "minMinutes": 375,
+    "maxMinutes": 495,
+    "estimated": false,
+    "note": "Low setting; high setting takes about 3¼–4¼ hours including prep."
+  },
+  "ginger-lime-chicken-noodle-soup.html": {
+    "minMinutes": 35,
+    "maxMinutes": 35,
+    "estimated": true,
+    "note": ""
+  },
+  "satay-beef-noodles.html": {
+    "minMinutes": 30,
+    "maxMinutes": 30,
+    "estimated": true,
+    "note": ""
+  },
+  "sticky-gochujang-chicken-noodles.html": {
+    "minMinutes": 30,
+    "maxMinutes": 30,
+    "estimated": false,
+    "note": ""
+  },
+  "coconutty-caribbean-soup.html": {
+    "minMinutes": 50,
+    "maxMinutes": 50,
+    "estimated": true,
+    "note": ""
+  },
+  "minestrone.html": {
+    "minMinutes": 70,
+    "maxMinutes": 70,
+    "estimated": true,
+    "note": ""
+  },
+  "carrot-coriander-soup.html": {
+    "minMinutes": 45,
+    "maxMinutes": 45,
+    "estimated": true,
+    "note": ""
+  },
+  "roasted-red-pepper-soup.html": {
+    "minMinutes": 50,
+    "maxMinutes": 50,
+    "estimated": true,
+    "note": ""
+  },
+  "broccoli-stilton-soup.html": {
+    "minMinutes": 40,
+    "maxMinutes": 40,
+    "estimated": true,
+    "note": ""
+  },
+  "pea-asparagus-soup.html": {
+    "minMinutes": 50,
+    "maxMinutes": 50,
+    "estimated": true,
+    "note": "For serving hot; allow extra chilling time if serving cold."
+  },
+  "sofritto-ragu.html": {
+    "minMinutes": 120,
+    "maxMinutes": 150,
+    "estimated": true,
+    "note": ""
+  },
+  "vinaigrette.html": {
+    "minMinutes": 5,
+    "maxMinutes": 5,
+    "estimated": true,
+    "note": ""
+  },
+  "jack-daniels-sauce.html": {
+    "minMinutes": 65,
+    "maxMinutes": 65,
+    "estimated": true,
+    "note": ""
+  },
+  "panda-express-orange-chicken-sauce.html": {
+    "minMinutes": 15,
+    "maxMinutes": 15,
+    "estimated": true,
+    "note": "Sauce only; does not include frying chicken."
+  },
+  "lemon-chicken-salad.html": {
+    "minMinutes": 30,
+    "maxMinutes": 30,
+    "estimated": true,
+    "note": ""
+  },
+  "acai-bowl.html": {
+    "minMinutes": 10,
+    "maxMinutes": 10,
+    "estimated": false,
+    "note": ""
+  },
+  "cottage-pie.html": {
+    "minMinutes": 135,
+    "maxMinutes": 135,
+    "estimated": true,
+    "note": "Oven method. The alternative slow-cooker method takes longer."
+  },
+  "creamy-garlic-chicken.html": {
+    "minMinutes": 30,
+    "maxMinutes": 30,
+    "estimated": true,
+    "note": ""
+  },
+  "smash-cheeseburgers.html": {
+    "minMinutes": 20,
+    "maxMinutes": 20,
+    "estimated": false,
+    "note": ""
+  },
+  "lemon-garlic-oregano-chicken-traybake.html": {
+    "minMinutes": 50,
+    "maxMinutes": 55,
+    "estimated": false,
+    "note": ""
+  },
+  "broccoli-quiche.html": {
+    "minMinutes": 85,
+    "maxMinutes": 85,
+    "estimated": true,
+    "note": "Includes blind baking and a short rest."
+  },
+  "lemon-cheesecake.html": {
+    "minMinutes": 60,
+    "maxMinutes": null,
+    "estimated": true,
+    "note": "Allow additional cooling and fridge time until fully chilled.",
+    "label": "About 1 hr + cooling & chilling",
+    "makeAhead": true
+  },
+  "chocolate-chip-cookies.html": {
+    "minMinutes": 35,
+    "maxMinutes": 35,
+    "estimated": true,
+    "note": "Optional overnight dough chilling is extra."
+  },
+  "caramel-fudge.html": {
+    "minMinutes": null,
+    "maxMinutes": null,
+    "estimated": true,
+    "note": "Needs overnight chilling before cutting.",
+    "label": "Make ahead · overnight",
+    "makeAhead": true
+  },
+  "carrot-cake.html": {
+    "minMinutes": 120,
+    "maxMinutes": 120,
+    "estimated": true,
+    "note": "Allows time for the cakes to cool before icing."
+  },
+  "creme-brulee.html": {
+    "minMinutes": 60,
+    "maxMinutes": null,
+    "estimated": true,
+    "note": "Allow additional cooling and fridge time until the custards have set.",
+    "label": "About 1 hr + cooling & chilling",
+    "makeAhead": true
+  },
+  "harissa-salmon-crispy-potatoes.html": {
+    "minMinutes": 45,
+    "maxMinutes": 45,
+    "estimated": false,
+    "note": ""
+  },
+  "sofritto-ragu-lasagne.html": {
+    "minMinutes": 65,
+    "maxMinutes": 75,
+    "estimated": false,
+    "note": "Uses prepared ragù; includes resting. Allow extra time to make the ragù from scratch."
+  },
+  "sofritto-ragu-tagliatelle.html": {
+    "minMinutes": 15,
+    "maxMinutes": 20,
+    "estimated": false,
+    "note": "Uses prepared ragù. Allow extra time to make the ragù from scratch."
+  },
+  "jack-daniels-glazed-chicken.html": {
+    "minMinutes": 105,
+    "maxMinutes": 120,
+    "estimated": true,
+    "note": "Includes making the glaze from scratch, then roasting the chicken and wedges."
+  },
+  "panda-express-orange-chicken.html": {
+    "minMinutes": 45,
+    "maxMinutes": 45,
+    "estimated": true,
+    "note": "Includes the sauce, chicken and egg-fried rice."
+  },
+  "chicken-stroganoff.html": {
+    "minMinutes": 55,
+    "maxMinutes": 55,
+    "estimated": true,
+    "note": ""
+  },
+  "nacho-cheese-sauce.html": {
+    "minMinutes": 15,
+    "maxMinutes": 15,
+    "estimated": true,
+    "note": ""
+  },
+  "focaccia.html": {
+    "minMinutes": 135,
+    "maxMinutes": null,
+    "estimated": false,
+    "note": "Plus cooling; includes proving.",
+    "label": "2 hr 15–25 min + cooling",
+    "makeAhead": true
+  },
+  "sourdough.html": {
+    "minMinutes": null,
+    "maxMinutes": null,
+    "estimated": false,
+    "note": "Includes overnight proving. Starting a new starter takes at least five days.",
+    "label": "Overnight + starter preparation",
+    "makeAhead": true
+  },
+  "tiger-bread.html": {
+    "minMinutes": 160,
+    "maxMinutes": null,
+    "estimated": false,
+    "note": "Plus cooling; includes proving.",
+    "label": "2 hr 40–55 min + cooling",
+    "makeAhead": true
+  },
+  "jambalaya.html": {
+    "minMinutes": 55,
+    "maxMinutes": 55,
+    "estimated": false,
+    "note": "Includes the five-minute rest."
+  },
+  "spiced-carrot-lentil-soup.html": {
+    "minMinutes": 30,
+    "maxMinutes": 30,
+    "estimated": false,
+    "note": ""
+  },
+  "key-lime-pie.html": {
+    "minMinutes": 415,
+    "maxMinutes": null,
+    "estimated": false,
+    "note": "Includes at least six hours in the fridge, plus any extra cooling.",
+    "label": "At least 6 hr 55 min + cooling",
+    "makeAhead": true
+  },
+  "french-onion-soup.html": {
+    "minMinutes": 65,
+    "maxMinutes": 70,
+    "estimated": false,
+    "note": ""
+  },
+  "spiced-parsnip-soup.html": {
+    "minMinutes": 40,
+    "maxMinutes": 40,
+    "estimated": false,
+    "note": ""
+  },
+  "slow-cooker-beef-bourguignon.html": {
+    "minMinutes": 410,
+    "maxMinutes": 530,
+    "estimated": false,
+    "note": "Low setting, followed by the high-heat finish."
+  },
+  "slow-cooker-chicken-chasseur.html": {
+    "minMinutes": 195,
+    "maxMinutes": 255,
+    "estimated": false,
+    "note": "Low setting."
+  },
+  "penne-arrabbiata.html": {
+    "minMinutes": 30,
+    "maxMinutes": 30,
+    "estimated": false,
+    "note": ""
+  },
+  "meatball-penne.html": {
+    "minMinutes": 45,
+    "maxMinutes": 45,
+    "estimated": false,
+    "note": ""
+  },
+  "thai-chicken-curry.html": {
+    "minMinutes": 35,
+    "maxMinutes": 35,
+    "estimated": false,
+    "note": ""
+  },
+  "chicken-leek-mushroom-pie.html": {
+    "minMinutes": 65,
+    "maxMinutes": 75,
+    "estimated": false,
+    "note": ""
+  },
+  "moroccan-chicken-filo-pie.html": {
+    "minMinutes": 65,
+    "maxMinutes": 65,
+    "estimated": false,
+    "note": ""
+  },
+  "chicken-chorizo-potato-bake.html": {
+    "minMinutes": 75,
+    "maxMinutes": 75,
+    "estimated": false,
+    "note": ""
+  },
+  "greek-beef-pastitsio.html": {
+    "minMinutes": 80,
+    "maxMinutes": 80,
+    "estimated": false,
+    "note": ""
+  },
+  "spinach-ricotta-cannelloni.html": {
+    "minMinutes": 80,
+    "maxMinutes": 80,
+    "estimated": false,
+    "note": ""
+  },
+  "sausage-leek-mustard-gratin.html": {
+    "minMinutes": 75,
+    "maxMinutes": 75,
+    "estimated": false,
+    "note": ""
+  },
+  "aubergine-parmigiana.html": {
+    "minMinutes": 75,
+    "maxMinutes": 75,
+    "estimated": false,
+    "note": ""
+  },
+  "crispy-chilli-beef.html": {
+    "minMinutes": 40,
+    "maxMinutes": 40,
+    "estimated": false,
+    "note": ""
+  },
+  "salt-pepper-chicken.html": {
+    "minMinutes": 40,
+    "maxMinutes": 40,
+    "estimated": false,
+    "note": ""
+  },
+  "chicken-chow-mein.html": {
+    "minMinutes": 30,
+    "maxMinutes": 30,
+    "estimated": false,
+    "note": ""
+  },
+  "shakshuka.html": {
+    "minMinutes": 35,
+    "maxMinutes": 35,
+    "estimated": false,
+    "note": ""
+  },
+  "fluffy-pancakes.html": {
+    "minMinutes": 25,
+    "maxMinutes": 25,
+    "estimated": false,
+    "note": ""
+  },
+  "breakfast-wraps.html": {
+    "minMinutes": 25,
+    "maxMinutes": 25,
+    "estimated": false,
+    "note": ""
+  },
+  "brioche-french-toast.html": {
+    "minMinutes": 25,
+    "maxMinutes": 25,
+    "estimated": false,
+    "note": ""
+  },
+  "chicken-caesar-wraps.html": {
+    "minMinutes": 27,
+    "maxMinutes": 27,
+    "estimated": false,
+    "note": ""
+  },
+  "steak-ciabatta.html": {
+    "minMinutes": 35,
+    "maxMinutes": 35,
+    "estimated": false,
+    "note": ""
+  },
+  "mozzarella-pesto-toasties.html": {
+    "minMinutes": 20,
+    "maxMinutes": 20,
+    "estimated": false,
+    "note": ""
+  },
+  "leek-and-potato-soup.html": {
+    "minMinutes": 25,
+    "maxMinutes": 25,
+    "estimated": false,
+    "note": ""
+  },
+  "coronation-chicken-sandwiches.html": {
+    "minMinutes": 27,
+    "maxMinutes": 27,
+    "estimated": false,
+    "note": ""
+  },
+  "chicken-shawarma-flatbreads.html": {
+    "minMinutes": 30,
+    "maxMinutes": 30,
+    "estimated": false,
+    "note": ""
+  },
+  "crispy-halloumi-pittas.html": {
+    "minMinutes": 25,
+    "maxMinutes": 25,
+    "estimated": false,
+    "note": ""
+  },
+  "greek-chicken-couscous-salad.html": {
+    "minMinutes": 30,
+    "maxMinutes": 30,
+    "estimated": false,
+    "note": ""
+  },
+  "croque-monsieur.html": {
+    "minMinutes": 30,
+    "maxMinutes": 30,
+    "estimated": false,
+    "note": ""
+  }
+}
