@@ -1,5 +1,9 @@
 # Adam Cooks recipe updates
 
+Do not recommend adding "Adam's own tips" or personal cooking-photo sections as site improvements. Adam considers his recipes their best versions.
+
+Run scripts/update-related-recipes.py after guidance and discovery updates, before the search metadata updater. Every recipe must have exactly three distinct, existing recommendations, excluding itself, after Tips & leftovers and the private notes/feedback section. Preserve the reviewed Satay Beef Noodles suggestions. Cooking mode reads the published JSON-LD steps and shares window.CookbookTimer with the regular timer, so timers continue between steps and on exit. Keep method text unchanged, support bread loaf counts, and release any screen wake lock when cooking mode closes.
+
 When adding a recipe, include its food image in the same update without asking Adam separately.
 
 - Use an image supplied by Adam when available. Otherwise generate a realistic food photograph using the available image-generation tool, based on the actual recipe ingredients and finished dish. Show the whole plate, bowl or loaf on warm neutral tableware with natural light, without text or watermarks.

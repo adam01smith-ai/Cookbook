@@ -52,6 +52,8 @@ def render(selected=None):
   footer=s.rfind('<footer',main_start,main_end)
   scripts=s.find('<script',main_start,main_end)
   at=footer if footer>=0 else scripts if scripts>=0 else main_end
+  related=s.find('<!-- related-recipes:start -->',main_start,main_end)
+  if related>=0:at=min(at,related)
   s=s[:at]+block+s[at:]
   if s!=before:path.write_text(s);changed+=1
  print(f'Rendered {len(notes)} recipe guidance sections; {changed} pages changed.')
