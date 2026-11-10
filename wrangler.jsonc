@@ -3,7 +3,7 @@
   "main": "worker.mjs",
   "compatibility_date": "2026-10-31",
   "vars": {
-    "ALLOWED_ORIGIN": "https://adam01smith-ai.github.io",
+    "ALLOWED_ORIGIN": "https://www.adamcooks.co.uk",
     "OPENAI_MODEL": "gpt-5.4-mini",
     "OPENAI_REASONING_EFFORT": "none",
     "DAILY_REQUEST_LIMIT": "10",
