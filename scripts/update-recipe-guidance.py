@@ -37,10 +37,13 @@ def render(selected=None):
     nav='<nav class="recipe-jumps" aria-label="Recipe sections"><a href="#ingredients-heading">Ingredients</a><a href="#method-heading">Method</a><a href="#tips-heading">Tips &amp; leftovers</a></nav>'
     assert '<div class="recipe-layout">' in s,file
     s=s.replace('<div class="recipe-layout">',nav+'<div class="recipe-layout">',1)
-  cards=''.join('<div><h3>'+label+'</h3><p>'+escape(note[key])+'</p></div>' for key,label in [('storage','Storage'),('freezing','Freezing'),('reheating','Reheating'),('substitutions','Substitutions')])
+  cards=''.join('<div><h3>'+label+'</h3><p>'+escape(note[key])+'</p></div>' for key,label in [('storage','Storage &amp; leftovers'),('freezing','Freezing'),('reheating','Reheating'),('substitutions','Substitutions')])
   kind=note.get('safety','general');common=SAFETY[kind]
   # Perishable desserts use the cold-food storage note, not room-temperature bread advice.
   if file in {'lemon-cheesecake.html','key-lime-pie.html','carrot-cake.html','creme-brulee.html'}:common=SAFETY['cold']
+  if note.get('finishedFreezingRecommended') is False:
+   common='Keep chilled food at 0–5°C and follow the shortest ingredient use-by or opened-pack instruction. Cool cooked leftovers in small portions and refrigerate within 2 hours. Reheat suitable cooked leftovers only once, until steaming hot throughout; ingredients already reheated in this recipe must not be reheated again. Serve chilled desserts cold. Freezing recommendations and any exceptions for a base prepared without cream or prawns are explained in this recipe’s Freezing note.'
+   if kind=='rice':common+=' Cool rice quickly, ideally within 1 hour, refrigerate and use within 24 hours. Do not reheat rice that has already been reheated, including a heated microwave pouch.'
   source='<p class="recipe-tips-source">Food-safety guidance: <a href="'+CHILL+'">Food Standards Agency: chilling and freezing</a> · <a href="'+COOK+'">reheating leftovers</a>'
   if kind=='rice':source+=' · <a href="'+RICE+'">cooked rice</a>'
   source+='.</p>'
