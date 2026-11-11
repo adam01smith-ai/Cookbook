@@ -306,8 +306,8 @@
   ],
   "penne-arrabbiata.html": [
     "meatball-penne.html",
-    "baked-ziti.html",
-    "mediterranean-pasta-salad.html"
+    "amatriciana.html",
+    "baked-ziti.html"
   ],
   "meatball-penne.html": [
     "baked-ziti.html",
@@ -433,5 +433,10 @@
     "chicken-caesar-wraps.html",
     "steak-ciabatta.html",
     "coronation-chicken-sandwiches.html"
+  ],
+  "amatriciana.html": [
+    "penne-arrabbiata.html",
+    "meatball-penne.html",
+    "carbonara.html"
   ]
 }

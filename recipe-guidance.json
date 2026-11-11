@@ -626,5 +626,12 @@
     "substitutions": "Use thick sliced challah or soft white bread instead of brioche. Milk can replace cream for a less rich version. Keep the egg mixture set through the bread, whatever loaf you use.",
     "safety": "general",
     "finishedFreezingRecommended": false
+  },
+  "amatriciana.html": {
+    "storage": "Cool promptly, refrigerate covered within 2 hours and eat within 48 hours.",
+    "freezing": "Freeze the cooled sauce separately for best texture, then defrost fully in the fridge and use within 24 hours. Cook fresh pasta when serving.",
+    "reheating": "Add a splash of water and reheat once until steaming hot throughout, stirring well. Add freshly cooked pasta to thawed, reheated sauce.",
+    "substitutions": "Pancetta can replace guanciale; Parmesan can replace Pecorino, with a milder result. Replace the wine with 50ml water if preferred.",
+    "safety": "general"
   }
 }

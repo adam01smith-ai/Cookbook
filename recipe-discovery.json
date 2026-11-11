@@ -534,5 +534,11 @@
     "maxMinutes": 30,
     "estimated": false,
     "note": ""
+  },
+  "amatriciana.html": {
+    "minMinutes": 30,
+    "maxMinutes": 30,
+    "estimated": true,
+    "note": "Prep 5 min; cook 25 min. Cook the pasta while the sauce simmers."
   }
 }
