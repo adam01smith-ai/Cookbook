@@ -203,7 +203,7 @@ def update(selected=None):
     recipes = json.loads(raw[raw.index('['):raw.rindex(']') + 1])
     by_file = {recipe['file']: recipe for recipe in recipes}
     # Ownership verification files must remain byte-for-byte as Google supplied.
-    pages = sorted(page for page in ROOT.glob('*.html')
+    pages = sorted(page for page in ROOT.glob('*.html') if page.name != 'offline.html'
                    if not re.fullmatch(r'google-site-verification:\s*google[\da-f]+\.html\s*', page.read_text()))
     if selected:
         selected = set(selected)
@@ -250,4 +250,3 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--pages', nargs='+', help='Refresh named pages and recipe metadata while preserving the existing sitemap.')
     update(parser.parse_args().pages)
-

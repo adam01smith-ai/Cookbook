@@ -1,5 +1,9 @@
 # Adam Cooks recipe updates
 
+My cookbook provides local collections, opt-in recently viewed history and explicitly requested offline downloads. Never enable history for existing visitors without their choice. Do not cache contact submissions, AI requests or other private messages. Download failures must retain the previous offline copy. Preserve collections/favourites/notes when removing downloads.
+
+After updating recipe pages and cards, run node scripts/update-personal-catalog.cjs before the search metadata updater, then node scripts/update-personal-catalog.cjs --offline-only after metadata is final. This refreshes the public catalogue and complete offline asset lists. The offline fallback page is intentionally noindex and excluded from the sitemap. Preserve the existing PNG app icons unless Adam requests an icon change.
+
 Do not recommend adding "Adam's own tips" or personal cooking-photo sections as site improvements. Adam considers his recipes their best versions.
 
 Run scripts/update-related-recipes.py after guidance and discovery updates, before the search metadata updater. Every recipe must have exactly three distinct, existing recommendations, excluding itself, after Tips & leftovers and the private notes/feedback section. Preserve the reviewed Satay Beef Noodles suggestions. Cooking mode reads the published JSON-LD steps and shares window.CookbookTimer with the regular timer, so timers continue between steps and on exit. Keep method text unchanged, support bread loaf counts, and release any screen wake lock when cooking mode closes.
