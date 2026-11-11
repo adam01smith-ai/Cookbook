@@ -540,5 +540,17 @@
     "maxMinutes": 30,
     "estimated": true,
     "note": "Prep 5 min; cook 25 min. Cook the pasta while the sauce simmers."
+  },
+  "creamy-tomato-sausage-gnocchi.html": {
+    "minMinutes": 30,
+    "maxMinutes": 30,
+    "estimated": true,
+    "note": "Cook the gnocchi while the sauce simmers."
+  },
+  "karahi.html": {
+    "minMinutes": 25,
+    "maxMinutes": 25,
+    "estimated": true,
+    "note": "Uses prepared base gravy and pre-cooked chicken breast. Preparation of those is additional; rice or naan is separate. Cook larger quantities in batches."
   }
 }

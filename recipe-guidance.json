@@ -633,5 +633,19 @@
     "reheating": "Add a splash of water and reheat once until steaming hot throughout, stirring well. Add freshly cooked pasta to thawed, reheated sauce.",
     "substitutions": "Pancetta can replace guanciale; Parmesan can replace Pecorino, with a milder result. Replace the wine with 50ml water if preferred.",
     "safety": "general"
+  },
+  "creamy-tomato-sausage-gnocchi.html": {
+    "storage": "Cool promptly, refrigerate covered within 2 hours and eat within 48 hours.",
+    "freezing": "For best texture, freeze the sausage and tomato sauce before adding cream, spinach and gnocchi. Defrost fully in the fridge and use within 24 hours; finish with fresh cream, spinach and freshly cooked gnocchi.",
+    "reheating": "Reheat once until steaming hot throughout, stirring gently with a splash of water. Add freshly cooked gnocchi when reheating sauce-only portions.",
+    "substitutions": "Use chicken sausages instead of pork, or kale instead of spinach, allowing longer for it to soften.",
+    "safety": "general"
+  },
+  "karahi.html": {
+    "storage": "Cool promptly and refrigerate covered within 2 hours. Eat within 48 hours, or sooner if the chicken or gravy was prepared earlier. Cooking this curry reheats the pre-cooked chicken: do not reheat that chicken again.",
+    "freezing": "For batch cooking, freeze sauce before adding the pre-cooked chicken. Defrost fully in the fridge and use within 24 hours; finish with freshly cooked chicken breast. Do not plan to freeze the finished curry for another reheating of its chicken.",
+    "reheating": "Reheat sauce-only portions once until steaming hot, then finish with freshly cooked chicken breast. If the finished curry has already reheated its chicken, eat safely chilled leftovers cold rather than heating again. Follow the earlier preparation times of both chicken and gravy.",
+    "substitutions": "Use cooked chickpeas or vegetables in place of chicken. Reduce chilli powder or the fresh chilli for less heat. Serve with separately prepared rice or naan; rice needs its own shorter cooling and storage times.",
+    "safety": "general"
   }
 }
