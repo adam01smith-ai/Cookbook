@@ -136,27 +136,25 @@
     "safety": "general"
   },
   "jalfrezi.html": {
-    "storage": "Cool and refrigerate within 2 hours; use within 48 hours, or sooner if the main ingredient was cooked earlier. The recipe heats pre-cooked ingredients: do not plan another reheating of those ingredients.",
-    "freezing": "For batch cooking, freeze the sauce before adding the pre-cooked meat, cream or egg. Use within 2 months for best quality; add freshly prepared ingredients when finishing.",
-    "reheating": "Reheat sauce-only portions once until steaming hot, then finish with freshly cooked chicken breast or vegetables. If the finished curry already reheated its main ingredient, eat safely chilled leftovers cold rather than heating them again.",
-    "substitutions": "Use chicken breast, cooked vegetables or chickpeas as the main ingredient. Reduce fresh chillies for a milder curry; retain the peppers and add extra base gravy if needed.",
+    "storage": "Cool promptly and refrigerate covered within 2 hours. Use within 48 hours, or sooner if the base gravy has an earlier storage limit.",
+    "freezing": "Freeze portions for later reheating only when made with freshly cooked chicken and freshly made gravy in this cooking session. Otherwise freeze the gravy separately before finishing the curry. Defrost fully in the fridge and use within 24 hours.",
+    "reheating": "Reheat once until steaming hot throughout. If chilled chicken or gravy was already reheated when making this curry, do not reheat the finished curry again.",
+    "substitutions": "For a milder curry, halve the fresh chillies and chilli powder. Use ordinary tomato purée diluted as listed, not four tablespoons of concentrated purée.",
     "safety": "general"
   },
   "pathia.html": {
-    "storage": "Cool and refrigerate within 2 hours; use within 48 hours, or sooner if the main ingredient was cooked earlier. The recipe heats pre-cooked ingredients: do not plan another reheating of those ingredients. Label the container with the recipe name and the date and time it was made; follow any shorter ingredient use-by or opened-pack instructions. If using prawns, follow their packet storage instructions and do not extend their original storage time.",
-    "freezing": "Freezing not recommended when this curry is made with prawns. For batch cooking another version, freeze the sauce on its own before adding the main ingredient, for up to 2 months for best quality. Add freshly cooked chicken breast or vegetables when finishing; do not plan a second reheating of pre-cooked ingredients.",
-    "reheating": "Reheat sauce-only portions once until steaming hot, then finish with freshly cooked chicken breast or vegetables. If the finished curry already reheated its main ingredient, eat safely chilled leftovers cold rather than heating them again.",
-    "substitutions": "Use chicken breast or cooked vegetables as the main ingredient. Add lemon and tamarind gradually to balance the sweetness; substituting extra lemon for tamarind changes the flavour.",
-    "safety": "general",
-    "finishedFreezingRecommended": false
+    "storage": "Cool promptly and refrigerate covered within 2 hours. Use within 48 hours, or sooner if the base gravy has an earlier storage limit.",
+    "freezing": "Freeze portions for later reheating only when made with freshly cooked chicken and freshly made gravy in this cooking session. Otherwise freeze the gravy separately before finishing the curry. Defrost fully in the fridge and use within 24 hours.",
+    "reheating": "Reheat once until steaming hot throughout. If chilled chicken or gravy was already reheated when making this curry, do not reheat the finished curry again.",
+    "substitutions": "If using tamarind concentrate, start with ½ tsp for 2 servings instead of the 2 tsp sauce and taste before adding more. Omit optional Worcestershire for a fish-free version; standard Worcestershire contains anchovies.",
+    "safety": "general"
   },
   "moghul.html": {
-    "storage": "Cool and refrigerate within 2 hours; use within 48 hours, or sooner if the main ingredient was cooked earlier. The recipe heats pre-cooked ingredients: do not plan another reheating of those ingredients. Label the container with the recipe name and the date and time it was made; follow any shorter ingredient use-by or opened-pack instructions.",
-    "freezing": "Freezing not recommended for the finished cream curry. Make fresh and follow the chilled leftover instructions; the recipe reheats pre-cooked meat, which must not be reheated again.",
-    "reheating": "Reheat sauce-only portions once until steaming hot, then finish with freshly cooked chicken breast or vegetables. If the finished curry already reheated its main ingredient, eat safely chilled leftovers cold rather than heating them again.",
-    "substitutions": "Use single cream as written, or a little double cream for a richer sauce. Ground almonds give the characteristic body; a nut-free alternative changes the dish, so do not treat another nut as an allergy-safe swap.",
-    "safety": "general",
-    "finishedFreezingRecommended": false
+    "storage": "Cool promptly and refrigerate covered within 2 hours. Use within 48 hours, or sooner if the base gravy has an earlier storage limit.",
+    "freezing": "Freeze portions for later reheating only when made with freshly cooked chicken and freshly made gravy in this cooking session. Otherwise freeze the gravy separately before finishing the curry. Defrost fully in the fridge and use within 24 hours.",
+    "reheating": "Reheat once until steaming hot throughout. If chilled chicken or gravy was already reheated when making this curry, do not reheat the finished curry again.",
+    "substitutions": "Contains almonds and dairy. Omit optional Worcestershire for a fish-free version; standard Worcestershire contains anchovies. Optional sultanas, ghee and egg stay out of the shopping list unless selected.",
+    "safety": "general"
   },
   "basegravy.html": {
     "storage": "Cool in shallow containers, refrigerate covered within 2 hours and eat within 48 hours.",
@@ -642,10 +640,10 @@
     "safety": "general"
   },
   "karahi.html": {
-    "storage": "Cool promptly and refrigerate covered within 2 hours. Eat within 48 hours, or sooner if the chicken or gravy was prepared earlier. Cooking this curry reheats the pre-cooked chicken: do not reheat that chicken again.",
-    "freezing": "For batch cooking, freeze sauce before adding the pre-cooked chicken. Defrost fully in the fridge and use within 24 hours; finish with freshly cooked chicken breast. Do not plan to freeze the finished curry for another reheating of its chicken.",
-    "reheating": "Reheat sauce-only portions once until steaming hot, then finish with freshly cooked chicken breast. If the finished curry has already reheated its chicken, eat safely chilled leftovers cold rather than heating again. Follow the earlier preparation times of both chicken and gravy.",
-    "substitutions": "Use cooked chickpeas or vegetables in place of chicken. Reduce chilli powder or the fresh chilli for less heat. Serve with separately prepared rice or naan; rice needs its own shorter cooling and storage times.",
+    "storage": "Cool promptly and refrigerate covered within 2 hours. Use within 48 hours, or sooner if the base gravy has an earlier storage limit.",
+    "freezing": "Freeze portions for later reheating only when made with freshly cooked chicken and freshly made gravy in this cooking session. Otherwise freeze the gravy separately before finishing the curry. Defrost fully in the fridge and use within 24 hours.",
+    "reheating": "Reheat once until steaming hot throughout. If chilled chicken or gravy was already reheated when making this curry, do not reheat the finished curry again.",
+    "substitutions": "For less heat, halve the fresh chilli and chilli powder. Black cardamom is omitted from this version. Use only chicken breast for the chicken version.",
     "safety": "general"
   }
 }

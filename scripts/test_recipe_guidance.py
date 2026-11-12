@@ -15,7 +15,8 @@ class GuidanceTests(unittest.TestCase):
     s=(ROOT/file).read_text();self.assertEqual(s.count('id="tips-heading"'),1);self.assertEqual(s.count('href="#tips-heading"'),1)
     self.assertIn('recipe-tips.css?v=1',s)
     for field in ['storage','freezing','reheating','substitutions']:
-     self.assertTrue(n[field].strip());self.assertIn('<h3>'+field.title()+'</h3><p>'+escape(n[field])+'</p>',s)
+     label='Storage &amp; leftovers' if field=='storage' else field.title()
+     self.assertTrue(n[field].strip());self.assertIn('<h3>'+label+'</h3><p>'+escape(n[field])+'</p>',s)
     self.assertLess(s.index('id="method-heading"'),s.index('<section class="recipe-tips"'))
     self.assertLess(s.index('<section class="recipe-tips"'),s.index('</main>'))
  def test_rice_uses_its_own_shorter_storage_rules(self):

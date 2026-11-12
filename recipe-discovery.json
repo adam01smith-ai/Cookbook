@@ -66,10 +66,10 @@
     "note": ""
   },
   "jalfrezi.html": {
-    "minMinutes": 25,
-    "maxMinutes": 25,
+    "minMinutes": 40,
+    "maxMinutes": 40,
     "estimated": true,
-    "note": "Uses prepared base gravy and pre-cooked main ingredients."
+    "note": "Base gravy must already be prepared, diluted and hot before measuring. The time below includes preparing fresh chicken, but excludes making base gravy and any rice or naan. Cook larger quantities in batches."
   },
   "basegravy.html": {
     "minMinutes": 90,
@@ -78,16 +78,16 @@
     "note": ""
   },
   "pathia.html": {
-    "minMinutes": 25,
-    "maxMinutes": 25,
+    "minMinutes": 40,
+    "maxMinutes": 40,
     "estimated": true,
-    "note": "Uses prepared base gravy and pre-cooked main ingredients."
+    "note": "Base gravy must already be prepared, diluted and hot before measuring. The time below includes preparing fresh chicken, but excludes making base gravy and any rice or naan. Cook larger quantities in batches."
   },
   "moghul.html": {
-    "minMinutes": 20,
-    "maxMinutes": 20,
+    "minMinutes": 40,
+    "maxMinutes": 40,
     "estimated": true,
-    "note": "Uses prepared base gravy and pre-cooked meat."
+    "note": "Base gravy must already be prepared, diluted and hot before measuring. The time below includes preparing fresh chicken, but excludes making base gravy and any rice or naan. Cook larger quantities in batches."
   },
   "slow-cooker-beef-rendang.html": {
     "minMinutes": 485,
@@ -548,9 +548,9 @@
     "note": "Cook the gnocchi while the sauce simmers."
   },
   "karahi.html": {
-    "minMinutes": 25,
-    "maxMinutes": 25,
+    "minMinutes": 40,
+    "maxMinutes": 40,
     "estimated": true,
-    "note": "Uses prepared base gravy and pre-cooked chicken breast. Preparation of those is additional; rice or naan is separate. Cook larger quantities in batches."
+    "note": "Base gravy must already be prepared, diluted and hot before measuring. The time below includes preparing fresh chicken, but excludes making base gravy and any rice or naan. Cook larger quantities in batches."
   }
 }

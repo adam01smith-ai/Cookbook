@@ -39,3 +39,8 @@ Recipe discovery uses `recipe-discovery.json` for reviewed total-time allowances
 Every published recipe must include recipe-specific Storage, Freezing, Reheating and Substitutions notes. Add or update its entry in `recipe-guidance.json`, checking food-safety guidance and any recipe-specific exceptions (especially rice and previously reheated ingredients). Run `python scripts/update-recipe-guidance.py` before refreshing search metadata. Bread storage and chilled desserts must not inherit generic cooked-meal advice. Keep notes and methods consistent.
 
 The search metadata updater also exports JPEG copies of complete recipe photos for Open Graph and Twitter sharing. Publish changed `images/social/*.jpg` files and static social tags with recipe updates. Do not crop or regenerate existing photos for this export. Recipe sharing uses the canonical URL without queries or fragments.
+
+
+Indian-style curry photographs must match the approved `images/karahi.webp` reference: copper serving bowl with brass handles, warm beige tabletop, soft natural lighting, and the entire bowl and both handles visible with generous margins. Keep each curry visually accurate to its ingredients.
+
+Curry recipes must use named, measured ingredients suitable for the shopping list. Keep ingredient names consistent throughout the method (for example, kasuri methi and curry mix powder); enumerate seasonings at their addition stage instead of saying "the powders". Link to `basegravy.html` before cooking, explain pre-cooking the chicken, and explicitly add the pre-cooked chicken to the sauce later. Karahi paste must be a separate, scaled, single-curry batch used in full.

@@ -1,22 +1,76 @@
 {
   "coronation-chicken-sandwiches.html": {
     "cuisine": "British",
-    "keywords": ["coronation chicken sandwiches", "chicken breast", "lunch", "mango chutney"]
+    "keywords": [
+      "coronation chicken sandwiches",
+      "chicken breast",
+      "lunch",
+      "mango chutney"
+    ]
   },
   "chicken-shawarma-flatbreads.html": {
     "cuisine": "Middle Eastern-inspired",
-    "keywords": ["chicken shawarma flatbreads", "chicken breast", "lunch"]
+    "keywords": [
+      "chicken shawarma flatbreads",
+      "chicken breast",
+      "lunch"
+    ]
   },
   "crispy-halloumi-pittas.html": {
     "cuisine": "Mediterranean-inspired",
-    "keywords": ["crispy halloumi pittas", "halloumi", "lunch"]
+    "keywords": [
+      "crispy halloumi pittas",
+      "halloumi",
+      "lunch"
+    ]
   },
   "croque-monsieur.html": {
     "cuisine": "French",
-    "keywords": ["croque monsieur", "ham and cheese", "lunch"]
+    "keywords": [
+      "croque monsieur",
+      "ham and cheese",
+      "lunch"
+    ]
   },
   "greek-chicken-couscous-salad.html": {
     "cuisine": "Greek-inspired",
-    "keywords": ["Greek chicken couscous salad", "chicken breast", "couscous", "lunch"]
+    "keywords": [
+      "Greek chicken couscous salad",
+      "chicken breast",
+      "couscous",
+      "lunch"
+    ]
+  },
+  "karahi.html": {
+    "cuisine": "British Indian",
+    "keywords": [
+      "Chicken Karahi",
+      "chicken breast",
+      "base gravy"
+    ]
+  },
+  "jalfrezi.html": {
+    "cuisine": "British Indian",
+    "keywords": [
+      "Chicken Jalfrezi",
+      "chicken breast",
+      "base gravy"
+    ]
+  },
+  "pathia.html": {
+    "cuisine": "British Indian",
+    "keywords": [
+      "Chicken Pathia",
+      "chicken breast",
+      "base gravy"
+    ]
+  },
+  "moghul.html": {
+    "cuisine": "British Indian",
+    "keywords": [
+      "Chicken Moghul",
+      "chicken breast",
+      "base gravy"
+    ]
   }
 }
