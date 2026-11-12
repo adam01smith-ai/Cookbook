@@ -16,7 +16,7 @@ window.addEventListener('adam-cooks-consentchange',()=>{if(!privacy?.allowed('pl
 function show(which){tab=which;for(const b of document.querySelectorAll('[data-tab]')){const active=b.dataset.tab===which;b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;$(b.getAttribute('aria-controls')).hidden=!active;}if(which==='shopping')renderShopping();if(which==='history')renderHistory();}
 function dirty(){state.confirmed=false;state.checked=[];save();}
 function run(fn){try{fn();}catch(e){message(e.message,true);}}
-function settings(){$('more-variety').checked=state.variety;$('vegetarian-target').checked=state.vegetarianTarget;$('variety-time').value=state.maxMinutes;$('vegetarian-target').disabled=!state.variety;$('variety-time').disabled=!state.variety;$('week-start').value=state.week;$('people').value=state.people;$('people-value').textContent=state.people+(state.people===1?' person':' people');$('dinner-count').value=state.count;$('repeat-gap').value=state.gap;$('no-fish').checked=state.noFish;$('weekend-fakeaway').checked=state.weekendFakeaway;$('include-optional').checked=state.optional;$('extra-shopping').value=state.extras;$('generate').textContent=(state.variety?'Preview varied ':'Suggest ')+state.count+' dinner'+(state.count===1?'':'s');const n=state.days.filter(d=>d.type==='recipe').length;$('week-label').textContent=(state.confirmed?'Confirmed':'Draft')+' week · '+n+' cookbook dinner'+(n===1?'':'s');$('eligible-count').textContent=P.eligible(state,catalog).length+' eligible dinners after preferences and history';$('print-week').textContent='Week beginning '+dateLabel(state.week)+' · '+state.people+' people';}
+function settings(){$('vegetarian-target').checked=state.vegetarianTarget;$('variety-time').value=state.maxMinutes;$('week-start').value=state.week;$('people').value=state.people;$('people-value').textContent=state.people+(state.people===1?' person':' people');$('dinner-count').value=state.count;$('repeat-gap').value=state.gap;$('no-fish').checked=state.noFish;$('weekend-fakeaway').checked=state.weekendFakeaway;$('include-optional').checked=state.optional;$('extra-shopping').value=state.extras;$('generate').textContent='Preview '+state.count+' dinner'+(state.count===1?'':'s');const n=state.days.filter(d=>d.type==='recipe').length;$('week-label').textContent=(state.confirmed?'Confirmed':'Draft')+' week · '+n+' cookbook dinner'+(n===1?'':'s');$('eligible-count').textContent=P.eligible(state,catalog).length+' eligible dinners after preferences and history';$('print-week').textContent='Week beginning '+dateLabel(state.week)+' · '+state.people+' people';}
 function dateLabel(s){return P.parseDate(s).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}
 function choices(index){const used=new Set(state.days.filter((_,i)=>i!==index).filter(d=>d.type==='recipe').map(d=>d.recipeId));return P.eligible(state,catalog).filter(r=>!used.has(r.id));}
 function recipeOptions(index){const d=state.days[index],available=choices(index);let html='<option value="">Choose a dinner…</option>';if(d.recipeId&&!available.some(r=>r.id===d.recipeId)){const r=catalog.find(r=>r.id===d.recipeId);html+='<option selected disabled value="'+esc(d.recipeId)+'">'+esc((r?r.mealName:'Unavailable recipe')+' — check repeat/preferences')+'</option>';}
@@ -63,18 +63,12 @@ $('generate').onclick = () => {
  const feedback = $('suggest-feedback');
  try {
   const suggested = P.generate(state, catalog);
-  if(state.variety){pendingDays=suggested;const report=P.varietyReport(state,catalog,suggested);$('variety-meals').innerHTML=suggested.map((d,i)=>'<li>'+esc(weekday(state.week,i)+': '+P.mealTitle(d,catalog,suggested))+'</li>').join('');$('variety-summary').textContent=report.cuisines+' cuisines · '+report.styles+' meal styles';$('variety-notes').textContent=report.notes.join(' ')||'Variety targets met for this suggestion.';$('variety-preview').hidden=false;feedback.textContent='Preview ready. Your current plan and shopping list are unchanged.';return;}
-  state.days = suggested;
-  dirty();
-  redraw();
-  feedback.className = 'status';
-  feedback.textContent = 'Dinner suggestions updated.';
+  pendingDays=suggested;const report=P.varietyReport(state,catalog,suggested);$('variety-meals').innerHTML=suggested.map((d,i)=>'<li>'+esc(weekday(state.week,i)+': '+P.mealTitle(d,catalog,suggested))+'</li>').join('');$('variety-summary').textContent=report.cuisines+' cuisines · '+report.styles+' meal styles';$('variety-notes').textContent=report.notes.join(' ')||'Variety targets met for this suggestion.';$('variety-preview').hidden=false;feedback.className='status';feedback.textContent='Preview ready. Your current plan and shopping list are unchanged.';
  } catch (error) {
   feedback.className = 'status error';
   feedback.textContent = error.message;
  }
 };
-$('more-variety').onchange=()=>{state.variety=$('more-variety').checked;save();settings();};
 $('vegetarian-target').onchange=()=>{state.vegetarianTarget=$('vegetarian-target').checked;save();};
 $('variety-time').onchange=()=>{state.maxMinutes=Number($('variety-time').value);save();};
 $('discard-variety').onclick=()=>{pendingDays=null;$('variety-preview').hidden=true;};
