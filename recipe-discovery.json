@@ -552,5 +552,23 @@
     "maxMinutes": 40,
     "estimated": true,
     "note": "Base gravy must already be prepared, diluted and hot before measuring. The time below includes preparing fresh chicken, but excludes making base gravy and any rice or naan. Cook larger quantities in batches."
+  },
+  "pork-schnitzel.html": {
+    "minMinutes": 35,
+    "maxMinutes": 35,
+    "estimated": true,
+    "note": "Side included in the recipe."
+  },
+  "spanish-garlic-prawns.html": {
+    "minMinutes": 30,
+    "maxMinutes": 30,
+    "estimated": true,
+    "note": "Side included in the recipe."
+  },
+  "sweet-potato-enchiladas.html": {
+    "minMinutes": 60,
+    "maxMinutes": 60,
+    "estimated": true,
+    "note": ""
   }
 }

@@ -645,5 +645,23 @@
     "reheating": "Reheat once until steaming hot throughout. If chilled chicken or gravy was already reheated when making this curry, do not reheat the finished curry again.",
     "substitutions": "For less heat, halve the fresh chilli and chilli powder. Black cardamom is omitted from this version. Use only chicken breast for the chicken version.",
     "safety": "general"
+  },
+  "pork-schnitzel.html": {
+    "storage": "Cool and refrigerate the schnitzel and potato salad separately within 2 hours; eat within 48 hours.",
+    "freezing": "For best texture, freeze the uncooked breaded pork promptly only if the pork has not already been defrosted, following its original use-by date. Defrost fully in the fridge and cook within 24 hours. Make the potato salad fresh.",
+    "reheating": "Reheat cooked schnitzel once until steaming hot throughout. An oven helps restore crispness. Eat the chilled potato salad cold or reheat it once until steaming hot.",
+    "substitutions": "Dijon mustard can replace wholegrain mustard. For one serving, beat a whole egg and use half for coating; the shopping list should still round up to one egg."
+  },
+  "spanish-garlic-prawns.html": {
+    "storage": "Cool promptly, refrigerate covered within 2 hours and eat within 48 hours, or sooner if the prawn packet gives a shorter limit. Bread is best stored separately.",
+    "freezing": "Best made fresh: freezing the finished dish can make the prawns tough. Freeze the tomato-and-bean sauce before adding raw prawns, then defrost in the fridge and finish with fresh or safely defrosted raw prawns.",
+    "reheating": "If reheating leftovers, do so only once until steaming hot throughout. Stir gently and stop once hot to avoid toughening the prawns.",
+    "substitutions": "Use another tin of butter beans instead of prawns for a vegetarian version. Use ready-cooked prawns only as a substitution: add near the end just to heat through, and do not reheat that finished version again."
+  },
+  "sweet-potato-enchiladas.html": {
+    "storage": "Cool promptly, refrigerate covered within 2 hours and eat within 48 hours.",
+    "freezing": "Freeze cooled individual portions promptly. Defrost fully in the fridge and use within 24 hours. The tortillas will soften slightly after freezing.",
+    "reheating": "Reheat once until steaming hot right through the filling. Cover in the oven to prevent the tortillas drying out, then uncover briefly if you want the cheese browned.",
+    "substitutions": "Use vegetarian cheddar so the dish stays vegetarian. Kidney beans can replace black beans. For a vegan version, use suitable tortillas and a plant-based cheese alternative."
   }
 }

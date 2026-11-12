@@ -71,8 +71,8 @@
   ],
   "moghul.html": [
     "karahi.html",
-    "pathia.html",
-    "jalfrezi.html"
+    "jalfrezi.html",
+    "pathia.html"
   ],
   "slow-cooker-beef-rendang.html": [
     "slow-cooker-smoky-hot-chilli-con-carne.html",
@@ -175,19 +175,19 @@
     "lemon-garlic-oregano-chicken-traybake.html"
   ],
   "creamy-garlic-chicken.html": [
+    "spanish-garlic-prawns.html",
     "chicken-stroganoff.html",
-    "lemon-garlic-oregano-chicken-traybake.html",
-    "smash-cheeseburgers.html"
+    "lemon-garlic-oregano-chicken-traybake.html"
   ],
   "smash-cheeseburgers.html": [
     "chicken-stroganoff.html",
     "creamy-garlic-chicken.html",
-    "lemon-garlic-oregano-chicken-traybake.html"
+    "pork-schnitzel.html"
   ],
   "lemon-garlic-oregano-chicken-traybake.html": [
     "creamy-garlic-chicken.html",
     "chicken-stroganoff.html",
-    "cottage-pie.html"
+    "pork-schnitzel.html"
   ],
   "broccoli-quiche.html": [
     "chicken-leek-mushroom-pie.html",
@@ -222,7 +222,7 @@
   "harissa-salmon-crispy-potatoes.html": [
     "harissa-prawn-orzo.html",
     "lemon-garlic-oregano-chicken-traybake.html",
-    "chicken-shawarma-flatbreads.html"
+    "pork-schnitzel.html"
   ],
   "sofritto-ragu-lasagne.html": [
     "sofritto-ragu-tagliatelle.html",
@@ -247,7 +247,7 @@
   "chicken-stroganoff.html": [
     "creamy-garlic-chicken.html",
     "lemon-garlic-oregano-chicken-traybake.html",
-    "smash-cheeseburgers.html"
+    "pork-schnitzel.html"
   ],
   "nacho-cheese-sauce.html": [
     "smash-cheeseburgers.html",
@@ -317,7 +317,7 @@
   "thai-chicken-curry.html": [
     "jalfrezi.html",
     "karahi.html",
-    "pathia.html"
+    "moghul.html"
   ],
   "chicken-leek-mushroom-pie.html": [
     "sausage-leek-mustard-gratin.html",
@@ -326,13 +326,13 @@
   ],
   "moroccan-chicken-filo-pie.html": [
     "chicken-chorizo-potato-bake.html",
-    "greek-beef-pastitsio.html",
-    "aubergine-parmigiana.html"
+    "sweet-potato-enchiladas.html",
+    "greek-beef-pastitsio.html"
   ],
   "chicken-chorizo-potato-bake.html": [
+    "sweet-potato-enchiladas.html",
     "aubergine-parmigiana.html",
-    "greek-beef-pastitsio.html",
-    "spinach-ricotta-cannelloni.html"
+    "greek-beef-pastitsio.html"
   ],
   "greek-beef-pastitsio.html": [
     "spinach-ricotta-cannelloni.html",
@@ -347,7 +347,7 @@
   "sausage-leek-mustard-gratin.html": [
     "chicken-leek-mushroom-pie.html",
     "chicken-chorizo-potato-bake.html",
-    "greek-beef-pastitsio.html"
+    "sweet-potato-enchiladas.html"
   ],
   "aubergine-parmigiana.html": [
     "spinach-ricotta-cannelloni.html",
@@ -445,8 +445,23 @@
     "baked-ziti.html"
   ],
   "karahi.html": [
-    "moghul.html",
     "jalfrezi.html",
+    "moghul.html",
     "pathia.html"
+  ],
+  "pork-schnitzel.html": [
+    "creamy-garlic-chicken.html",
+    "lemon-garlic-oregano-chicken-traybake.html",
+    "chicken-stroganoff.html"
+  ],
+  "spanish-garlic-prawns.html": [
+    "creamy-garlic-chicken.html",
+    "lemon-garlic-oregano-chicken-traybake.html",
+    "chicken-stroganoff.html"
+  ],
+  "sweet-potato-enchiladas.html": [
+    "chicken-chorizo-potato-bake.html",
+    "moroccan-chicken-filo-pie.html",
+    "aubergine-parmigiana.html"
   ]
 }

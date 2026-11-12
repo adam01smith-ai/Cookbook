@@ -33,7 +33,7 @@ CONTROLS='<!-- recipe-discovery:controls:start -->'+CONTROLS+'<!-- recipe-discov
 def build():
  raw=read('recipe-data.js');recipes=json.loads(raw[raw.index('['):raw.rindex(']')+1]);by_file={r['file']:r for r in recipes};times=json.loads(read('recipe-discovery.json'))
  assert set(times)==set(by_file),'Every recipe needs a reviewed time allowance'
- originals={p:re.sub(r'<!-- recipe-discovery:controls:start -->.*?<!-- recipe-discovery:controls:end -->','',read(p),flags=re.S).replace('<script src="recipe-discovery.js?v=1"></script>','') for p in PAGES}
+ originals={p:re.sub(r'<!-- recipe-discovery:controls:start -->.*?<!-- recipe-discovery:controls:end -->','',read(p),flags=re.S).replace('<script src="recipe-discovery.js?v=2"></script>','') for p in PAGES}
  old_cards={}
  for s in originals.values():
   for old in articles(s):old_cards.setdefault(file_for(old),old)
@@ -58,20 +58,21 @@ def build():
   after=re.search(r'<p class="description">.*?</p>',source,re.S) or re.search(r'<h1\b[^>]*>.*?</h1>',source,re.S)
   assert after,file
   source=source[:after.end()]+summary+source[after.end():]
-  if 'recipe-discovery.css?v=1' not in source:source=source.replace('</head>','<link rel="stylesheet" href="recipe-discovery.css?v=1">\n</head>')
+  if 'recipe-discovery.css?v=2' not in source:source=source.replace('</head>','<link rel="stylesheet" href="recipe-discovery.css?v=2">\n</head>')
   write(file,source)
   details[file]=(schema['name'],servings,label)
  def card(r,hidden=False):
   file=r['file'];t=times[file];name,servings,label=details[file];old=old_cards.get(file,'');image=re.search(r'<img\b[^>]*>',old)
   img=image[0] if image else f'<img class="recipe-thumb" src="{escape(r["image"],quote=True)}" width="600" height="400" alt="{escape(name,quote=True)}" loading="lazy" decoding="async">'
   ingredients=[re.sub(r'§\d+§','',i['template']).strip() for i in r['ingredients']]
-  data={'category':r['category'],'search':name+' '+r['category'],'ingredients':json.dumps(ingredients,ensure_ascii=False),'min-minutes':'' if t['minMinutes'] is None else t['minMinutes'],'max-minutes':'' if t['maxMinutes'] is None else t['maxMinutes'],'make-ahead':str(t.get('makeAhead',False)).lower(),'collections':'Fakeaway' if file in fakeaway else ''}
+  data={'category':r['category'],'search':name+' '+r['category'],'ingredients':json.dumps(ingredients,ensure_ascii=False),'min-minutes':'' if t['minMinutes'] is None else t['minMinutes'],'max-minutes':'' if t['maxMinutes'] is None else t['maxMinutes'],'make-ahead':str(t.get('makeAhead',False)).lower(),'cuisines':json.dumps(r.get('cuisines',[]),ensure_ascii=False),'collections':'Fakeaway' if file in fakeaway else ''}
   attrs=' '.join('data-'+k+'="'+escape(str(v),quote=True)+'"' for k,v in data.items())
-  metadata='<div class="card-meta"><span>'+escape(r['category'])+'</span><span aria-hidden="true">·</span><span class="card-time">'+escape(label)+'</span><span aria-hidden="true">·</span><span>'+escape(servings.replace(' servings','').join(['Serves ','']) if r['category']!='Bread' else servings)+'</span></div>'
+  metadata='<div class="card-meta"><span>'+escape(' · '.join(r.get('cuisines',[])))+'</span><span>'+escape(r['category'])+'</span><span aria-hidden="true">·</span><span class="card-time">'+escape(label)+'</span><span aria-hidden="true">·</span><span>'+escape(servings.replace(' servings','').join(['Serves ','']) if r['category']!='Bread' else servings)+'</span></div>'
   # Preserve the existing shortcut links to sauce recipes below relevant cards.
   extras=[a for a in re.findall(r'<a\b[^>]*>.*?</a>',old,re.S) if 'card-link' not in attr(a.split('>')[0]+'>','class').split()]
   extra='<div class="card-related">'+' '.join(extras)+'</div>' if extras else ''
   return '<article class="recipe-card" '+attrs+(' hidden' if hidden else '')+'><a class="card-link" href="'+escape(file,quote=True)+'">'+img+'<h2>'+escape(name)+'</h2>'+metadata+('<p class="card-time-note">'+escape(t['note'])+'</p>' if t.get('note') else '')+'</a>'+extra+'</article>'
+ cuisine_controls='<details class="cuisine-picker"><summary>Cuisines · choose any</summary><fieldset><legend>Match any selected cuisine</legend>'+''.join('<label><input type="checkbox" name="recipe-cuisine" value="'+escape(c,quote=True)+'"> '+escape(c)+'</label>' for c in sorted({c for r in recipes for c in r.get('cuisines',[])}))+'</fieldset></details>'
  for page in PAGES:
   s=originals[page];files=[file_for(c) for c in articles(s)]
   if page=='index.html':files+= [r['file'] for r in recipes if r['file'] not in files]
@@ -81,11 +82,11 @@ def build():
   s=re.sub(r'<span id="count"([^>]*)>.*?</span>',lambda m:'<span id="count"'+m[1]+'>'+str(len(files))+' recipes</span>',s,flags=re.S)
   s=s.replace('Search recipes by name or category','Search recipes or ingredients').replace('placeholder="Search your favourites"','placeholder="Search names or ingredients"')
   s=re.sub(r'(<input[^>]*id="search"[^>]*placeholder=")[^"]*',r'\1Search recipes or ingredients',s)
-  point=re.search(r'<div class="category-controls"|<div class="recipe-grid"',s).start();s=s[:point]+CONTROLS+s[point:]
+  point=re.search(r'<div class="category-controls"|<div class="recipe-grid"',s).start();s=s[:point]+CONTROLS.replace('<button class="secondary"',cuisine_controls+'<button class="secondary"')+s[point:]
   s=re.sub(r'recipe-index.js\?v=\d+','recipe-index.js?v=6',s)
   s=re.sub(r'featured-recipes.js\?v=\d+','featured-recipes.js?v=4',s)
-  if 'recipe-discovery.css?v=1' not in s:s=s.replace('</head>','<link rel="stylesheet" href="recipe-discovery.css?v=1">\n</head>')
-  s=s.replace('</body>','<script src="recipe-discovery.js?v=1"></script></body>')
+  if 'recipe-discovery.css?v=2' not in s:s=s.replace('</head>','<link rel="stylesheet" href="recipe-discovery.css?v=2">\n</head>')
+  s=s.replace('</body>','<script src="recipe-discovery.js?v=2"></script></body>')
   write(page,s)
  raw=read('featured-recipes.js');featured=json.loads(raw[raw.index('['):raw.rindex(']')+1])
  for item in featured:
