@@ -1,0 +1,22 @@
+{
+  "coronation-chicken-sandwiches.html": {
+    "cuisine": "British",
+    "keywords": ["coronation chicken sandwiches", "chicken breast", "lunch", "mango chutney"]
+  },
+  "chicken-shawarma-flatbreads.html": {
+    "cuisine": "Middle Eastern-inspired",
+    "keywords": ["chicken shawarma flatbreads", "chicken breast", "lunch"]
+  },
+  "crispy-halloumi-pittas.html": {
+    "cuisine": "Mediterranean-inspired",
+    "keywords": ["crispy halloumi pittas", "halloumi", "lunch"]
+  },
+  "croque-monsieur.html": {
+    "cuisine": "French",
+    "keywords": ["croque monsieur", "ham and cheese", "lunch"]
+  },
+  "greek-chicken-couscous-salad.html": {
+    "cuisine": "Greek-inspired",
+    "keywords": ["Greek chicken couscous salad", "chicken breast", "couscous", "lunch"]
+  }
+}

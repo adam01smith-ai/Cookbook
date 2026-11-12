@@ -118,6 +118,29 @@ def duration(value):
     return f'PT{total}M' if total else None
 
 
+def add_step_anchors(source):
+    """Give visible steps stable targets without changing their wording or controls."""
+    number = 0
+    used = set(re.findall(r'\bid="([^"]+)"', source))
+
+    def anchor(match):
+        nonlocal number
+        tag = match[0]
+        classes = re.search(r'\bclass="([^"]*)"', tag)
+        if not classes or 'step' not in classes[1].split():
+            return tag
+        number += 1
+        if re.search(r'\bid="[^"]+"', tag):
+            return tag
+        target = f'step-{number}'
+        if target in used:
+            raise ValueError(f'Conflicting step anchor: {target}')
+        used.add(target)
+        return tag[:-1] + f' id="{target}">'
+
+    return re.sub(r'<(?:li|div)\b[^>]*>', anchor, source)
+
+
 def recipe_schema(recipe, source):
     root = Document(source).root
     title = first(root, lambda n: n.tag == 'h1')
@@ -144,6 +167,8 @@ def recipe_schema(recipe, source):
         heading = first(node, lambda n: n.tag == 'h3')
         copy = first(node, lambda n: n.has('step-copy'))
         entry = {'@type': 'HowToStep', 'text': clean(text(copy or node, factor))}
+        if node.attrs.get('id'):
+            entry['url'] = url(recipe['file']) + '#' + quote(node.attrs['id'], safe='-._~')
         if heading:
             entry['name'] = clean(text(heading))
         instructions.append(entry)
@@ -159,6 +184,15 @@ def recipe_schema(recipe, source):
     description = first(root, lambda n: n.has('description'))
     if description:
         schema['description'] = clean(text(description))
+    # Keywords describe existing visible content; reviewed cuisine labels are optional.
+    schema['keywords'] = schema['name'] + ', ' + schema['recipeCategory']
+    details_file = ROOT / 'recipe-search-details.json'
+    if details_file.exists():
+        details = json.loads(details_file.read_text()).get(recipe['file'], {})
+        if details.get('cuisine'):
+            schema['recipeCuisine'] = details['cuisine']
+        if details.get('keywords'):
+            schema['keywords'] = ', '.join(details['keywords'])
     for node in root.find(lambda n: n.has('time')):
         label = first(node, lambda n: n.tag == 'span')
         value = first(node, lambda n: n.tag == 'strong')
@@ -217,6 +251,8 @@ def update(selected=None):
     for page in pages:
         original = page.read_text()
         source = re.sub(re.escape(MARKER_START) + r'.*?' + re.escape(MARKER_END) + r'\n?', '', original, flags=re.S)
+        if page.name in by_file:
+            source = add_step_anchors(source)
         metadata = [f'<link rel="canonical" href="{escape(url(page.name), quote=True)}">']
         if page.name in by_file:
             schema = recipe_schema(by_file[page.name], source)
@@ -226,8 +262,9 @@ def update(selected=None):
         block = MARKER_START + '\n' + '\n'.join(metadata) + '\n' + MARKER_END + '\n'
         assert source.count('</head>') == 1, page.name
         updated = source.replace('</head>', block + '</head>', 1)
-        # Head-only changes must leave every recipe control, body and inline script untouched.
-        assert updated.split('</head>', 1)[1] == original.split('</head>', 1)[1], page.name
+        # Only stable step targets may change in the body; preserve all recipe wording.
+        expected = add_step_anchors(original) if page.name in by_file else original
+        assert updated.split('</head>', 1)[1] == expected.split('</head>', 1)[1], page.name
         if updated != original:
             page.write_text(updated)
     namespace = 'http://www.sitemaps.org/schemas/sitemap/0.9'
@@ -250,3 +287,4 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--pages', nargs='+', help='Refresh named pages and recipe metadata while preserving the existing sitemap.')
     update(parser.parse_args().pages)
+
