@@ -570,5 +570,41 @@
     "maxMinutes": 60,
     "estimated": true,
     "note": ""
+  },
+  "chicken-katsu.html": {
+    "minMinutes": 45,
+    "maxMinutes": 45,
+    "estimated": true,
+    "note": "Sides included in the recipe."
+  },
+  "piri-piri-chicken.html": {
+    "minMinutes": 60,
+    "maxMinutes": 60,
+    "estimated": true,
+    "note": "Includes the 20-minute chicken marinating time. Sides included in the recipe."
+  },
+  "beef-kofte.html": {
+    "minMinutes": 55,
+    "maxMinutes": 55,
+    "estimated": true,
+    "note": "Sides included in the recipe."
+  },
+  "jerk-chicken.html": {
+    "minMinutes": 60,
+    "maxMinutes": 60,
+    "estimated": true,
+    "note": "Includes the 20-minute chicken marinating time. Sides included in the recipe."
+  },
+  "mushroom-stroganoff.html": {
+    "minMinutes": 45,
+    "maxMinutes": 45,
+    "estimated": true,
+    "note": "Sides included in the recipe."
+  },
+  "prawn-saganaki.html": {
+    "minMinutes": 40,
+    "maxMinutes": 40,
+    "estimated": true,
+    "note": "Sides included in the recipe."
   }
 }

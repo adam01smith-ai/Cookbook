@@ -2,22 +2,22 @@
   "korean-style-gochujang-beef-pork-bibimbap.html": [
     "indonesian-chicken-poke-bowl.html",
     "thai-curry-bowl.html",
-    "moroccan-meatball-bowl.html"
+    "jerk-chicken.html"
   ],
   "indonesian-chicken-poke-bowl.html": [
     "korean-style-gochujang-beef-pork-bibimbap.html",
     "thai-curry-bowl.html",
-    "jambalaya.html"
+    "jerk-chicken.html"
   ],
   "moroccan-meatball-bowl.html": [
+    "chicken-katsu.html",
     "jambalaya.html",
-    "korean-style-gochujang-beef-pork-bibimbap.html",
-    "thai-curry-bowl.html"
+    "jerk-chicken.html"
   ],
   "thai-curry-bowl.html": [
-    "korean-style-gochujang-beef-pork-bibimbap.html",
-    "indonesian-chicken-poke-bowl.html",
-    "jambalaya.html"
+    "jerk-chicken.html",
+    "chicken-katsu.html",
+    "korean-style-gochujang-beef-pork-bibimbap.html"
   ],
   "truffle pasta.html": [
     "harissa-prawn-orzo.html",
@@ -170,24 +170,24 @@
     "brioche-french-toast.html"
   ],
   "cottage-pie.html": [
+    "beef-kofte.html",
     "creamy-garlic-chicken.html",
-    "chicken-stroganoff.html",
-    "lemon-garlic-oregano-chicken-traybake.html"
+    "piri-piri-chicken.html"
   ],
   "creamy-garlic-chicken.html": [
-    "spanish-garlic-prawns.html",
-    "chicken-stroganoff.html",
-    "lemon-garlic-oregano-chicken-traybake.html"
+    "mushroom-stroganoff.html",
+    "piri-piri-chicken.html",
+    "spanish-garlic-prawns.html"
   ],
   "smash-cheeseburgers.html": [
+    "beef-kofte.html",
     "chicken-stroganoff.html",
-    "creamy-garlic-chicken.html",
-    "pork-schnitzel.html"
+    "creamy-garlic-chicken.html"
   ],
   "lemon-garlic-oregano-chicken-traybake.html": [
+    "piri-piri-chicken.html",
     "creamy-garlic-chicken.html",
-    "chicken-stroganoff.html",
-    "pork-schnitzel.html"
+    "beef-kofte.html"
   ],
   "broccoli-quiche.html": [
     "chicken-leek-mushroom-pie.html",
@@ -220,9 +220,9 @@
     "lemon-cheesecake.html"
   ],
   "harissa-salmon-crispy-potatoes.html": [
+    "beef-kofte.html",
     "harissa-prawn-orzo.html",
-    "lemon-garlic-oregano-chicken-traybake.html",
-    "pork-schnitzel.html"
+    "lemon-garlic-oregano-chicken-traybake.html"
   ],
   "sofritto-ragu-lasagne.html": [
     "sofritto-ragu-tagliatelle.html",
@@ -245,9 +245,9 @@
     "jack-daniels-glazed-chicken.html"
   ],
   "chicken-stroganoff.html": [
-    "creamy-garlic-chicken.html",
-    "lemon-garlic-oregano-chicken-traybake.html",
-    "pork-schnitzel.html"
+    "mushroom-stroganoff.html",
+    "beef-kofte.html",
+    "creamy-garlic-chicken.html"
   ],
   "nacho-cheese-sauce.html": [
     "smash-cheeseburgers.html",
@@ -270,9 +270,9 @@
     "brioche-french-toast.html"
   ],
   "jambalaya.html": [
-    "moroccan-meatball-bowl.html",
-    "thai-curry-bowl.html",
-    "indonesian-chicken-poke-bowl.html"
+    "jerk-chicken.html",
+    "chicken-katsu.html",
+    "moroccan-meatball-bowl.html"
   ],
   "spiced-carrot-lentil-soup.html": [
     "carrot-coriander-soup.html",
@@ -452,16 +452,46 @@
   "pork-schnitzel.html": [
     "creamy-garlic-chicken.html",
     "lemon-garlic-oregano-chicken-traybake.html",
-    "chicken-stroganoff.html"
+    "piri-piri-chicken.html"
   ],
   "spanish-garlic-prawns.html": [
+    "prawn-saganaki.html",
     "creamy-garlic-chicken.html",
-    "lemon-garlic-oregano-chicken-traybake.html",
-    "chicken-stroganoff.html"
+    "beef-kofte.html"
   ],
   "sweet-potato-enchiladas.html": [
     "chicken-chorizo-potato-bake.html",
     "moroccan-chicken-filo-pie.html",
     "aubergine-parmigiana.html"
+  ],
+  "chicken-katsu.html": [
+    "jerk-chicken.html",
+    "jambalaya.html",
+    "thai-curry-bowl.html"
+  ],
+  "piri-piri-chicken.html": [
+    "lemon-garlic-oregano-chicken-traybake.html",
+    "creamy-garlic-chicken.html",
+    "prawn-saganaki.html"
+  ],
+  "beef-kofte.html": [
+    "chicken-stroganoff.html",
+    "creamy-garlic-chicken.html",
+    "spanish-garlic-prawns.html"
+  ],
+  "jerk-chicken.html": [
+    "thai-curry-bowl.html",
+    "chicken-katsu.html",
+    "jambalaya.html"
+  ],
+  "mushroom-stroganoff.html": [
+    "creamy-garlic-chicken.html",
+    "chicken-stroganoff.html",
+    "beef-kofte.html"
+  ],
+  "prawn-saganaki.html": [
+    "spanish-garlic-prawns.html",
+    "creamy-garlic-chicken.html",
+    "piri-piri-chicken.html"
   ]
 }

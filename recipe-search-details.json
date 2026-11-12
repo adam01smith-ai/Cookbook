@@ -72,5 +72,53 @@
       "chicken breast",
       "base gravy"
     ]
+  },
+  "chicken-katsu.html": {
+    "cuisine": "Japanese-inspired",
+    "keywords": [
+      "Chicken katsu curry, rice & cabbage slaw",
+      "chicken breast",
+      "complete dinner"
+    ]
+  },
+  "piri-piri-chicken.html": {
+    "cuisine": "Portuguese-inspired",
+    "keywords": [
+      "Piri-piri chicken & roasted potato traybake",
+      "chicken breast",
+      "complete dinner"
+    ]
+  },
+  "beef-kofte.html": {
+    "cuisine": "Turkish-inspired",
+    "keywords": [
+      "Beef köfte, homemade flatbreads & garlic yoghurt",
+      "beef",
+      "complete dinner"
+    ]
+  },
+  "jerk-chicken.html": {
+    "cuisine": "Jamaican-inspired",
+    "keywords": [
+      "Jerk chicken, coconut rice & peas, lime slaw",
+      "chicken breast",
+      "complete dinner"
+    ]
+  },
+  "mushroom-stroganoff.html": {
+    "cuisine": "Eastern European-inspired",
+    "keywords": [
+      "Mushroom & spinach stroganoff with rice",
+      "vegetarian",
+      "complete dinner"
+    ]
+  },
+  "prawn-saganaki.html": {
+    "cuisine": "Greek-inspired",
+    "keywords": [
+      "Prawn saganaki with feta & crusty bread",
+      "prawns",
+      "complete dinner"
+    ]
   }
 }

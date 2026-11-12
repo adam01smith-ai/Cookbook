@@ -663,5 +663,41 @@
     "freezing": "Freeze cooled individual portions promptly. Defrost fully in the fridge and use within 24 hours. The tortillas will soften slightly after freezing.",
     "reheating": "Reheat once until steaming hot right through the filling. Cover in the oven to prevent the tortillas drying out, then uncover briefly if you want the cheese browned.",
     "substitutions": "Use vegetarian cheddar so the dish stays vegetarian. Kidney beans can replace black beans. For a vegan version, use suitable tortillas and a plant-based cheese alternative."
+  },
+  "chicken-katsu.html": {
+    "storage": "Keep chicken, sauce, rice and slaw separate. Cool the cooked chicken and sauce and refrigerate within 2 hours; use within 48 hours. Cool rice quickly, ideally within 1 hour, refrigerate and use within 24 hours. If stored together, follow the rice’s shorter limit.",
+    "freezing": "Freeze cooled chicken and sauce separately; the crumb will soften. Rice can be frozen promptly after rapid cooling. Make the slaw fresh. Defrost in the fridge and use within 24 hours.",
+    "reheating": "Reheat cooked chicken, sauce and rice only once until steaming hot throughout. An oven helps crisp the chicken. Keep the slaw cold.",
+    "substitutions": "Use vegetable stock and firm tofu for a meat-free variation. At fractional servings, beat a whole egg and measure the required fraction for coating; buy a whole egg rather than a fraction."
+  },
+  "piri-piri-chicken.html": {
+    "storage": "Cool cooked chicken and vegetables, refrigerate covered within 2 hours and use within 48 hours. Keep any unused clean marinade chilled separately and use within 24 hours.",
+    "freezing": "Freeze cooled cooked chicken and potatoes in portions; courgette will soften after defrosting. Defrost fully in the fridge and use within 24 hours.",
+    "reheating": "Reheat once until steaming hot throughout. Cover the chicken in the oven with a little water to stop it drying out; uncover the potatoes briefly to crisp them.",
+    "substitutions": "Increase chilli flakes to taste when making the marinade. Use additional red pepper instead of courgette. This version uses chicken breast throughout."
+  },
+  "beef-kofte.html": {
+    "storage": "Cool cooked köfte and refrigerate within 2 hours; use within 48 hours. Keep yoghurt and salad chilled separately, following the yoghurt’s opened-pack instructions if shorter. Flatbreads are best fresh; store cooled bread airtight.",
+    "freezing": "Freeze cooled cooked köfte and flatbreads separately. Defrost in the fridge and use within 24 hours. Make yoghurt and salad fresh.",
+    "reheating": "Reheat köfte only once until steaming hot through the middle. Warm flatbreads briefly in a dry pan. Keep the yoghurt and salad cold.",
+    "substitutions": "Use all-beef mince as written; no lamb is needed. For an easier version, use two large shop-bought flatbreads for two people and omit the homemade-flatbread ingredients."
+  },
+  "jerk-chicken.html": {
+    "storage": "Store chicken, rice and slaw separately. Cool chicken and refrigerate within 2 hours; use within 48 hours. Cool rice quickly, ideally within 1 hour, refrigerate and use within 24 hours. A combined meal follows the rice’s 24-hour limit.",
+    "freezing": "Freeze cooled cooked chicken separately. Freeze rice promptly after rapid cooling. Defrost in the fridge and use within 24 hours. Make slaw fresh.",
+    "reheating": "Reheat cooked chicken and rice only once until steaming hot throughout. Add a little water to the rice and stir during reheating. Keep slaw cold.",
+    "substitutions": "This accessible version uses chilli flakes; increase them to taste. The “peas” are tinned red kidney beans, so no bean soaking or separate raw-bean cooking is needed."
+  },
+  "mushroom-stroganoff.html": {
+    "storage": "Store sauce and rice separately. Cool sauce and refrigerate within 2 hours; use within 48 hours. Cool rice quickly, ideally within 1 hour, refrigerate and use within 24 hours. A combined portion follows the rice’s shorter limit.",
+    "freezing": "For the best sauce texture, freeze the mushroom sauce before adding spinach and soured cream, then add those fresh after defrosting and reheating. Rice can be frozen promptly after rapid cooling. Defrost in the fridge and use within 24 hours.",
+    "reheating": "Reheat sauce gently once until steaming hot throughout, stirring with a little water if needed. Reheat rice only once until steaming hot throughout.",
+    "substitutions": "Use chestnut mushrooms throughout if oyster mushrooms are unavailable. For a vegan variation, use a suitable plant-based butter and soured-cream alternative; check their cooking instructions."
+  },
+  "prawn-saganaki.html": {
+    "storage": "Cool promptly and refrigerate covered within 2 hours. Eat within 48 hours, or sooner if the prawn packet gives a shorter limit. Keep the bread separate.",
+    "freezing": "Best cooked fresh. Freeze the tomato sauce before adding raw prawns and feta; defrost fully in the fridge, reheat the sauce, then add those ingredients and bake as directed.",
+    "reheating": "Reheat finished leftovers only once until steaming hot throughout. Prawns can toughen during reheating, so heat gently but thoroughly.",
+    "substitutions": "For a vegetarian variation, replace the prawns with a drained 400 g tin of butter beans and choose vegetarian feta. If substituting ready-cooked prawns, add near the end only to heat through and do not reheat that version again."
   }
 }
