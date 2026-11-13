@@ -80,3 +80,6 @@
  .planner-page .shopping-item .source{font-size:12px;line-height:1.5}
  .planner-page .check{min-height:44px}
 }
+
+/* Preserve complete serving dishes on the older recipe layout too. */
+.fakeaway-hero{display:block;width:100%;height:auto;max-width:100%;object-fit:contain}
