@@ -42,8 +42,8 @@ def build():
  for r in recipes:
   file=r['file'];source=read(file);schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',source,re.S)[1]);t=times[file]
   # Match the published two-person defaults, six for slow cookers, loaf defaults for bread.
-  servings=schema['recipeYield'] if r['category']=='Bread' else ('6 servings' if r['category']=='Slow Cooker' else '2 servings')
-  if r['category']!='Bread':
+  servings=schema['recipeYield'] if r['category']=='Bread' or r.get('batchRecipe') else ('6 servings' if r['category']=='Slow Cooker' else '2 servings')
+  if r['category']!='Bread' and not r.get('batchRecipe'):
    desired=6 if r['category']=='Slow Cooker' else 2
    slider=re.search(r'<input[^>]*\bid="slider"[^>]*>|<input[^>]*\btype="range"[^>]*>',source)
    if slider and attr(slider[0],'id')=='slider' and float(attr(slider[0],'min') or 1)>desired:
@@ -67,7 +67,7 @@ def build():
   ingredients=[re.sub(r'§\d+§','',i['template']).strip() for i in r['ingredients']]
   data={'category':r['category'],'search':name+' '+r['category'],'ingredients':json.dumps(ingredients,ensure_ascii=False),'min-minutes':'' if t['minMinutes'] is None else t['minMinutes'],'max-minutes':'' if t['maxMinutes'] is None else t['maxMinutes'],'make-ahead':str(t.get('makeAhead',False)).lower(),'cuisines':json.dumps(r.get('cuisines',[]),ensure_ascii=False),'collections':'Fakeaway' if file in fakeaway else ''}
   attrs=' '.join('data-'+k+'="'+escape(str(v),quote=True)+'"' for k,v in data.items())
-  metadata='<div class="card-meta"><span>'+escape(' · '.join(r.get('cuisines',[])))+'</span><span>'+escape(r['category'])+'</span><span aria-hidden="true">·</span><span class="card-time">'+escape(label)+'</span><span aria-hidden="true">·</span><span>'+escape(servings.replace(' servings','').join(['Serves ','']) if r['category']!='Bread' else servings)+'</span></div>'
+  metadata='<div class="card-meta"><span>'+escape(' · '.join(r.get('cuisines',[])))+'</span><span>'+escape(r['category'])+'</span><span aria-hidden="true">·</span><span class="card-time">'+escape(label)+'</span><span aria-hidden="true">·</span><span>'+escape(servings.replace(' servings','').join(['Serves ','']) if r['category']!='Bread' and not r.get('batchRecipe') else servings)+'</span></div>'
   # Preserve the existing shortcut links to sauce recipes below relevant cards.
   extras=[a for a in re.findall(r'<a\b[^>]*>.*?</a>',old,re.S) if 'card-link' not in attr(a.split('>')[0]+'>','class').split()]
   extra='<div class="card-related">'+' '.join(extras)+'</div>' if extras else ''
@@ -91,7 +91,7 @@ def build():
  raw=read('featured-recipes.js');featured=json.loads(raw[raw.index('['):raw.rindex(']')+1])
  for item in featured:
   name,servings,label=details[item['file']]
-  item['name']=name;item['total']=label;item['servingLabel']=('Serves '+servings.removesuffix(' servings')) if by_file[item['file']]['category']!='Bread' else servings
+  item['name']=name;item['total']=label;item['servingLabel']=('Serves '+servings.removesuffix(' servings')) if by_file[item['file']]['category']!='Bread' and not by_file[item['file']].get('batchRecipe') else servings
  write('featured-recipes.js','window.COOKBOOK_FEATURED_RECIPES='+json.dumps(featured,ensure_ascii=False,separators=(',',':'))+';\n')
  print(f'Built ingredient and time discovery for {len(recipes)} recipes on {len(PAGES)} collection pages.')
 if __name__=='__main__':build()

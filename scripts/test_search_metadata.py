@@ -62,6 +62,9 @@ class SearchMetadataTests(unittest.TestCase):
     def test_all_public_pages_have_unique_canonicals_and_matching_sitemap(self):
         locations = []
         for page in ROOT.glob('*.html'):
+            if page.name == 'offline.html':
+                self.assertRegex(page.read_text(), r'<meta name="robots" content="noindex')
+                continue
             if re.fullmatch(r'google-site-verification:\s*google[\da-f]+\.html\s*', page.read_text()):
                 continue
             matches = re.findall(r'<link rel="canonical" href="([^"]+)">', page.read_text())
@@ -82,9 +85,9 @@ class SearchMetadataTests(unittest.TestCase):
 
     def test_refresh_is_idempotent(self):
         paths = list(ROOT.glob('*.html')) + [ROOT / 'sitemap.xml', ROOT / 'robots.txt']
-        before = {p: p.read_bytes() for p in paths}
+        before = {p: p.read_text() for p in paths}
         subprocess.run([sys.executable, str(ROOT / 'scripts/update-search-metadata.py')], check=True, capture_output=True)
-        self.assertEqual(before, {p: p.read_bytes() for p in paths})
+        self.assertEqual(before, {p: p.read_text() for p in paths})
 
     def test_google_verification_files_are_not_modified_or_indexed(self):
         verification = ROOT / 'google3f183cf2d21fd763.html'

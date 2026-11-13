@@ -1,30 +1,51 @@
-ADAM COOKS — COMPLETE WEBSITE
+ADAM COOKS
 
-Contains all 45 recipes, index, meal planner, scripts, styles and 90 images.
-Teal green and apricot design, featured recipe and prominent weekly planner section.
-All 45 food photographs have been regenerated to show the full bowl, plate or baking dish.
-All 90 full-size images and thumbnails must replace your old images.
-Photos display without CSS cropping.
-Recipe categories use visible buttons, with no category dropdown.
-The pantry.html page is now Vibe cooking. Visitors describe what they fancy, add optional Use these / Leave these out ingredients, choose a mood and servings, and create up to three NEW recipes with measured ingredients, numbered methods and Copy recipe buttons. Mood-only requests and wild suggestions are supported.
-The service is already deployed at https://adam-cooks-pantry.adam01smith-cooks.workers.dev/suggest. No API key is included in this website.
-Initial limits are 10 generation attempts per UTC day and 100 per calendar month across all visitors. Provider failures also count. Usage is charged to the owner's OpenAI API account.
-Copy request to ChatGPT remains available as a manual alternative. See AI-SETUP.md for maintenance information.
+99 recipe records with serving controls, cooking mode and timers, searchable
+collections, a meal planner and shopping list, private saved collections and
+notes, optional recent history, and explicitly requested offline downloads.
+The existing committed photographs and app icons are retained.
 
-UPLOAD TO YOUR EXISTING GITHUB PAGES WEBSITE
-1. Extract this ZIP.
-2. Open your Cookbook repository on the main branch.
-3. Add file > Upload files: upload the files in the extracted main folder, replacing the existing files. Commit the changes.
-4. Upload the images folder separately, keeping the folder name images. This avoids uploading more than 100 files at once. The image files should appear directly under images/, not images/images/.
-5. Wait for GitHub Pages to deploy. Reload the website; use Ctrl+F5 if your computer still shows the previous design.
+CHECKS
+Use Node.js 24 or later and Python 3 with Pillow installed.
+  npm ci
+  npm test
+  npm run audit
+  python3 -m unittest discover -s scripts -p 'test_*.py'
+The static audit checks page links, fragment targets, image references,
+accessibility references and catalogue membership. JavaScript tests cover
+recipe scaling, planner behaviour, consent, saving, sharing and offline logic.
+Python tests cover recipe guidance, metadata and publishing helpers.
+The live AI service and real-device sharing require separate production checks;
+these local commands do not call OpenAI or send contact messages.
 
-Upload the contents, not the ZIP or an extra containing folder.
-Keep index.html, adam-cooks.css, the JavaScript files and all recipe HTML files together in the repository's main folder.
+PUBLISHING
+Review the patch against the current main branch, run the checks above, and
+publish the verified commit. Confirm the GitHub Pages build and deploy jobs
+succeed, then compare representative live files with the commit and check the
+changed controls in a browser. Preserve existing working features and images.
+Follow AGENTS.md for the catalogue and metadata refresh order. The metadata
+updater populates default ingredient quantities in HTML for use before scripts
+load. Refresh the offline catalogue last so its hashes match the final files.
 
-PLANNER HISTORY
-Existing history is kept in the same browser using the same storage key. Enable Remember my planner in Privacy settings to restore and update it. Rejecting optional saving leaves old data dormant without reading or overwriting it. The planner still works for the current visit; export a backup to keep that plan. History is not stored inside this ZIP and does not sync between devices. Do not clear website data if you want to retain local history.
+BASE GRAVY
+This recipe is measured in full batches. One batch uses the original full
+ingredient quantities. Its finished volume has not been measured. The planner
+shows the exact volume required by the selected curries and lets the cook choose
+how many full batches to make; it does not infer a volume from a servings count.
+Only add a yieldMl value after measuring a complete finished batch at the
+consistency used by the curry recipes.
 
-PRIVACY
-All pages have Accept optional, Reject optional and Settings controls. Optional planner/history and Vibe draft storage are disabled until permission is given. Choice is remembered for 180 days. Footer Privacy settings lets visitors change choices or explicitly clear saved data. privacy.html explains storage and the AI service. There are no live ads or analytics; Google-certified CMP/account integration is still required before introducing AdSense. See PRIVACY-SETUP.md. Add a dedicated private contact email to the notice; no personal email has been published automatically.
+SAVED DATA AND PRIVACY
+Collections, favourites and notes stay in the current browser. Planner history,
+recent views and Vibe cooking drafts are optional. Keep a backup of important
+plans and collections before clearing website data. Disabling optional storage
+leaves existing saved data untouched. Analytics stays off until accepted.
+No advertising is enabled. Offline downloads contain public recipe assets;
+contact submissions and AI requests are not cached.
 
-See PLANNER-README.txt for planner features.
+VIBE COOKING
+The configured hosted service creates up to three new recipe ideas from a brief.
+No API key is shipped in this website. Initial limits are 10 generation attempts
+per UTC day and 100 per calendar month across visitors; provider failures count.
+Requests use the owner's API account. Copy request to ChatGPT is also available.
+See AI-SETUP.md for the service configuration and maintenance notes.

@@ -141,6 +141,27 @@ def add_step_anchors(source):
     return re.sub(r'<(?:li|div)\b[^>]*>', anchor, source)
 
 
+def populate_static_quantities(source, recipe):
+    """Keep the HTML readable at its default scale before JavaScript executes."""
+    root = Document(source).root
+    slider = first(root, lambda n: n.tag == 'input' and n.attrs.get('type') == 'range')
+    if not slider:
+        return source
+    factor = float(slider.attrs['value']) / float(recipe['baseServings'])
+
+    def populate(match):
+        node = first(Document(match[0]).root, lambda n: n.tag == 'span')
+        if 'data-base' in node.attrs:
+            value = amount(float(node.attrs['data-base']) * factor)
+        elif 'data-min' in node.attrs and 'data-max' in node.attrs:
+            value = amount(float(node.attrs['data-min']) * factor) + '–' + amount(float(node.attrs['data-max']) * factor)
+        else:
+            return match[0]
+        return match[0].split('>', 1)[0] + '>' + escape(value) + '</span>'
+
+    return re.sub(r'<span\b[^>]*class="(?:val|range|qty)"[^>]*>.*?</span>', populate, source, flags=re.S)
+
+
 def recipe_schema(recipe, source):
     root = Document(source).root
     title = first(root, lambda n: n.tag == 'h1')
@@ -179,6 +200,8 @@ def recipe_schema(recipe, source):
               'url': url(recipe['file']), 'name': clean(text(title)), 'image': [BASE + quote(image_path, safe='/-._~')],
               'recipeCategory': recipe['category'], 'recipeYield': f'{servings:g} servings',
               'recipeIngredient': ingredients, 'recipeInstructions': instructions}
+    if recipe.get('batchRecipe'):
+        schema['recipeYield'] = f'{servings:g} ' + ('batch' if servings == 1 else 'batches')
     if recipe['category'] == 'Bread':
         schema['recipeYield'] = f'{servings:g} ' + ('loaf' if servings == 1 else 'loaves')
     description = first(root, lambda n: n.has('description'))
@@ -252,7 +275,7 @@ def update(selected=None):
         original = page.read_text()
         source = re.sub(re.escape(MARKER_START) + r'.*?' + re.escape(MARKER_END) + r'\n?', '', original, flags=re.S)
         if page.name in by_file:
-            source = add_step_anchors(source)
+            source = populate_static_quantities(add_step_anchors(source), by_file[page.name])
         metadata = [f'<link rel="canonical" href="{escape(url(page.name), quote=True)}">']
         if page.name in by_file:
             schema = recipe_schema(by_file[page.name], source)
@@ -263,7 +286,7 @@ def update(selected=None):
         assert source.count('</head>') == 1, page.name
         updated = source.replace('</head>', block + '</head>', 1)
         # Only stable step targets may change in the body; preserve all recipe wording.
-        expected = add_step_anchors(original) if page.name in by_file else original
+        expected = populate_static_quantities(add_step_anchors(original), by_file[page.name]) if page.name in by_file else original
         assert updated.split('</head>', 1)[1] == expected.split('</head>', 1)[1], page.name
         if updated != original:
             page.write_text(updated)

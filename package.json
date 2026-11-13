@@ -1,0 +1,14 @@
+{
+  "name": "adam-cooks-checks",
+  "private": true,
+  "scripts": {
+    "test": "node --test scripts/test-*.cjs",
+    "audit": "node scripts/audit-site.cjs"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "devDependencies": {
+    "jsdom": "31.0.1"
+  }
+}
