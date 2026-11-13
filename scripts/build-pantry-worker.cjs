@@ -1,0 +1,4 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const root=path.join(__dirname,'..'),file=path.join(root,'worker.mjs'),worker=fs.readFileSync(file,'utf8'),marker=worker.indexOf('const PANTRY_CATALOG=');assert(marker>0,'Worker catalogue marker missing');
+const core=fs.readFileSync(path.join(root,'pantry-core.js'),'utf8').replace(/\r\n/g,'\n').trimEnd().replace("if(typeof module==='object'&&module.exports)module.exports=api;else root.CookbookPantry=api;",'root.CookbookPantry=api;');
+const expected=core+'\n'+worker.slice(marker);if(process.argv.includes('--check')){assert.equal(worker,expected,'Run npm run build:worker to synchronise validators');console.log('Worker and browser validators match.')}else{fs.writeFileSync(file,expected);console.log('Synchronised Worker validator; retained catalogue and handler.')}
