@@ -3,12 +3,16 @@
   "private": true,
   "scripts": {
     "test": "node --test scripts/test-*.cjs",
-    "audit": "node scripts/audit-site.cjs"
+    "audit": "node scripts/audit-site.cjs",
+    "build:worker": "node scripts/build-pantry-worker.cjs",
+    "test:worker": "node --test scripts/test-worker-*.mjs",
+    "check:worker": "node scripts/build-pantry-worker.cjs --check && wrangler deploy --dry-run --outdir .worker-build"
   },
   "engines": {
     "node": ">=24"
   },
   "devDependencies": {
-    "jsdom": "31.0.1"
+    "jsdom": "31.0.1",
+    "wrangler": "4.161.0"
   }
 }

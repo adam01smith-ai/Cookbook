@@ -1,7 +1,7 @@
 # Vibe cooking AI service
 
 The `pantry.html` page is now Vibe cooking. Visitors describe a craving, cuisine, mood, ingredients, exclusions, time or equipment. They can ask for wild suggestions or use the optional prompt coach. A mood-only brief works without listing ingredients. Results are new AI recipes with measured ingredients, numbered methods and recipe-copy controls.
-Live AI generation is connected to `https://adam-cooks-pantry.adam01smith-cooks.workers.dev/suggest` through the public URL in `pantry-config.js`. The service in `ai-service/` is already deployed to Cloudflare with a private API key and a persistent usage database. No additional setup is needed to use the existing website.
+Live AI generation is connected to `https://adam-cooks-pantry.adam01smith-cooks.workers.dev/suggest` through the public URL in `pantry-config.js`. The service defined by `worker.mjs` and `wrangler.jsonc` at the repository root is already deployed to Cloudflare with a private API key and a persistent usage database. No additional setup is needed to use the existing website.
 Copy request to ChatGPT remains a manual alternative. It creates a prompt you can paste into ChatGPT and does not run the website's AI service.
 
 ## What you need
@@ -12,9 +12,9 @@ Copy request to ChatGPT remains a manual alternative. It creates a prompt you ca
 
 ## Deploying to a different Cloudflare account
 
-These steps are for a fresh account. The current deployment already has its database, migration, API secret and URL configured. To update the current service, use the existing account and database with `wrangler deploy`.
+These steps are for a fresh account. The current deployment already has its database, migration, API secret and URL configured. To update the current service, use the existing account and database with `npm run build:worker`, `npm run test:worker`, `npm run check:worker`, then `npx wrangler deploy`. GitHub Pages publication does not deploy this Worker.
 
-1. Install Node.js if you do not already have it, then open a terminal in the extracted `ai-service` folder.
+1. Install Node.js if you do not already have it, then open a terminal in the repository root (the folder containing `wrangler.jsonc`).
 2. Run `npx wrangler login` and sign in to Cloudflare in the browser.
 3. Run `npx wrangler d1 create adam-cooks-ai-usage`. Copy its database UUID into `database_id` in `wrangler.jsonc`, replacing `REPLACE_WITH_DATABASE_ID`. The database UUID is not an API key.
 4. Run `npx wrangler d1 migrations apply adam-cooks-ai-usage --remote` to create the persistent usage table.
@@ -26,7 +26,7 @@ These steps are for a fresh account. The current deployment already has its data
 
 The supplied `wrangler.jsonc` deploys the rate-limit binding and allows browser calls from `https://www.adamcooks.co.uk`. The deployed Cloudflare Worker must also have `ALLOWED_ORIGIN` set to exactly `https://www.adamcooks.co.uk` (no trailing slash or path). A stale GitHub Pages origin makes the browser preflight fail and the page reports Failed to fetch. Change this variable in the Worker's Settings → Variables and Secrets and deploy, or deploy the checked-in configuration with Wrangler. Preserve existing API secrets, the database and request limits. If the website moves again, update this setting to the new canonical origin.
 
-The default model is `gpt-5.4-mini`, with reasoning effort `none`, configurable through `OPENAI_MODEL` and `OPENAI_REASONING_EFFORT`. The AI creates up to three new recipes for the selected servings and cooking brief. Optional Use these and Leave these out lists are sent as structured constraints and checked against the returned ingredient names. Conflicting coach constraints are rejected before a paid request. Free-text preferences are given to the model; validation is not a comprehensive allergen check. Each has a name, description, estimated times, measured ingredients and a method. The service checks the result structure, units, positive quantities, requested servings and fish preference. Extra ingredients are labelled separately. Input quantities are given to the model as constraints; inventory sufficiency is not independently verified. Existing cookbook recipes and planner history are not edited. Generated recipes can be copied, but are not automatically published or added to the planner.
+The default model is `gpt-5.4-mini`, with reasoning effort `none`, configurable through `OPENAI_MODEL` and `OPENAI_REASONING_EFFORT`. The AI creates up to three new recipes for the selected servings and cooking brief. Optional Use these and Leave these out lists are sent as structured constraints and checked against the returned ingredient names. Conflicting coach constraints are rejected before a paid request. Free-text preferences are given to the model; validation is not a comprehensive allergen check. Each has a name, description, estimated times, measured ingredients and a method. The shared browser/Worker validator checks result structure, units, positive quantities, requested servings and fish preference. Ambiguous item counts such as garlic without cloves/bulbs and bread without slices/rolls/loaves are rejected; weights and clearly named counts remain supported. Common ingredients recognised in method text, including salt, black pepper, oil and water, must have measured ingredient entries. The model is instructed to cross-check every step, but this vocabulary-based check is not a comprehensive natural-language or allergen guarantee. Failed validation returns an error rather than guessing measurements or automatically spending another provider request. Extra ingredients are labelled separately. Input quantities are given to the model as constraints; inventory sufficiency is not independently verified. Existing cookbook recipes and planner history are not edited. Generated recipes can be copied, but are not automatically published or added to the planner.
 
 ## Usage controls
 
@@ -50,3 +50,18 @@ Official references:
 - https://developers.openai.com/api/docs/models/gpt-5.4-mini
 - https://developers.openai.com/api/docs/guides/structured-outputs
 - https://help.openai.com/en/articles/9039756-managing-billing-for-chatgpt-and-the-api-platform
+
+## Database migration safety
+
+The initial migration is `migrations/0001_usage.sql`, matching `migrations_dir` in `wrangler.jsonc`. It uses `CREATE TABLE IF NOT EXISTS` so a pre-existing compatible `pantry_usage` table and its counters are preserved. It does not drop tables, delete counters, change the database ID or increase allowance limits.
+
+For the existing production database, inspect the current schema and applied migration list before applying anything:
+
+```sh
+npx wrangler d1 migrations list adam-cooks-ai-usage --remote
+npx wrangler d1 execute adam-cooks-ai-usage --remote --command "SELECT sql FROM sqlite_master WHERE type='table' AND name IN ('pantry_usage','d1_migrations')"
+```
+
+The expected usage columns are `period TEXT PRIMARY KEY` and `attempts INTEGER NOT NULL CHECK (attempts >= 0)`. If a differently shaped table exists, stop and reconcile it rather than overwriting data. If `0001_usage.sql` is already recorded as applied and the expected table is present, do not reapply it. If the compatible table exists but the migration is not recorded, applying the migration records it without resetting counters. Fresh databases create the table normally.
+
+Before deployment run `npm test`, `npm run test:worker`, `npm run check:worker` and the Python tests. The Worker build embeds the shared validator without changing the existing recipe catalogue. The dry run verifies the bundle and configured bindings without publishing. Publishing requires access to the existing Cloudflare account; it reuses its current API secret. Verify the deployed `X-Recipe-Validation: measured-v2` response header with a no-cost OPTIONS request before any authorised generation test. Do not add a second API key or recreate the database for this update.
