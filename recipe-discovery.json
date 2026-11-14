@@ -132,10 +132,10 @@
     "note": ""
   },
   "coconutty-caribbean-soup.html": {
-    "minMinutes": 50,
-    "maxMinutes": 50,
+    "minMinutes": 30,
+    "maxMinutes": 30,
     "estimated": true,
-    "note": ""
+    "note": "Air-fryer method: about 20 minutes for the sweet potato while the soup cooks in parallel. Original full ingredient batch serves 4; quantities shown default to 2. Oven roasting or air-fryer batches take longer."
   },
   "minestrone.html": {
     "minMinutes": 70,
