@@ -1,4 +1,4 @@
-(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.CookbookPlanner=api;})(typeof window!=='undefined'?window:globalThis,function(){
+(function(root,factory){const api=factory(typeof module==='object'&&module.exports?require('./planner-intelligence.js'):root.CookbookIntelligence);if(typeof module==='object'&&module.exports)module.exports=api;else root.CookbookPlanner=api;})(typeof window!=='undefined'?window:globalThis,function(I){
 'use strict';
 const TYPES=['recipe','out','leftovers','custom','empty'];
 const SIDES={none:{name:'No added side',amount:0,unit:'',ingredient:''},rice:{name:'Koshihikari rice',amount:75,unit:'g',ingredient:'Koshihikari rice'},pasta:{name:'Pasta',amount:75,unit:'g',ingredient:'pasta'},potatoes:{name:'Potatoes',amount:250,unit:'g',ingredient:'potatoes'},bread:{name:'Bread',amount:2,unit:'slice',ingredient:'bread'}};
@@ -11,7 +11,7 @@ function parseDate(s){if(!/^\d{4}-\d{2}-\d{2}$/.test(s))throw Error('Choose a va
 function monday(s){const d=parseDate(s);d.setDate(d.getDate()-(d.getDay()+6)%7);return localDate(d);}
 function addDays(s,n){const d=parseDate(s);d.setDate(d.getDate()+n);return localDate(d);}
 function newDay(type='empty'){return {type,recipeId:'',side:'none',sideAmount:null,extraPortions:0,locked:false,title:'',ingredients:'',customBase:2,source:null,status:'planned'};}
-function initial(now=new Date()){const week=monday(localDate(now));return {version:1,week,people:2,count:5,gap:1,noFish:true,weekendFakeaway:false,variety:true,vegetarianTarget:false,maxMinutes:0,optional:false,gravyChoice:'ask',gravyBatches:1,days:Array.from({length:7},()=>newDay()),history:[],checked:[],extras:'',confirmed:false};}
+function initial(now=new Date()){const week=monday(localDate(now));return {version:1,week,people:2,count:7,gap:1,noFish:true,weekendFakeaway:false,variety:true,vegetarianTarget:false,maxMinutes:0,optional:false,gravyChoice:'ask',gravyBatches:1,days:Array.from({length:7},()=>newDay()),history:[],feedback:{},checked:[],extras:'',confirmed:false};}
 function validate(raw,catalog){
  if(!raw||raw.version!==1||!Array.isArray(raw.days)||raw.days.length!==7||!Array.isArray(raw.history)||raw.history.length>1000)throw Error('This is not a supported planner backup.');
  const ids=new Set(catalog.map(r=>r.id)),s=initial();s.week=localDate(parseDate(raw.week));
@@ -19,8 +19,13 @@ function validate(raw,catalog){
  if(![1,2,4].includes(s.gap))throw Error('Invalid repeat gap.');
  function day(v){if(!v||!TYPES.includes(v.type))throw Error('Invalid day type.');const d=newDay(v.type);d.recipeId=ids.has(v.recipeId)?v.recipeId:'';d.side=SIDES[v.side]?v.side:'none';const recipe=catalog.find(r=>r.id===d.recipeId),side=sideFor(d,recipe);if(side!==d.side){d.side=side;v={...v,sideAmount:null};}d.sideAmount=v.sideAmount===null||v.sideAmount===undefined?null:Math.max(0,Math.min(2000,Number(v.sideAmount)||0));if(v.extraPortions!==undefined&&(!Number.isInteger(v.extraPortions)||v.extraPortions<0||v.extraPortions>24))throw Error('Extra portions must be a whole number from 0 to 24.');d.extraPortions=v.extraPortions??0;d.locked=!!v.locked;d.title=String(v.title||'').slice(0,200);d.ingredients=String(v.ingredients||'').slice(0,10000);d.customBase=Math.max(1,Math.min(12,Number(v.customBase)||2));d.source=Number.isInteger(v.source)&&v.source>=0&&v.source<7?v.source:null;d.status=['planned','cooked','skipped'].includes(v.status)?v.status:'planned';return d;}
  s.days=raw.days.map(day);s.history=raw.history.map(w=>{if(!w||!Array.isArray(w.days)||w.days.length!==7)throw Error('Invalid history week.');return {week:localDate(parseDate(w.week)),people:Math.max(1,Math.min(12,Number(w.people)||2)),days:w.days.map(day),gravyChoice:['have','make'].includes(w.gravyChoice)?w.gravyChoice:'ask',gravyBatches:Math.max(1,Math.min(20,Math.floor(Number(w.gravyBatches)||1))),confirmedAt:String(w.confirmedAt||'')};});
- s.gravyChoice=['have','make'].includes(raw.gravyChoice)?raw.gravyChoice:'ask';s.gravyBatches=Math.max(1,Math.min(20,Math.floor(Number(raw.gravyBatches)||1)));s.variety=true;s.vegetarianTarget=raw.vegetarianTarget===true;s.maxMinutes=[30,45,60,90].includes(raw.maxMinutes)?raw.maxMinutes:0;s.noFish=raw.noFish!==false;s.weekendFakeaway=raw.weekendFakeaway===true;s.optional=!!raw.optional;s.extras=String(raw.extras||'').slice(0,15000);s.checked=Array.isArray(raw.checked)?raw.checked.filter(x=>typeof x==='string').slice(0,2000):[];s.confirmed=!!raw.confirmed;return s;
+ s.gravyChoice=['have','make'].includes(raw.gravyChoice)?raw.gravyChoice:'ask';s.gravyBatches=Math.max(1,Math.min(20,Math.floor(Number(raw.gravyBatches)||1)));s.variety=true;s.vegetarianTarget=raw.vegetarianTarget===true;s.maxMinutes=[30,45,60,90].includes(raw.maxMinutes)?raw.maxMinutes:0;s.noFish=raw.noFish!==false;s.weekendFakeaway=raw.weekendFakeaway===true;s.optional=!!raw.optional;s.extras=String(raw.extras||'').slice(0,15000);s.checked=Array.isArray(raw.checked)?raw.checked.filter(x=>typeof x==='string').slice(0,2000):[];s.confirmed=!!raw.confirmed;s.feedback=validateFeedback(raw.feedback,catalog);return s;
 }
+function validateFeedback(raw,catalog){
+ if(raw===undefined)return {};if(!raw||typeof raw!=='object'||Array.isArray(raw))throw Error('Invalid cooking feedback in backup.');
+ const ids=new Set(catalog.map(r=>r.id)),out={};for(const [id,v]of Object.entries(raw)){if(!ids.has(id))throw Error('Unknown recipe in cooking feedback; keep the original backup.');if(!v||!['love','again','avoid','untried','neutral'].includes(v.rating)||typeof v.tried!=='boolean')throw Error('Invalid cooking feedback in backup.');const cookedOn=v.cookedOn?localDate(parseDate(v.cookedOn)):null;out[id]={rating:v.rating,tried:v.tried,cookedOn};}return out;
+}
+function setFeedback(state,id,rating,cookedOn){const next=clone(state),old=next.feedback?.[id]||{};next.feedback=next.feedback||{};if(rating==='cooked')next.feedback[id]={rating:old.rating||'neutral',tried:true,cookedOn:localDate(parseDate(cookedOn||localDate(new Date())))};else next.feedback[id]={rating,tried:rating==='untried'?false:old.tried===true||['love','again'].includes(rating),cookedOn:rating==='untried'?null:old.cookedOn||null};return next;}
 function usesBaseGravy(recipe){return !!recipe&&recipe.ingredients.some(item=>/\bbase gravy\b/i.test(item.template));}
 function sideFor(day,recipe){if(day.side==='rice'&&recipe?.category!=='Rice & Bowls')return usesBaseGravy(recipe)?'curry':'microRice';return SIDES[day.side]?day.side:'none';}
 function sideOptions(recipe){return Object.entries(SIDES).filter(([key])=>(key!=='rice'||recipe?.category==='Rice & Bowls')&&(key!=='curry'||usesBaseGravy(recipe)));}
@@ -31,14 +36,18 @@ function gravyPending(state,catalog){return gravyNeeds(state,catalog).max>0&&!['
 
 function excluded(state){const min=addDays(state.week,-7*state.gap),ids=new Set();for(const w of state.history){if(w.week<min||w.week>=state.week)continue;for(const d of w.days){if(d.status!=='skipped'&&d.recipeId&&(d.type==='recipe'||d.type==='leftovers'))ids.add(d.recipeId);}}return ids;}
 function isDinner(recipe){return !!recipe&&recipe.eligible&&!['Bread','Breakfast & Brunch','Breakfast','Lunches','Lunch'].includes(recipe.category);}
-function eligible(state,catalog){const omit=excluded(state);return catalog.filter(r=>isDinner(r)&&(!state.noFish||!r.fish)&&!omit.has(r.id));}
+function eligible(state,catalog){const omit=excluded(state);return catalog.filter(r=>isDinner(r)&&(!state.noFish||!r.fish)&&!omit.has(r.id)&&state.feedback?.[r.id]?.rating!=='avoid');}
 function shuffled(a,rng=Math.random){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function generateStandard(state,catalog,rng=Math.random){
  const days=clone(state.days),fixed=days.filter(d=>d.type==='recipe'&&d.locked),fixedIds=new Set(fixed.map(d=>d.recipeId));
- if(fixed.some(d=>!eligible(state,catalog).some(r=>r.id===d.recipeId)))throw Error('A kept meal conflicts with your repeat gap or preferences. Unlock it or adjust the rules.');
+
+ if(fixed.some(d=>!eligible(state,catalog).some(r=>r.id===d.recipeId)))throw Error('A kept meal conflicts with your fish preference, repeat gap or cooking feedback. Adjust the rule or unlock that meal; your plan is unchanged.');
  if(fixedIds.size!==fixed.length)throw Error('Kept meals include a duplicate. Unlock one before generating.');
  if(fixed.length>state.count)throw Error('You have kept more meals than the requested number. Increase dinners or unlock a meal.');
- const slots=days.map((d,i)=>(d.type==='empty'||(d.type==='recipe'&&!d.locked))?i:-1).filter(i=>i>=0),needed=state.count-fixed.length;
+ const sources=new Set(days.filter(d=>d.type==='leftovers'&&d.source!==null).map(d=>d.source));
+ const slots=days.map((d,i)=>(d.type==='empty'||(d.type==='recipe'&&!d.locked))?i:-1).filter(i=>i>=0).sort((a,b)=>Number(sources.has(b))-Number(sources.has(a))),needed=Math.min(state.count-fixed.length,slots.length);
+ if([...sources].some(i=>days[i]?.type!=='recipe'&&days[i]?.type!=='empty'))throw Error('Link leftovers to a recipe day before generating.');
+ if([...sources].filter(i=>!days[i]?.locked).length>needed)throw Error('Increase dinners to preserve every linked leftovers source.');
  if(needed>slots.length)throw Error('Not enough open cooking days. Reduce dinners or change an eating-out, custom or leftovers day.');
  const candidates=shuffled(eligible(state,catalog).filter(r=>!fixedIds.has(r.id)&&(!state.maxMinutes||r.planningMinutes&&r.planningMinutes<=state.maxMinutes)),rng);
  if(candidates.length<needed)throw Error('Only '+(candidates.length+fixed.length)+' eligible dinners remain. Choose fewer dinners, widen the cooking-time limit or shorten the repeat gap; no meals were repeated.');
@@ -55,32 +64,19 @@ function generateStandard(state,catalog,rng=Math.random){
    [candidates[position],candidates[pick]] = [candidates[pick],candidates[position]];
   }
  }
- for(let j=0;j<slots.length;j++){const i=slots[j];if(j<needed){const r=candidates[j];days[i]={...newDay('recipe'),recipeId:r.id,side:r.defaultSide};}else days[i]=newDay();}
+ for(let j=0;j<slots.length;j++){const i=slots[j];if(j<needed){const r=candidates[j];days[i]={...days[i],...newDay('recipe'),recipeId:r.id,side:r.defaultSide,extraPortions:extraPortions(days[i])};}else days[i]=newDay();}
  for(let i=0;i<7;i++)if(days[i].type==='leftovers'&&(days[i].source===null||days[i].source>=i||days[days[i].source].type!=='recipe'))days[i].source=null;
  return days;
 }
 
-function varietyReport(state,catalog,days=state.days){
- const meals=days.map(d=>d.type==='recipe'?catalog.find(r=>r.id===d.recipeId):null),proteins={},cuisines=new Set(),styles=new Set();let score=0,vegetarian=false;const notes=[];
- meals.forEach((r,i)=>{if(!r)return;for(const p of r.proteins||[]){proteins[p]=(proteins[p]||0)+1;if(i&&meals[i-1]?.proteins?.includes(p))score-=35;}for(const c of r.cuisines||[])cuisines.add(c);styles.add(r.mealStyle||r.category);vegetarian ||= r.vegetarian===true&&(!state.optional||!r.ingredients.some(x=>x.optional&&/chicken|beef|pork|bacon|prawn|fish/i.test(x.template)));if(state.maxMinutes&&(!r.planningMinutes||r.planningMinutes>state.maxMinutes))notes.push(r.name+': kept meal exceeds the time limit or has no reviewed time.');});
- score+=cuisines.size*18+styles.size*14+Object.keys(proteins).length*12;for(const [p,n]of Object.entries(proteins))if(n>2){score-=(n-2)*45;notes.push(p+' appears '+n+' times.');}
- if(state.vegetarianTarget){score+=vegetarian?150:-150;if(!vegetarian)notes.push('No vegetarian dinner fits this suggestion. Keep fewer meals or widen the time limit.');}
- for(let i=1;i<meals.length;i++)if(meals[i]&&meals[i-1]&&(meals[i].proteins||[]).some(p=>meals[i-1].proteins?.includes(p)))notes.push('Adjacent dinners share a protein on days '+i+' and '+(i+1)+'.');
- return {score,notes,cuisines:cuisines.size,styles:styles.size,vegetarian};
-}
-function generate(state,catalog,rng=Math.random){
- let best=null,bestScore=-Infinity;
- for(let attempt=0;attempt<180;attempt++){const days=generateStandard(state,catalog,rng),report=varietyReport(state,catalog,days);if(report.score>bestScore){best=days;bestScore=report.score;}}
- return best;
-}
-
-function swap(state,catalog,index,rng=Math.random){
+function varietyReport(state,catalog,days=state.days){return I.report(state,catalog,days);}
+function generate(state,catalog,rng=Math.random){return I.optimise(state,catalog,()=>generateStandard(state,catalog,rng),rng);}
+function swap(state,catalog,index,rng=Math.random,intent='different',omitIds=[]){
  const old=state.days[index];if(old.locked)throw Error('Unlock this meal before swapping.');
- const used=new Set(state.days.filter(d=>d.type==='recipe').map(d=>d.recipeId)),choices=shuffled(eligible(state,catalog).filter(r=>!used.has(r.id)&&(!state.maxMinutes||r.planningMinutes&&r.planningMinutes<=state.maxMinutes)),rng);
- if(!choices.length)throw Error('No unused dinners meet your repeat rules and cooking-time limit. Widen the time limit, shorten the repeat gap or choose manually.');
- let best=null,bestScore=-Infinity;
- for(const r of choices){const day={...newDay('recipe'),recipeId:r.id,side:r.defaultSide},days=state.days.slice();days[index]=day;const score=varietyReport(state,catalog,days).score;if(score>bestScore){best=day;bestScore=score;}}
- return best;
+ const used=new Set(state.days.filter(d=>d.type==='recipe').map(d=>d.recipeId)),previous=catalog.find(r=>r.id===old.recipeId);
+ const choices=shuffled(eligible(state,catalog).filter(r=>!used.has(r.id)&&!omitIds.includes(r.id)&&(!state.maxMinutes||r.planningMinutes&&r.planningMinutes<=state.maxMinutes)&&I.matchesIntent(intent,r,previous,state)),rng);
+ if(!choices.length)throw Error('No unused dinners meet this request, repeat rules and cooking-time limit. Try another request, widen the time limit or shorten the repeat gap.');
+ let best=null,bestScore=-Infinity;for(const r of choices){const day={...newDay('recipe'),recipeId:r.id,side:r.defaultSide},days=state.days.slice();days[index]=day;const score=I.objective(state,catalog,days);if(score>bestScore){best=day;bestScore=score;}}return best;
 }
 function extraPortions(day){return Math.max(0,Math.min(24,Math.floor(Number(day?.extraPortions)||0)));}
 function portions(state,index){return state.people*(1+state.days.filter((d,i)=>d.type==='leftovers'&&d.source===index&&i>index&&d.status!=='skipped').length)+extraPortions(state.days[index]);}
@@ -137,6 +133,6 @@ function shopping(state,catalog){const merged=new Map();function push(item,facto
  return [...merged.values()].map(r=>{if(r.min!==undefined){let min=r.min,max=r.max,unit=r.unit;if(r.purchaseWhole){min=max=Math.ceil(max-1e-9);r.purchaseQuantity=max;r.purchaseNote='Rounded up for buying; use the recipe quantities when cooking.';}if(unit==='tsp'&&min>=3){min/=3;max/=3;unit='tbsp';}r.display=amount(min)+(max!==min?'–'+amount(max):'')+(unit?' '+unit:'')+' '+r.name;}r.sources=[...r.sources];return r;}).sort((a,b)=>a.category.localeCompare(b.category)||a.display.localeCompare(b.display));
 }
 function shoppingText(state,catalog){return shopping(state,catalog).filter(r=>!state.checked.includes(r.key)).map(r=>r.display+(r.check&&!/check|buy by/i.test(r.display)?' — quantity needed':'')).join('\n');}
-return {TYPES,SIDES,usesBaseGravy,sideFor,sideOptions,gravyNeeds,recommendedGravyBatches,gravyBatchCount,gravyPending,clone,amount,localDate,parseDate,monday,addDays,newDay,initial,validate,excluded,eligible,varietyReport,generate,swap,extraPortions,portions,mealTitle,confirmWeek,fmtItem,itemRow,manualItems,shopping,shoppingText};
+return {TYPES,SIDES,validateFeedback,setFeedback,intents:I.INTENTS,describe:I.describe,usesBaseGravy,sideFor,sideOptions,gravyNeeds,recommendedGravyBatches,gravyBatchCount,gravyPending,clone,amount,localDate,parseDate,monday,addDays,newDay,initial,validate,excluded,eligible,varietyReport,generate,swap,extraPortions,portions,mealTitle,confirmWeek,fmtItem,itemRow,manualItems,shopping,shoppingText};
 });
 
