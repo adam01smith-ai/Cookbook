@@ -2,7 +2,7 @@ const assert=require('node:assert/strict'),fs=require('fs'),path=require('path')
 const root=path.join(__dirname,'..'),raw=fs.readFileSync(path.join(root,'recipe-data.js'),'utf8'),c=JSON.parse(raw.slice(raw.indexOf('['),raw.lastIndexOf(']')+1));
 let seed=123;const rng=()=>((seed=(1664525*seed+1013904223)>>>0)/4294967296);
 for(let attempt=0;attempt<40;attempt++){
- const s=P.initial();assert.equal(s.variety,true);s.vegetarianTarget=true;s.maxMinutes=60;s.weekendFakeaway=true;s.days[0]={...P.newDay('recipe'),recipeId:'pork-schnitzel',locked:true,extraPortions:2};s.days[1]={...P.newDay('out'),title:'Dinner out'};s.days[2]={...P.newDay('leftovers'),source:0};
+ const s=P.initial();s.count=5;assert.equal(s.variety,true);s.vegetarianTarget=true;s.maxMinutes=60;s.weekendFakeaway=true;s.days[0]={...P.newDay('recipe'),recipeId:'pork-schnitzel',locked:true,extraPortions:2};s.days[1]={...P.newDay('out'),title:'Dinner out'};s.days[2]={...P.newDay('leftovers'),source:0};
  const before=JSON.stringify(s),days=P.generate(s,c,rng);assert.equal(JSON.stringify(s),before);assert.deepEqual(days[0],s.days[0]);assert.deepEqual(days[1],s.days[1]);assert.deepEqual(days[2],s.days[2]);const meals=days.filter(d=>d.type==='recipe').map(d=>c.find(r=>r.id===d.recipeId));assert.equal(meals.length,5);assert.equal(new Set(meals.map(r=>r.id)).size,5);assert(meals.every(r=>r.eligible&&!r.fish));assert(meals.slice(1).every(r=>r.planningMinutes<=60));assert(P.varietyReport(s,c,days).vegetarian);assert.equal(P.validate(JSON.parse(JSON.stringify(s)),c).variety,true);
 }
 const old=P.initial();delete old.variety;delete old.maxMinutes;delete old.vegetarianTarget;assert.equal(P.validate(old,c).variety,true);
