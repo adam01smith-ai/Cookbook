@@ -111,13 +111,13 @@
   ],
   "coconutty-caribbean-soup.html": [
     "pea-asparagus-soup.html",
-    "minestrone.html",
-    "roasted-red-pepper-soup.html"
+    "carrot-coriander-soup.html",
+    "leek-and-potato-soup.html"
   ],
   "minestrone.html": [
     "roasted-red-pepper-soup.html",
-    "coconutty-caribbean-soup.html",
-    "pea-asparagus-soup.html"
+    "pea-asparagus-soup.html",
+    "broccoli-stilton-soup.html"
   ],
   "carrot-coriander-soup.html": [
     "broccoli-stilton-soup.html",
@@ -287,7 +287,7 @@
   "french-onion-soup.html": [
     "pea-asparagus-soup.html",
     "roasted-red-pepper-soup.html",
-    "coconutty-caribbean-soup.html"
+    "minestrone.html"
   ],
   "spiced-parsnip-soup.html": [
     "carrot-coriander-soup.html",

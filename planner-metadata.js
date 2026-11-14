@@ -1150,7 +1150,9 @@
     "dishType": "Soup",
     "cookingMethods": [
       "roasted",
-      "simmered"
+      "pan-fried",
+      "simmered",
+      "boiled"
     ],
     "flavours": [
       "savoury",
@@ -1165,9 +1167,9 @@
     "spiceLevel": "mild",
     "prepMinutes": null,
     "cookMinutes": null,
-    "totalMinutes": 50,
+    "totalMinutes": 30,
     "timeEstimated": true,
-    "timeNote": "",
+    "timeNote": "Air-fryer method: about 20 minutes for the sweet potato while the soup cooks in parallel. Original full ingredient batch serves 4; quantities shown default to 2. Oven roasting or air-fryer batches take longer.",
     "difficulty": null,
     "effort": "involved",
     "keyIngredients": [
@@ -1186,7 +1188,7 @@
     },
     "dependencies": [],
     "evidence": {
-      "ingredients": 12,
+      "ingredients": 13,
       "methodSteps": 15,
       "source": "coconutty-caribbean-soup.html"
     }
