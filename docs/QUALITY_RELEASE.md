@@ -165,7 +165,7 @@ limitation, not a reason to invent an automatic batch conversion.
 
 ## Final branch verification
 
-- `npm test`: 82 tests PASS; includes prior planner workflows and 20 new checks.
+- `npm test`: 83 tests PASS; includes prior planner workflows and 21 new checks.
 - `npm run test:worker`: 8 PASS; no Worker source or configuration changes.
 - Python unittest discovery: 18 PASS.
 - `npm run check:planner-metadata`: PASS, all 99 entries current.
@@ -206,3 +206,24 @@ explicit subsequent approval permits merge/deployment.
 After approval verify Pages' deployed SHA and repeat production smoke tests;
 rollback is a normal revert commit through the existing Pages process, never a
 force-push. No storage migration or destructive data reset is required.
+
+
+## Approved rollout and live visual correction
+
+Adam explicitly approved rollout on 15 November 2026. PR #6 merged as
+022c231d4d8f5e4c9331a92115452e107a2ec16d and Pages run 43667236689 succeeded.
+113 live files, including all 99 recipe pages, matched the tested tree. Live
+Chrome checks passed repeated Generate Week previews/discard, replacement of a
+5-portion dinner (2 dinner + 2 linked leftovers + 1 extra), cancellation, adjacent
+lock preservation, one-day apply, shopping checkboxes/text export and serving
+controls on the house-spice and Orange Chicken recipes. Saving remained off;
+previous saved plans were not enabled or overwritten.
+
+The live visual check exposed copied Pastina intro text on the two converted
+legacy headers. That template carry-over was removed, restoring their original
+sauce introduction without inventing new copy. Search/social metadata and offline
+manifests were refreshed. The recipe-quality gate now detects duplicate nonempty
+intro descriptions across distinct recipes; a regression test recreates the copy
+mistake and verifies failure. The correction passes 83 Node tests and all 99
+recipes, plus the unchanged Worker and Python suites. Physical iPhone/Safari and
+the full mobile viewport matrix remain unverified; no such pass is claimed.
