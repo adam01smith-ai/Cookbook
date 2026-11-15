@@ -5,10 +5,10 @@ The live recipe matched this source before editing. Adam reported that cooking
 with the slider at 4 produced two main-meal servings.
 
 The original ingredient amounts were divided by baseServings=6. Recalibrate that
-unchanged batch to baseServings=3 in both the inline recipe scaler and catalogue.
-This makes corrected slider 2 exactly equal to previous slider 4; corrected
-slider 4 doubles every amount from the batch Adam cooked. Keep default servings 2.
-No ingredient ratios, method steps, timings, images or recipe eligibility change.
+batch to baseServings=3 in both the inline recipe scaler and catalogue.
+The yield correction makes slider 2 match the batch previously cooked at 4,
+with a separate, user-requested reduction of the added onion described below.
+Keep default servings 2. Method steps, timings, images and eligibility stay intact.
 
 | Setting | Potatoes | Vegetable stock | Cream / crème fraîche |
 |---|---:|---:|---:|
@@ -17,7 +17,11 @@ No ingredient ratios, method steps, timings, images or recipe eligibility change
 | Corrected slider 2 | 150 g | 800 ml | 100 ml |
 | Corrected slider 4 | 300 g | 1600 ml | 200 ml |
 
-Oil, onion and leeks scale by the same factor, with the existing fraction formatter.
+Adam subsequently reported that the soup was very oniony and requested less onion.
+Halve only the added onion: ⅓ onion for 2 servings, ⅔ for 4, 1 for 6 and 1⅓ for 8.
+Keep leeks unchanged (1⅓ for 2 servings). The shopping list buys whole onions but
+retains the fractional cooking quantity. Other ingredient ratios are unchanged.
+All amounts use the existing fraction formatter.
 Remove the obsolete description saying that slider 6 restores the original batch.
 Rebuild visible default amounts, recipe JSON-LD, social tags and offline manifests.
 Refresh recipe-data query versions on homepage/planner so the shopping list does
