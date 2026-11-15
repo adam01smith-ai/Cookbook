@@ -3,6 +3,10 @@
   "pass": 99,
   "fail": 0,
   "checks": {
+    "description": {
+      "pass": 99,
+      "fail": 0
+    },
     "quantity": {
       "pass": 99,
       "fail": 0
