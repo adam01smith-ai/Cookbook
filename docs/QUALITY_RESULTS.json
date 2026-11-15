@@ -1,0 +1,105 @@
+{
+  "total": 99,
+  "pass": 95,
+  "fail": 4,
+  "checks": {
+    "quantity": {
+      "pass": 96,
+      "fail": 3
+    },
+    "primary-ingredient": {
+      "pass": 98,
+      "fail": 1
+    },
+    "undefined-blend": {
+      "pass": 97,
+      "fail": 2
+    },
+    "dietary": {
+      "pass": 99,
+      "fail": 0
+    },
+    "servings": {
+      "pass": 99,
+      "fail": 0
+    },
+    "method": {
+      "pass": 99,
+      "fail": 0
+    },
+    "presentation": {
+      "pass": 99,
+      "fail": 0
+    },
+    "stage-guidance": {
+      "pass": 99,
+      "fail": 0
+    },
+    "scaling": {
+      "pass": 99,
+      "fail": 0
+    },
+    "link": {
+      "pass": 99,
+      "fail": 0
+    },
+    "image": {
+      "pass": 99,
+      "fail": 0
+    }
+  },
+  "failures": [
+    {
+      "id": "korean-style-gochujang-beef-pork-bibimbap",
+      "file": "korean-style-gochujang-beef-pork-bibimbap.html",
+      "pass": false,
+      "failures": [
+        {
+          "type": "quantity",
+          "evidence": "Microwave jasmine rice"
+        }
+      ]
+    },
+    {
+      "id": "indonesian-chicken-poke-bowl",
+      "file": "indonesian-chicken-poke-bowl.html",
+      "pass": false,
+      "failures": [
+        {
+          "type": "quantity",
+          "evidence": "Indonesian spice mix, divided equally between the sweet potato and chicken"
+        },
+        {
+          "type": "undefined-blend",
+          "evidence": "Indonesian spice mix, divided equally between the sweet potato and chicken"
+        }
+      ]
+    },
+    {
+      "id": "moroccan-meatball-bowl",
+      "file": "moroccan-meatball-bowl.html",
+      "pass": false,
+      "failures": [
+        {
+          "type": "primary-ingredient",
+          "evidence": "§0§ g mince"
+        }
+      ]
+    },
+    {
+      "id": "ginger-lime-chicken-noodle-soup",
+      "file": "ginger-lime-chicken-noodle-soup.html",
+      "pass": false,
+      "failures": [
+        {
+          "type": "quantity",
+          "evidence": "Thai spice mix"
+        },
+        {
+          "type": "undefined-blend",
+          "evidence": "Thai spice mix"
+        }
+      ]
+    }
+  ]
+}
