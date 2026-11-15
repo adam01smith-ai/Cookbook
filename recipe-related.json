@@ -5,8 +5,8 @@
     "jerk-chicken.html"
   ],
   "indonesian-chicken-poke-bowl.html": [
-    "korean-style-gochujang-beef-pork-bibimbap.html",
     "thai-curry-bowl.html",
+    "korean-style-gochujang-beef-pork-bibimbap.html",
     "jerk-chicken.html"
   ],
   "moroccan-meatball-bowl.html": [
@@ -16,8 +16,8 @@
   ],
   "thai-curry-bowl.html": [
     "jerk-chicken.html",
-    "chicken-katsu.html",
-    "korean-style-gochujang-beef-pork-bibimbap.html"
+    "indonesian-chicken-poke-bowl.html",
+    "chicken-katsu.html"
   ],
   "truffle pasta.html": [
     "harissa-prawn-orzo.html",
