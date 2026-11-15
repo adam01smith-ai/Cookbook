@@ -26,7 +26,7 @@ Protected checklist (verify after changes):
 - [x] Shared recipe presentation (structural checks)
 - [ ] Browser mobile/desktop layout, touch interactions and Safari
 
-## Evidence and unresolved recipe decisions
+## Evidence and confirmed recipe decisions
 
 Original uploads explicitly omitted rice/beans and spice measurements. History
 was checked back to the original files (5620b5e; brûlée dba7a5b; meatballs 8f49d61).
@@ -48,16 +48,37 @@ Supported corrections:
 - Soup source also specifies a Thai spice sachet, without measured constituents.
   https://www.hellofresh.co.uk/recipes/ginger-and-lime-chicken-noodle-soup-67b5b968381832d770717796
 
-Still needs Adam's confirmation, not an invented correction:
-1. Bibimbap: weight of prepared microwave rice used for 2 portions.
-2. Poke: Indonesian blend ingredients and amounts for 2 portions.
-3. Noodle soup: Thai blend ingredients and amounts for 2 portions.
-4. Meatballs: actual intended mince species (currently 250 g / base serving).
-   Remove the demonstrably false vegetarian classification now, retain explicit
-   'Unspecified meat' until confirmed; do not advertise this as full compliance.
-5. Base Gravy: measure the finished, cooled usable volume of one original full
-   batch, including whether water is added after blending/reduction. Until then
-   retain the manual batch selector and all original batch ingredient amounts.
+Adam confirmed on 15 November 2026:
+- One microwave-rice pouch serves two people. Bibimbap now lists one pack (pouch)
+  / two servings. Pouch weight is not inferred or required for this count-based
+  recipe; the shopping list rounds fractional packs up for purchase as before.
+- Moroccan Meatballs uses beef mince. The original 250 g per base serving stays
+  unchanged, with Beef / non-vegetarian metadata throughout.
+- Create measured Indonesian and Thai house spice mixes. These are deliberate
+  house recipe adjustments, not a reconstruction of the original commercial
+  sachets. They have not been kitchen-tested. All amounts below are for two people
+  and scale in the recipe and shopping list. Only the individual spices are bought;
+  no separate premix is counted.
+
+| Spice | Indonesian-style house mix (tsp) | Thai-style house mix (tsp) |
+|---|---:|---:|
+| Ground coriander | 1 | 1 |
+| Ground cumin | ½ | — |
+| Ground turmeric | ½ | — |
+| Ground ginger | ½ | ½ |
+| Garlic powder | ½ | ¼ |
+| Ground chilli | ¼ | ¼ |
+| Lemongrass powder | — | ½ |
+| Ground white pepper | — | ¼ |
+
+Mix before cooking. Divide the Indonesian blend equally between sweet potato and
+chicken; add all of the Thai blend with the tomato purée and ginger/garlic paste
+at the existing spice-frying stage. Do not add a second sachet.
+
+Base Gravy alone still lacks a measured finished yield. Measure the finished,
+cooled usable volume of one original full batch, including whether water is added
+following blending/reduction. Retain the manual batch selector and original batch
+amounts until that measurement is available.
 
 No merge or deployment is authorised by this implementation request.
 
@@ -98,8 +119,9 @@ Calibration fixtures in scripts/test-quality-release.cjs:
 | Average: five similar chicken/tomato/cream pasta meals | 50 |
 | Poor: seven similar rich, involved chicken pastas | 14 |
 
-100 fresh seeded optimised plans scored 89–94, mean 91.19. This is observational,
-not an acceptance target. Tests assert ordering, meaningful margins, sequencing,
+The pre-confirmation sample of 100 seeded optimised plans scored 89–94, mean 91.19. This is observational,
+not an acceptance target. After the confirmed recipe changes, a fresh 100-plan
+sample scored 88–94, mean 91.37. Tests assert ordering, meaningful margins, sequencing,
 unknown-protein handling, recent cooking and locked-choice treatment.
 
 ## Replacement behaviour
@@ -134,52 +156,53 @@ facts. No failing recipes are skipped or relabelled PASS. `npm run check:release
 combines Node tests, Worker tests, generated metadata, site links and recipe quality.
 A green unit suite alone is not release approval.
 
-Recommendation: HOLD production deployment until Adam confirms the four recipe
-facts above and the unpublished branch completes browser/mobile regression checks.
+Recommendation: HOLD production deployment until the unpublished branch completes
+browser/mobile regression checks and Adam explicitly approves release. The four
+recipe facts are now resolved; automated release checks pass.
 Base Gravy's manual batch functionality can remain; a measured yield is a documented
 limitation, not a reason to invent an automatic batch conversion.
 
 
 ## Final branch verification
 
-- `npm test`: 78 tests PASS; includes prior planner workflows and 16 new checks.
+- `npm test`: 82 tests PASS; includes prior planner workflows and 20 new checks.
 - `npm run test:worker`: 8 PASS; no Worker source or configuration changes.
 - Python unittest discovery: 18 PASS.
 - `npm run check:planner-metadata`: PASS, all 99 entries current.
 - `npm run audit`: PASS, 113 HTML pages, 4,553 local references, 624 image
   references, no findings. Sitemap remains 112 indexable URLs.
-- Combined recipe checks: 95 PASS / 4 FAIL (96/99 quantities; 98/99 specified
-  primary ingredient; 97/99 defined blends; all 99 dietary consistency, serving
+- Combined recipe checks: 99 PASS / 0 FAIL across the implemented automated criteria
+  (quantities, primary ingredient specificity, blends, dietary consistency, serving
   data, arithmetic, method structure, presentation, stage guidance, links, images).
-- `npm run check:release`: FAIL by design only on the four unresolved recipe facts;
-  this is a genuine release blocker, not a waived test.
+  This is not a claim of browser, kitchen or physical-device verification.
+- `npm run check:release`: PASS, including all 99 recipes; no exclusions or waivers.
 - Actual branch browser/mobile checks: NOT VERIFIED (environment blocks above).
 
 | Issue | Previous status | Branch status | Evidence | Resolution |
 |---|---|---|---|---|
 | Extra portions | FAIL | PASS (automated) | 0/1/4 extras, with/without linked leftovers; saved restore, adjacent lock, immutable preview/cancel, apply and manual selector | Preserve day settings; shared replacement helper; recompute shopping |
-| Ingredient completeness | 95/99 | 96/99; FAIL for three | QUALITY_RESULTS.json; source links above | Brûlée fully measured; beans and dressing oil supported; rice and two blends unresolved |
-| Meatballs specificity | FAIL | PARTIAL / FAIL | Original upload never names the mince | Vegetarian false in catalogue and metadata; unknown meat retained and excluded from score diversity |
+| Ingredient completeness | 95/99 | 99/99 automated PASS | QUALITY_RESULTS.json; source and confirmation details above | Brûlée, beans and dressing oil measured; confirmed pouch count and new measured house blends |
+| Meatballs specificity | FAIL | PASS | Adam confirmed beef; regression tests | Beef mince in ingredients, Beef protein metadata, vegetarian false |
 | Recipe presentation | 97/99 | 99/99 structural PASS | All-recipe checker, inline scalers | Both legacy pages share hero, ingredients, step anchors and serving controls |
 | Cooking-stage timings | 5 failures | 0 failures PASS | All-recipe checker, method guidance | Packet pasta guidance; off-heat carbonara sauce; conditional chicken/broccoli/rice timings and doneness |
-| Variety Score | FAIL | PASS (automated calibration) | 99 / 89 / 50 / 14 fixtures; 100 plans 89–94 | Closest-pair and adjacency costs; sauces, richness, unknown proteins; existing optimiser retained |
+| Variety Score | FAIL | PASS (automated calibration) | 99 / 89 / 50 / 14 fixtures; 100 plans 88–94 | Closest-pair and adjacency costs; sauces, richness, unknown proteins; existing optimiser retained |
 | Base Gravy yield | NOT VERIFIED | NOT VERIFIED; manual batches PASS | Original/history lacks measured finished volume; regression tests | Retain manual batches, no invented ml conversion |
 | Mobile Safari | NOT VERIFIED | NOT VERIFIED | No physical iPhone or WebKit; browser preview unavailable | Complete accessible-browser viewport/touch regression before release |
 
 The collection is still exactly 99 recipes. Images, original measured amounts
-(except the explicitly sourced additions), storage consent and existing saved data
+(except the explicitly sourced and user-authorised recipe adjustments), storage consent and existing saved data
 are preserved. Generated related cards, search/schema data and offline manifests
 are refreshed where affected; no unrelated redesign or services are introduced.
 
-To review on an accessible developer machine: `npm ci`, run `npm run check:release`
-(expect the four documented recipe failures until confirmed), then `npm run dev`.
+To review on an accessible developer machine: `npm ci`, run `npm run check:release`,
+then `npm run dev`.
 Open http://127.0.0.1:3000/scripts/planner-browser-check.html and run the browser
 checks. Verify the two revised recipes at 340px, 390px and 1280px, including
 serving controls, step anchors, ingredient checkboxes and cooking mode. Repeat
 on iPhone Safari when available. The harness restores its temporary test storage.
 
-Deployment remains held. After data confirmation, fix the remaining facts and
-rerun all checks. Only an explicit subsequent approval permits merge/deployment.
+Deployment remains held. Complete accessible-browser regression checks. Only an
+explicit subsequent approval permits merge/deployment.
 After approval verify Pages' deployed SHA and repeat production smoke tests;
 rollback is a normal revert commit through the existing Pages process, never a
 force-push. No storage migration or destructive data reset is required.

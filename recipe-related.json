@@ -5,13 +5,13 @@
     "jerk-chicken.html"
   ],
   "indonesian-chicken-poke-bowl.html": [
-    "thai-curry-bowl.html",
     "korean-style-gochujang-beef-pork-bibimbap.html",
+    "thai-curry-bowl.html",
     "jerk-chicken.html"
   ],
   "moroccan-meatball-bowl.html": [
-    "chicken-katsu.html",
     "jambalaya.html",
+    "chicken-katsu.html",
     "jerk-chicken.html"
   ],
   "thai-curry-bowl.html": [
@@ -96,8 +96,8 @@
   ],
   "ginger-lime-chicken-noodle-soup.html": [
     "sticky-gochujang-chicken-noodles.html",
-    "chicken-chow-mein.html",
-    "satay-beef-noodles.html"
+    "satay-beef-noodles.html",
+    "chicken-chow-mein.html"
   ],
   "satay-beef-noodles.html": [
     "sticky-gochujang-chicken-noodles.html",
@@ -272,7 +272,7 @@
   "jambalaya.html": [
     "jerk-chicken.html",
     "chicken-katsu.html",
-    "moroccan-meatball-bowl.html"
+    "indonesian-chicken-poke-bowl.html"
   ],
   "spiced-carrot-lentil-soup.html": [
     "carrot-coriander-soup.html",

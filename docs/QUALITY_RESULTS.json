@@ -1,19 +1,19 @@
 {
   "total": 99,
-  "pass": 95,
-  "fail": 4,
+  "pass": 99,
+  "fail": 0,
   "checks": {
     "quantity": {
-      "pass": 96,
-      "fail": 3
+      "pass": 99,
+      "fail": 0
     },
     "primary-ingredient": {
-      "pass": 98,
-      "fail": 1
+      "pass": 99,
+      "fail": 0
     },
     "undefined-blend": {
-      "pass": 97,
-      "fail": 2
+      "pass": 99,
+      "fail": 0
     },
     "dietary": {
       "pass": 99,
@@ -48,58 +48,5 @@
       "fail": 0
     }
   },
-  "failures": [
-    {
-      "id": "korean-style-gochujang-beef-pork-bibimbap",
-      "file": "korean-style-gochujang-beef-pork-bibimbap.html",
-      "pass": false,
-      "failures": [
-        {
-          "type": "quantity",
-          "evidence": "Microwave jasmine rice"
-        }
-      ]
-    },
-    {
-      "id": "indonesian-chicken-poke-bowl",
-      "file": "indonesian-chicken-poke-bowl.html",
-      "pass": false,
-      "failures": [
-        {
-          "type": "quantity",
-          "evidence": "Indonesian spice mix, divided equally between the sweet potato and chicken"
-        },
-        {
-          "type": "undefined-blend",
-          "evidence": "Indonesian spice mix, divided equally between the sweet potato and chicken"
-        }
-      ]
-    },
-    {
-      "id": "moroccan-meatball-bowl",
-      "file": "moroccan-meatball-bowl.html",
-      "pass": false,
-      "failures": [
-        {
-          "type": "primary-ingredient",
-          "evidence": "§0§ g mince"
-        }
-      ]
-    },
-    {
-      "id": "ginger-lime-chicken-noodle-soup",
-      "file": "ginger-lime-chicken-noodle-soup.html",
-      "pass": false,
-      "failures": [
-        {
-          "type": "quantity",
-          "evidence": "Thai spice mix"
-        },
-        {
-          "type": "undefined-blend",
-          "evidence": "Thai spice mix"
-        }
-      ]
-    }
-  ]
+  "failures": []
 }

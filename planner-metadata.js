@@ -69,6 +69,7 @@
     ],
     "flavours": [
       "savoury",
+      "garlicky",
       "tangy",
       "spicy",
       "sweet-savoury"
@@ -92,6 +93,8 @@
       "cabbage",
       "potato",
       "rice",
+      "garlic",
+      "ginger",
       "chilli"
     ],
     "dietary": {
@@ -101,7 +104,7 @@
     },
     "dependencies": [],
     "evidence": {
-      "ingredients": 13,
+      "ingredients": 18,
       "methodSteps": 6,
       "source": "indonesian-chicken-poke-bowl.html"
     }
@@ -110,7 +113,7 @@
     "version": 1,
     "cuisine": "Moroccan-inspired",
     "secondaryCuisines": [],
-    "primaryProtein": "Unspecified meat",
+    "primaryProtein": "Beef",
     "secondaryProteins": [],
     "category": "Rice & Bowls",
     "dishType": "Rice bowl",
@@ -137,6 +140,7 @@
     "difficulty": null,
     "effort": "involved",
     "keyIngredients": [
+      "beef",
       "mince",
       "tomato",
       "rice",
@@ -992,13 +996,14 @@
       "garlicky",
       "creamy",
       "tangy",
+      "spicy",
       "sweet-savoury"
     ],
     "carbohydrates": [
       "noodles"
     ],
     "richness": "balanced",
-    "spiceLevel": "mild",
+    "spiceLevel": "variable",
     "prepMinutes": null,
     "cookMinutes": null,
     "totalMinutes": 35,
@@ -1013,9 +1018,11 @@
       "spinach",
       "noodles",
       "coconut",
+      "lemon",
       "lime",
       "garlic",
-      "ginger"
+      "ginger",
+      "chilli"
     ],
     "dietary": {
       "vegetarian": false,
@@ -1024,7 +1031,7 @@
     },
     "dependencies": [],
     "evidence": {
-      "ingredients": 14,
+      "ingredients": 19,
       "methodSteps": 9,
       "source": "ginger-lime-chicken-noodle-soup.html"
     }
