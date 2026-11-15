@@ -47,9 +47,10 @@ class SearchMetadataTests(unittest.TestCase):
     def test_servings_follow_actual_defaults_instead_of_catalogue_base(self):
         soup = schema('leek-and-potato-soup.html')
         self.assertEqual(soup['recipeYield'], '2 servings')
-        self.assertIn('75 g potatoes, cubed', soup['recipeIngredient'])
-        self.assertIn('400 ml vegetable stock', soup['recipeIngredient'])
-        self.assertIn('50 ml double cream or crème fraîche', soup['recipeIngredient'])
+        # Adam's cooked result: old slider 4 fed two; corrected defaults match that batch.
+        self.assertIn('150 g potatoes, cubed', soup['recipeIngredient'])
+        self.assertIn('800 ml vegetable stock', soup['recipeIngredient'])
+        self.assertIn('100 ml double cream or crème fraîche', soup['recipeIngredient'])
         self.assertEqual(len(soup['recipeInstructions']), 3)
         slow = schema('slow-cooker-chicken-chasseur.html')
         self.assertEqual(slow['recipeYield'], '6 servings')
