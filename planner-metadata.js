@@ -13,8 +13,7 @@
     "cookingMethods": [
       "stir-fried",
       "pan-fried",
-      "simmered",
-      "chilled"
+      "simmered"
     ],
     "flavours": [
       "savoury",
@@ -66,7 +65,7 @@
     "category": "Rice & Bowls",
     "dishType": "Rice bowl",
     "cookingMethods": [
-      "chilled"
+      "air-fried"
     ],
     "flavours": [
       "savoury",
@@ -117,8 +116,7 @@
     "dishType": "Rice bowl",
     "cookingMethods": [
       "simmered",
-      "boiled",
-      "chilled"
+      "boiled"
     ],
     "flavours": [
       "savoury",
@@ -167,8 +165,7 @@
     "dishType": "Curry",
     "cookingMethods": [
       "pan-fried",
-      "simmered",
-      "chilled"
+      "simmered"
     ],
     "flavours": [
       "savoury",
@@ -318,6 +315,7 @@
     "category": "Pasta",
     "dishType": "Soup",
     "cookingMethods": [
+      "simmered",
       "boiled"
     ],
     "flavours": [
@@ -459,7 +457,9 @@
     "secondaryProteins": [],
     "category": "Pasta",
     "dishType": "Pasta",
-    "cookingMethods": [],
+    "cookingMethods": [
+      "boiled"
+    ],
     "flavours": [
       "savoury",
       "garlicky",
@@ -505,7 +505,9 @@
     "secondaryProteins": [],
     "category": "Pasta",
     "dishType": "Pasta",
-    "cookingMethods": [],
+    "cookingMethods": [
+      "boiled"
+    ],
     "flavours": [
       "savoury",
       "fresh"
@@ -549,8 +551,7 @@
     "category": "Curries",
     "dishType": "Curry",
     "cookingMethods": [
-      "pan-fried",
-      "chilled"
+      "pan-fried"
     ],
     "flavours": [
       "savoury",
@@ -656,8 +657,7 @@
     "dishType": "Curry",
     "cookingMethods": [
       "pan-fried",
-      "simmered",
-      "chilled"
+      "simmered"
     ],
     "flavours": [
       "savoury",
@@ -720,8 +720,7 @@
     "dishType": "Curry",
     "cookingMethods": [
       "pan-fried",
-      "boiled",
-      "chilled"
+      "boiled"
     ],
     "flavours": [
       "savoury",
@@ -935,8 +934,7 @@
     "dishType": "Stew",
     "cookingMethods": [
       "slow-cooked",
-      "pan-fried",
-      "chilled"
+      "pan-fried"
     ],
     "flavours": [
       "savoury",
@@ -1042,8 +1040,7 @@
     "cookingMethods": [
       "stir-fried",
       "pan-fried",
-      "simmered",
-      "chilled"
+      "simmered"
     ],
     "flavours": [
       "savoury",
@@ -1149,6 +1146,7 @@
     "category": "Soups",
     "dishType": "Soup",
     "cookingMethods": [
+      "air-fried",
       "roasted",
       "pan-fried",
       "simmered",
@@ -1295,8 +1293,7 @@
     "dishType": "Soup",
     "cookingMethods": [
       "roasted",
-      "boiled",
-      "chilled"
+      "boiled"
     ],
     "flavours": [
       "savoury",
@@ -1556,9 +1553,7 @@
     "secondaryProteins": [],
     "category": "Sauces",
     "dishType": "Sauces",
-    "cookingMethods": [
-      "chilled"
-    ],
+    "cookingMethods": [],
     "flavours": [
       "savoury",
       "garlicky",
@@ -2128,6 +2123,7 @@
     "category": "Fish",
     "dishType": "Fish",
     "cookingMethods": [
+      "air-fried",
       "roasted"
     ],
     "flavours": [
@@ -2637,8 +2633,7 @@
     "cookingMethods": [
       "pan-fried",
       "simmered",
-      "boiled",
-      "chilled"
+      "boiled"
     ],
     "flavours": [
       "savoury",
@@ -2769,8 +2764,7 @@
     "cookingMethods": [
       "pan-fried",
       "simmered",
-      "boiled",
-      "chilled"
+      "boiled"
     ],
     "flavours": [
       "savoury",
@@ -2907,8 +2901,7 @@
     "dishType": "Pasta",
     "cookingMethods": [
       "pan-fried",
-      "boiled",
-      "chilled"
+      "boiled"
     ],
     "flavours": [
       "savoury",
@@ -2958,8 +2951,7 @@
     "cookingMethods": [
       "pan-fried",
       "simmered",
-      "boiled",
-      "chilled"
+      "boiled"
     ],
     "flavours": [
       "savoury",
@@ -3406,8 +3398,7 @@
     "dishType": "Fakeaway",
     "cookingMethods": [
       "stir-fried",
-      "pan-fried",
-      "chilled"
+      "pan-fried"
     ],
     "flavours": [
       "savoury",
@@ -3461,8 +3452,7 @@
     "dishType": "Fakeaway",
     "cookingMethods": [
       "stir-fried",
-      "pan-fried",
-      "chilled"
+      "pan-fried"
     ],
     "flavours": [
       "savoury",
@@ -3557,8 +3547,7 @@
     "dishType": "Breakfast & Brunch",
     "cookingMethods": [
       "pan-fried",
-      "simmered",
-      "chilled"
+      "simmered"
     ],
     "flavours": [
       "savoury",
@@ -4008,8 +3997,7 @@
     "category": "Lunches",
     "dishType": "Handheld",
     "cookingMethods": [
-      "pan-fried",
-      "chilled"
+      "pan-fried"
     ],
     "flavours": [
       "savoury",
@@ -4153,8 +4141,7 @@
     "cookingMethods": [
       "pan-fried",
       "simmered",
-      "boiled",
-      "chilled"
+      "boiled"
     ],
     "flavours": [
       "savoury",
@@ -4201,8 +4188,7 @@
     "dishType": "Pasta",
     "cookingMethods": [
       "pan-fried",
-      "simmered",
-      "chilled"
+      "simmered"
     ],
     "flavours": [
       "savoury",
@@ -4252,8 +4238,7 @@
     "category": "Curries",
     "dishType": "Curry",
     "cookingMethods": [
-      "pan-fried",
-      "chilled"
+      "pan-fried"
     ],
     "flavours": [
       "savoury",
@@ -4364,8 +4349,7 @@
     "dishType": "Bean skillet",
     "cookingMethods": [
       "pan-fried",
-      "simmered",
-      "chilled"
+      "simmered"
     ],
     "flavours": [
       "savoury",
@@ -4419,8 +4403,7 @@
     "cookingMethods": [
       "roasted",
       "baked",
-      "simmered",
-      "chilled"
+      "simmered"
     ],
     "flavours": [
       "savoury",
@@ -4740,8 +4723,7 @@
     "cookingMethods": [
       "baked",
       "pan-fried",
-      "simmered",
-      "chilled"
+      "simmered"
     ],
     "flavours": [
       "savoury",
