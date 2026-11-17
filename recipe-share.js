@@ -1,13 +1,20 @@
 (()=>{
 'use strict';
 function start(){
- const recipe=document.querySelector('.recipe-main'),top=recipe?.querySelector('.recipe-top');if(!top||top.querySelector('[data-share-recipe]'))return;
- const title=recipe.querySelector('h1').textContent.trim();let url;try{const candidate=new URL(document.querySelector('link[rel="canonical"]')?.href||location.href);candidate.search='';candidate.hash='';if(candidate.protocol!=='https:'||candidate.hostname!=='www.adamcooks.co.uk')return;url=candidate.href;}catch{return;}
- const button=document.createElement('button');button.type='button';button.className='outline recipe-share-button';button.dataset.shareRecipe='';button.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 16V3m-5 5 5-5 5 5M5 12v8h14v-8"/></svg>Share recipe';top.append(button);
+ const recipe=document.querySelector('.recipe-main'),top=recipe?.querySelector('.recipe-top')||document.querySelector('main');if(!top||top.querySelector('[data-share-recipe]'))return;
+ const title=document.querySelector('meta[property="og:title"]')?.content||document.title;let url;try{const candidate=new URL(document.querySelector('link[rel="canonical"]')?.href||location.href);candidate.search='';candidate.hash='';if(candidate.protocol!=='https:'||candidate.hostname!=='www.adamcooks.co.uk')return;url=candidate.href;}catch{return;}
+ const button=document.createElement('button');button.type='button';button.className='outline recipe-share-button';button.dataset.shareRecipe='';button.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 16V3m-5 5 5-5 5 5M5 12v8h14v-8"/></svg>Share this recipe';if(recipe)top.append(button);else top.prepend(button);
  const dialog=document.createElement('dialog');dialog.className='recipe-share-dialog';dialog.setAttribute('aria-labelledby','share-recipe-title');
  dialog.innerHTML='<h2 id="share-recipe-title">Share this recipe</h2><figure class="share-preview"><img alt=""><figcaption class="share-recipe-name"></figcaption></figure><label for="share-recipe-url">Recipe link</label><input id="share-recipe-url" type="url" readonly><div class="share-actions"><button type="button" class="primary" data-native-link hidden>Share link</button><button type="button" class="outline" data-native-photo hidden>Share photo &amp; link</button><button type="button" class="outline" data-copy-link>Copy link</button><button type="button" class="outline" data-share-close>Close</button></div><p class="share-photo-note" hidden>Photo sharing attaches a picture. Check the recipe link is included before sending.</p><p class="share-feedback" role="status" aria-live="polite"></p>';document.body.append(dialog);
+ const platforms=document.createElement('div');platforms.className='share-actions';platforms.setAttribute('aria-label','Share on social media');
+ const image=document.querySelector('meta[property="og:image"]')?.content;
+ const whatsapp=new URL('https://wa.me/');whatsapp.searchParams.set('text',title+' '+url);
+ const facebook=new URL('https://www.facebook.com/sharer/sharer.php');facebook.searchParams.set('u',url);
+ const pinterest=new URL('https://www.pinterest.com/pin/create/button/');pinterest.searchParams.set('url',url);pinterest.searchParams.set('description',title);if(image)pinterest.searchParams.set('media',image);
+ for(const [name,href] of [['WhatsApp',whatsapp],['Facebook',facebook],['Pinterest',pinterest]]){if(name==='Pinterest'&&!image)continue;const link=document.createElement('a');link.textContent=name;link.className='outline';link.href=href.href;link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label','Share on '+name+' (opens a new tab)');platforms.append(link);}
+ dialog.querySelector('.share-actions').after(platforms);
  const input=dialog.querySelector('input'),feedback=dialog.querySelector('.share-feedback'),photoButton=dialog.querySelector('[data-native-photo]'),nativeLink=dialog.querySelector('[data-native-link]'),preview=dialog.querySelector('img');input.value=url;dialog.querySelector('.share-recipe-name').textContent=title;
- const photo=recipe.querySelector('.recipe-photo');if(photo){preview.src=photo.getAttribute('src');preview.alt=photo.alt||title;preview.width=Number(photo.getAttribute('width'))||1200;preview.height=Number(photo.getAttribute('height'))||800;preview.onerror=()=>{preview.hidden=true;};}else preview.hidden=true;
+ const photo=recipe?.querySelector('.recipe-photo');if(photo){preview.src=photo.getAttribute('src');preview.alt=photo.alt||title;preview.width=Number(photo.getAttribute('width'))||1200;preview.height=Number(photo.getAttribute('height'))||800;preview.onerror=()=>{preview.hidden=true;};}else preview.hidden=true;
  let photoFile=null,preparing=false,photoAttempted=false;
  const native=typeof navigator.share==='function';nativeLink.hidden=!native;
  async function preparePhoto(){if(!native||typeof navigator.canShare!=='function'||photoAttempted)return;photoAttempted=true;try{let ref=document.querySelector('meta[property="og:image"]')?.content;if(!ref)return;const imageURL=new URL(ref);if(imageURL.origin!==new URL(url).origin)return;
@@ -22,3 +29,4 @@ function start(){
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
+

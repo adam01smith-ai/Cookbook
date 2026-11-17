@@ -272,7 +272,8 @@ def update(selected=None):
             raise ValueError('Scoped updates require the existing sitemap.')
         pages = [page for page in pages if page.name in selected]
     for page in pages:
-        original = page.read_text()
+        original = page.read_bytes().decode('utf-8')
+        original = re.sub(r'<!-- complete-social:start -->.*?<!-- complete-social:end -->\s*', '', original, flags=re.S)
         source = re.sub(re.escape(MARKER_START) + r'.*?' + re.escape(MARKER_END) + r'\n?', '', original, flags=re.S)
         if page.name in by_file:
             source = populate_static_quantities(add_step_anchors(source), by_file[page.name])
@@ -289,7 +290,7 @@ def update(selected=None):
         expected = populate_static_quantities(add_step_anchors(original), by_file[page.name]) if page.name in by_file else original
         assert updated.split('</head>', 1)[1] == expected.split('</head>', 1)[1], page.name
         if updated != original:
-            page.write_text(updated)
+            page.write_bytes(updated.encode('utf-8'))
     namespace = 'http://www.sitemaps.org/schemas/sitemap/0.9'
     ET.register_namespace('', namespace)
     sitemap = ET.parse(ROOT / 'sitemap.xml').getroot() if selected else ET.Element(f'{{{namespace}}}urlset')
@@ -310,4 +311,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--pages', nargs='+', help='Refresh named pages and recipe metadata while preserving the existing sitemap.')
     update(parser.parse_args().pages)
+    import subprocess
+    subprocess.run(['node', str(ROOT / 'scripts/complete-social-metadata.cjs'), '--write'], check=True)
 
