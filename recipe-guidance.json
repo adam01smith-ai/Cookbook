@@ -699,5 +699,13 @@
     "freezing": "Best cooked fresh. Freeze the tomato sauce before adding raw prawns and feta; defrost fully in the fridge, reheat the sauce, then add those ingredients and bake as directed.",
     "reheating": "Reheat finished leftovers only once until steaming hot throughout. Prawns can toughen during reheating, so heat gently but thoroughly.",
     "substitutions": "For a vegetarian variation, replace the prawns with a drained 400 g tin of butter beans and choose vegetarian feta. If substituting ready-cooked prawns, add near the end only to heat through and do not reheat that version again."
+  },
+  "mushroom-soup.html": {
+    "storage": "Cool in shallow containers, cover and refrigerate within 2 hours. Eat within 48 hours and follow any shorter ingredient use-by or opened-pack instructions.",
+    "freezing": "For best texture, freeze the cooled, blended soup before adding the cream. Use airtight, labelled portions and leave expansion space. Defrost in the fridge and use within 24 hours of fully defrosting. Add the cream when reheating.",
+    "reheating": "Reheat only the amount needed, once, in a saucepan, stirring until steaming hot throughout. Stir in the single cream near the end and heat through gently.",
+    "substitutions": "Chestnut or button mushrooms both work as written. Use vegetarian mushroom stock for a vegetarian soup. The parsley garnish is optional.",
+    "safety": "general",
+    "finishedFreezingRecommended": false
   }
 }

@@ -1,54 +1,54 @@
 {
-  "total": 99,
-  "pass": 99,
+  "total": 100,
+  "pass": 100,
   "fail": 0,
   "checks": {
     "description": {
-      "pass": 99,
+      "pass": 100,
       "fail": 0
     },
     "quantity": {
-      "pass": 99,
+      "pass": 100,
       "fail": 0
     },
     "primary-ingredient": {
-      "pass": 99,
+      "pass": 100,
       "fail": 0
     },
     "undefined-blend": {
-      "pass": 99,
+      "pass": 100,
       "fail": 0
     },
     "dietary": {
-      "pass": 99,
+      "pass": 100,
       "fail": 0
     },
     "servings": {
-      "pass": 99,
+      "pass": 100,
       "fail": 0
     },
     "method": {
-      "pass": 99,
+      "pass": 100,
       "fail": 0
     },
     "presentation": {
-      "pass": 99,
+      "pass": 100,
       "fail": 0
     },
     "stage-guidance": {
-      "pass": 99,
+      "pass": 100,
       "fail": 0
     },
     "scaling": {
-      "pass": 99,
+      "pass": 100,
       "fail": 0
     },
     "link": {
-      "pass": 99,
+      "pass": 100,
       "fail": 0
     },
     "image": {
-      "pass": 99,
+      "pass": 100,
       "fail": 0
     }
   },
