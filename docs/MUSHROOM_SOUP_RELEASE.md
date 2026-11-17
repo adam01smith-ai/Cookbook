@@ -7,3 +7,7 @@ The recipe is an eligible vegetarian soup in manual dinner selection and whole-w
 Includes shared recipe presentation, serving scaling, cooking mode, shopping integration, discovery, favourites, related recipes, sharing metadata and optional offline assets. Recipe-specific guidance follows the approved freezing-before-cream method and Food Standards Agency cooling/reheating guidance linked by the shared presentation.
 
 Validation: 88 Node tests, 8 Worker tests, 18 Python tests; all pass. Full recipe-quality validation: 100/100 pass, including numeric scaling, internal links and image references. Three addition-specific regression tests cover batch quantities, shopping and linked leftovers, optional garnish, saved-plan restoration, planner selection, time-filter honesty and published assets. No dependencies or infrastructure added.
+
+## Timing clarification
+
+After Adam requested a clearer timing display, replace the initial unknown total with an explicitly labelled estimate of about 35 minutes, allowing for preparation, 21–23 minutes of timed cooking stages, heating, blending and finishing. This is an estimate, not a measured duration. Keep the approved ingredients and method unchanged; planner filters now use the same 35-minute estimate.
