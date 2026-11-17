@@ -493,5 +493,10 @@
     "spanish-garlic-prawns.html",
     "creamy-garlic-chicken.html",
     "piri-piri-chicken.html"
+  ],
+  "mushroom-soup.html": [
+    "pea-asparagus-soup.html",
+    "leek-and-potato-soup.html",
+    "minestrone.html"
   ]
 }

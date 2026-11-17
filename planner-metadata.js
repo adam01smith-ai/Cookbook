@@ -4771,5 +4771,49 @@
       "methodSteps": 5,
       "source": "prawn-saganaki.html"
     }
+  },
+  "mushroom-soup": {
+    "version": 1,
+    "cuisine": "Everyday cooking",
+    "secondaryCuisines": [],
+    "primaryProtein": "Plant / dairy / egg",
+    "secondaryProteins": [],
+    "category": "Soups",
+    "dishType": "Soup",
+    "cookingMethods": [
+      "simmered",
+      "boiled"
+    ],
+    "flavours": [
+      "savoury",
+      "garlicky",
+      "creamy"
+    ],
+    "carbohydrates": [],
+    "richness": "balanced",
+    "spiceLevel": "mild",
+    "prepMinutes": null,
+    "cookMinutes": null,
+    "totalMinutes": null,
+    "timeEstimated": false,
+    "timeNote": "Soften onions for 8–10 min, cook mushrooms for 3 min, then simmer for 10 min. Allow extra time for prep, heating, blending and finishing.",
+    "difficulty": null,
+    "effort": "regular",
+    "keyIngredients": [
+      "mushroom",
+      "cream",
+      "garlic"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": null,
+      "glutenFree": null
+    },
+    "dependencies": [],
+    "evidence": {
+      "ingredients": 9,
+      "methodSteps": 3,
+      "source": "mushroom-soup.html"
+    }
   }
 };});
