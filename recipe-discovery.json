@@ -608,10 +608,9 @@
     "note": "Sides included in the recipe."
   },
   "mushroom-soup.html": {
-    "minMinutes": null,
-    "maxMinutes": null,
-    "estimated": false,
-    "label": "Timing varies",
-    "note": "Soften onions for 8–10 min, cook mushrooms for 3 min, then simmer for 10 min. Allow extra time for prep, heating, blending and finishing."
+    "minMinutes": 35,
+    "maxMinutes": 35,
+    "estimated": true,
+    "note": "Includes preparation, cooking, blending and finishing."
   }
 }

@@ -135,9 +135,9 @@
     "pea-asparagus-soup.html"
   ],
   "pea-asparagus-soup.html": [
+    "mushroom-soup.html",
     "coconutty-caribbean-soup.html",
-    "leek-and-potato-soup.html",
-    "broccoli-stilton-soup.html"
+    "leek-and-potato-soup.html"
   ],
   "sofritto-ragu.html": [
     "sofritto-ragu-lasagne.html",
@@ -287,7 +287,7 @@
   "french-onion-soup.html": [
     "pea-asparagus-soup.html",
     "roasted-red-pepper-soup.html",
-    "minestrone.html"
+    "mushroom-soup.html"
   ],
   "spiced-parsnip-soup.html": [
     "carrot-coriander-soup.html",
@@ -406,8 +406,8 @@
   ],
   "leek-and-potato-soup.html": [
     "spiced-parsnip-soup.html",
-    "pea-asparagus-soup.html",
-    "carrot-coriander-soup.html"
+    "mushroom-soup.html",
+    "pea-asparagus-soup.html"
   ],
   "coronation-chicken-sandwiches.html": [
     "chicken-caesar-wraps.html",
@@ -497,6 +497,6 @@
   "mushroom-soup.html": [
     "pea-asparagus-soup.html",
     "leek-and-potato-soup.html",
-    "minestrone.html"
+    "carrot-coriander-soup.html"
   ]
 }

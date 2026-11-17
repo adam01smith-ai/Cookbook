@@ -4794,9 +4794,9 @@
     "spiceLevel": "mild",
     "prepMinutes": null,
     "cookMinutes": null,
-    "totalMinutes": null,
-    "timeEstimated": false,
-    "timeNote": "Soften onions for 8–10 min, cook mushrooms for 3 min, then simmer for 10 min. Allow extra time for prep, heating, blending and finishing.",
+    "totalMinutes": 35,
+    "timeEstimated": true,
+    "timeNote": "Includes preparation, cooking, blending and finishing.",
     "difficulty": null,
     "effort": "regular",
     "keyIngredients": [
