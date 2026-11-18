@@ -1,11 +1,12 @@
-# Homepage review
+# Homepage design review
 
-Production remains on 7b7533dbf6ca74e8fb4604ae970e69a654a98cea. This branch must not be merged or deployed without the exact approval: Approved — deploy to production.
+The redesigned homepage uses the committed Karahi, mushroom soup and sausage gnocchi photographs. The wordmark uses script lettering and a cup icon. The full catalogue and additional planner tools live on recipes.html. Existing homepage catalogue and search bookmarks forward to the new catalogue.
 
-Implemented forest-green navigation, Karahi photograph hero, exact headline and actions, four benefits, three requested recipe cards, optional support banner and preserved footer. Existing catalogue/search/filters remain at #all-recipes inside an expandable section. Saved-week and inspiration controls remain in a secondary disclosure. Favourites and recent history use existing scripts and storage.
+Chrome screenshots show the page after dismissing the optional privacy banner.
 
-Differences from mockup: typographic logo rather than an unavailable source logo; actual approved repository food photographs; full recipe title for gnocchi; two secondary disclosures preserve current functionality; recently viewed and sharing remain available.
+- [Desktop screenshot](previews/homepage-desktop.jpg)
+- [Mobile screenshot](previews/homepage-mobile.jpg)
 
-Automated verification: existing 93 tests plus five homepage interaction simulations at the requested breakpoint widths. These simulations verify navigation states, Escape focus, search focus, catalogue access and support links, NOT rendered layouts. Site asset/link audit and centralized metadata checks run.
+Chrome rendered the page at 375, 390, 768, 1280 and 1440 CSS pixels without horizontal overflow. Browser interactions covered opening the mobile menu, following a legacy catalogue bookmark, focusing the catalogue search, searching for Karahi and opening the share dialog. The 98 automated tests passed. The site audit checked 115 pages, 100 recipes, 4826 links and 633 image references with zero findings. Metadata validation covered 114 indexable pages.
 
-BLOCKER: browser could not reach local preview (connection timed out). Actual browser interaction, rendered layouts at 375/390/768/1280/1440, screenshot capture, mobile cropping/overflow and visual accessibility remain unverified. No desktop/mobile screenshots or working externally reachable preview are available. Not ready for production approval until those checks and visual review are complete.
+Physical iPhone and Android share sheets and third-party preview caches still need device verification. The screenshots are static captures. Production deployment requires the owner's explicit approval.

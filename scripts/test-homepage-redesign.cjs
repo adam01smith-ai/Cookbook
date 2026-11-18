@@ -4,6 +4,6 @@ const d=new JSDOM(fs.readFileSync(path.join(root,'index.html'),'utf8'),{url:'htt
 w.eval(fs.readFileSync(path.join(root,'homepage.js'),'utf8'));
 const menu=doc.querySelector('.home-menu-toggle'),nav=doc.getElementById('home-navigation');assert.equal(nav.hidden,width<768);
 if(width<768){menu.click();assert.equal(nav.hidden,false);nav.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));assert.equal(nav.hidden,true);assert.equal(doc.activeElement,menu);}
-doc.querySelector('[data-home-search]').click();assert.equal(doc.querySelector('.home-catalogue').open,true);assert.equal(doc.activeElement.id,'search');
-assert.equal(doc.querySelectorAll('.home-card').length,3);assert.equal(doc.querySelectorAll('#recipes .recipe-card').length,100);assert.equal(doc.querySelectorAll('h1').length,1);assert.equal(doc.querySelector('.home-support a').href,'https://buymeacoffee.com/adam01smith');w.close();});
+assert.equal(doc.querySelector('[data-home-search]').getAttribute('href'),'recipes.html#search');
+assert.equal(doc.querySelectorAll('.home-card').length,3);assert.equal(doc.querySelectorAll('#recipes .recipe-card').length,0);assert.equal(doc.querySelectorAll('h1').length,1);assert.equal(doc.querySelector('.home-support a').href,'https://buymeacoffee.com/adam01smith');w.close();});
 

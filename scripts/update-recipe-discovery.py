@@ -8,7 +8,7 @@ from pathlib import Path
 from html import escape,unescape
 import json,re
 ROOT=Path(__file__).resolve().parents[1]
-PAGES=['index.html','breakfast.html','lunches.html','desserts.html','fakeaway.html','favourites.html']
+PAGES=['recipes.html','breakfast.html','lunches.html','desserts.html','fakeaway.html','favourites.html']
 def read(path):return (ROOT/path).read_text(encoding='utf-8')
 def write(path,text):(ROOT/path).write_text(text,encoding='utf-8')
 def plain(text):return unescape(re.sub('<[^>]+>',' ',text)).strip()
@@ -75,7 +75,7 @@ def build():
  cuisine_controls='<details class="cuisine-picker"><summary>Cuisines · choose any</summary><fieldset><legend>Match any selected cuisine</legend>'+''.join('<label><input type="checkbox" name="recipe-cuisine" value="'+escape(c,quote=True)+'"> '+escape(c)+'</label>' for c in sorted({c for r in recipes for c in r.get('cuisines',[])}))+'</fieldset></details>'
  for page in PAGES:
   s=originals[page];files=[file_for(c) for c in articles(s)]
-  if page=='index.html':files+= [r['file'] for r in recipes if r['file'] not in files]
+  if page=='recipes.html':files+= [r['file'] for r in recipes if r['file'] not in files]
   assert len(files)==len(set(files)),page
   grid=re.search(r'<div class="recipe-grid"[^>]*>',s);last=s.rindex('</article>')+len('</article>');end=s.index('</div>',last)+len('</div>')
   s=s[:grid.start()]+grid[0]+''.join(card(by_file[f],page=='favourites.html') for f in files)+'</div>'+s[end:]

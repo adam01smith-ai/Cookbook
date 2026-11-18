@@ -12,7 +12,7 @@ def tokens(recipe):
 def build():
  raw=read('recipe-data.js');recipes=json.loads(raw[raw.index('['):raw.rindex(']')+1]);by_file={r['file']:r for r in recipes};timings=json.loads(read('recipe-discovery.json'))
  cards={}
- for article in re.findall(r'<article\b[^>]*class="recipe-card"[^>]*>.*?</article>',read('index.html'),re.S):
+ for article in re.findall(r'<article\b[^>]*class="recipe-card"[^>]*>.*?</article>',read('recipes.html'),re.S):
   link=re.search(r'<a class="card-link" href="([^"]+)"',article) or re.search(r'<a href="([^"]+)" class="card-link"',article)
   assert link,'Recipe card missing primary link';cards[unescape(link[1])]=article
  assert set(cards)==set(by_file),'Main recipe index must include the complete catalogue'
