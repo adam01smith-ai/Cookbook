@@ -40,3 +40,29 @@
 .home-hero h1,.home-section-heading h2,.home-card h3,.home-support h2{font-weight:700}
 @media(max-width:767px){.home-hero>img{right:0;width:100%;transform:scale(1.12);transform-origin:50% 28%}}
 .home-card img{object-view-box:inset(16% 16% 16% 16%)}
+.home-logo {
+  font: 800 clamp(25px,3.4vw,48px)/1 "Adam Cooks Montserrat",Arial,sans-serif;
+  letter-spacing: -.035em;
+}
+.home-hero > img {transition: opacity 700ms ease}
+.home-hero > img[aria-hidden="true"] {opacity:0}
+.hero-controls {
+  position:absolute; right:4%; bottom:18px; z-index:1;
+  display:flex; align-items:center; border-radius:24px;
+  background:rgba(24,24,16,.78); color:white;
+}
+.hero-controls button {
+  display:grid;place-items:center;margin:0;padding:0;min-width:28px;width:28px;
+  height:40px;min-height:40px;border:0;background:transparent;color:inherit;
+  font:600 19px/1 Arial,sans-serif;cursor:pointer;border-radius:16px;
+}
+.hero-controls button:first-child,.hero-controls button:last-child {width:38px}
+.hero-controls [data-slide]::after {content:"";width:6px;height:6px;border:1px solid white;border-radius:50%}
+.hero-controls [aria-current="true"]::after {background:white}
+.hero-controls button:focus-visible {outline-offset:-3px}
+@media(max-width:767px){
+  .hero-controls {top:12px;right:12px;bottom:auto}
+  .hero-controls button {min-height:44px;min-width:30px}
+}
+@media(prefers-reduced-motion:reduce){.home-hero > img {transition:none}}
+.hero-controls button[hidden] {display:none}
