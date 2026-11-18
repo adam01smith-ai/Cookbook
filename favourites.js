@@ -11,6 +11,7 @@ function start(){
  const fileFor=href=>{try{const u=new URL(href,location.href);if(u.origin!==location.origin)return null;const file=decodeURIComponent(u.pathname.split('/').pop());return valid(file)?file:null;}catch{return null;}};
  const normalise=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
  function render(){
+  for (const badge of document.querySelectorAll("[data-favourite-count]")) badge.textContent = saved.size;
   for(const {button,file,name} of controls){const on=saved.has(file);button.setAttribute('aria-pressed',String(on));button.setAttribute('aria-label',(on?'Remove '+name+' from':'Save '+name+' to')+' favourites');button.querySelector('span').textContent=on?'Saved':'Save';}
   if(page){let count=0;const q=normalise(document.getElementById('favourites-search').value.trim());for(const card of page.querySelectorAll('.recipe-card')){card.hidden=!(saved.has(fileFor(card.querySelector('.card-link').getAttribute('href')))&&normalise(card.dataset.search).includes(q));if(!card.hidden)count++;}document.getElementById('favourites-count').textContent=count+' recipe'+(count===1?'':'s');const empty=document.getElementById('favourites-empty');empty.hidden=count>0;empty.querySelector('h2').textContent=q?'No favourites match':'No favourites yet';empty.querySelector('p').textContent=q?'Try another search.':'Tap the heart on a recipe to save it here.';}
  }

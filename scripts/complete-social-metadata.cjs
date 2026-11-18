@@ -14,6 +14,7 @@ if(!sample)throw Error('No approved social image found');
 for(const f of pages){let s=read(f),p=inspect(s);if(!p.titles[0])throw Error('Missing title: '+f);
 const recipe=/"@type"\s*:\s*"Recipe"/.test(s);
 const summaries={
+'recipes.html':'Search the Adam Cooks recipe catalogue by name, ingredient or category.',
 'index.html':"Browse Adam's recipes and plan your meals for the week.",
 'contact.html':'Contact Adam Cooks with feedback or questions about the recipes and website.',
 'about.html':'Learn about Adam Cooks, the recipe collection and the tools available for planning and cooking meals.',
