@@ -1,0 +1,253 @@
+/* Adam Cooks meal planner visual alignment.
+   Presentation-only: planner state, scoring, dates, data and controls remain unchanged.
+   Keep this loaded after the legacy inline planner CSS and planner-2.css. */
+.planner-page{
+  --forest:#0e351b;
+  --accent:#17652b;
+  --bg:#faf6ee;
+  --paper:#fffdf8;
+  --ink:#202a20;
+  --muted:#596456;
+  --line:#e0dacd;
+  --soft:#eef2e8;
+  background:var(--bg);
+  color:var(--ink);
+  font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+.planner-page .home-header{background:var(--forest);color:#fff;border:0}
+.planner-page .home-header .home-logo{color:#fff}
+.planner-page .home-header nav a{color:#fff;border:0}
+.planner-page .home-header nav a[aria-current="page"]{
+  text-decoration:underline;
+  text-decoration-thickness:2px;
+  text-underline-offset:10px;
+}
+.planner-page .home-header nav a[data-home-search]{color:#fff}
+.planner-page main{max-width:1440px;margin:auto;padding:34px 4.2% 56px}
+.planner-page h1,.planner-page h2,.planner-page h3,
+.planner-page .day strong,.planner-page .name{font-family:Georgia,"Times New Roman",serif}
+.planner-page .planner-intro-hero{
+  display:flex;
+  align-items:center;
+  isolation:isolate;
+  position:relative;
+  min-height:248px;
+  padding:38px clamp(24px,4vw,54px);
+  margin:0 0 25px;
+  overflow:hidden;
+  border-radius:23px;
+  background:#263520;
+  color:#fff;
+}
+.planner-page .planner-intro-hero:before{
+  content:"";
+  position:absolute;
+  z-index:-2;
+  inset:0;
+  background:url("images/karahi.webp") center 45%/cover no-repeat;
+}
+.planner-page .planner-intro-hero:after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  background:linear-gradient(90deg,#142a1cef 0%,#183020e8 38%,#183020a6 66%,#18302036 100%);
+}
+.planner-page .planner-intro-copy{max-width:780px}
+.planner-page .planner-kicker{
+  margin:0 0 12px;
+  color:#dcebd8;
+  font-size:12px;
+  font-weight:750;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+}
+.planner-page .planner-intro-hero h1{
+  margin:0 0 13px;
+  font:700 clamp(36px,4.4vw,58px)/1.1 Georgia,"Times New Roman",serif;
+  letter-spacing:-.035em;
+  color:#fff;
+}
+.planner-page .planner-intro-hero .intro{
+  max-width:690px;
+  margin:0;
+  font-size:clamp(15px,1.35vw,18px);
+  line-height:1.58;
+  color:#f0f2e9;
+}
+.planner-page .tabs{
+  display:flex;
+  gap:11px;
+  margin:24px 0;
+  padding-bottom:5px;
+  flex-wrap:wrap;
+}
+.planner-page .tabs button{
+  min-height:46px;
+  padding:9px 22px;
+  border:1px solid #d0d7cc;
+  border-radius:999px;
+  background:var(--paper);
+  color:var(--forest);
+  font-weight:650;
+  box-shadow:0 2px 6px #20332307;
+}
+.planner-page .tabs button[aria-selected="true"]{
+  color:#fff;
+  background:var(--forest);
+  border-color:var(--forest);
+}
+.planner-page .tabs button:hover:not([aria-selected="true"]){background:#edf1e8}
+.planner-page .settings,.planner-page .panel,.planner-page .meal{
+  background:var(--paper);
+  border:1px solid var(--line);
+  box-shadow:0 5px 18px #392f170a;
+}
+.planner-page .settings{border-radius:18px;padding:25px;gap:24px}
+.planner-page .field label{font-size:14px;font-weight:650;color:var(--forest)}
+.planner-page .field input[type=date],
+.planner-page select,.planner-page input[type=text],
+.planner-page input[type=number],.planner-page textarea{
+  border:1px solid #cbd6cb;
+  border-radius:10px;
+  background:#fff;
+  color:var(--ink);
+}
+.planner-page input[type=range],.planner-page input[type=checkbox]{accent-color:#17652b}
+.planner-page .check,.planner-page .planner-variety-controls{color:#394b3b}
+.planner-page .check{margin:17px 0}
+.planner-page .note,.planner-page .intro{color:var(--muted)}
+.planner-page .planner-intro-hero .intro{color:#f0f2e9}
+.planner-page .toolbar{
+  margin:25px 0 10px;
+  padding:0 2px;
+  align-items:center;
+}
+.planner-page #week-label{
+  font:700 clamp(22px,2.4vw,29px)/1.2 Georgia,"Times New Roman",serif;
+  color:var(--forest);
+}
+.planner-page .primary,.planner-page #use-variety{
+  background:#17652b;
+  border:1px solid #17652b;
+  color:#fff;
+  font-weight:700;
+  border-radius:11px;
+  padding:11px 21px;
+  min-height:48px;
+}
+.planner-page .primary:hover,.planner-page #use-variety:hover{background:#104b22}
+.planner-page .secondary,.planner-page .actions button,.planner-page .meal-feedback button{
+  background:#fffdf8;
+  border:1px solid #bfcdbf;
+  border-radius:10px;
+  color:var(--forest);
+  font-weight:600;
+}
+.planner-page .secondary:hover,.planner-page .actions button:hover,.planner-page .meal-feedback button:hover{background:#edf1e8}
+.planner-page .plain{color:var(--accent)}
+.planner-page .meal{
+  padding:clamp(15px,1.7vw,24px);
+  border-radius:17px;
+  gap:clamp(11px,1.4vw,19px);
+  transition:box-shadow .15s ease,border-color .15s ease;
+}
+.planner-page .meal:hover{border-color:#c2d1c1;box-shadow:0 8px 25px #392f1712}
+.planner-page .meal.is-kept{border-left:4px solid #17652b}
+.planner-page .meal .thumb{
+  width:83px;
+  height:77px;
+  object-fit:cover!important;
+  border-radius:11px!important;
+  clip-path:none!important;
+}
+.planner-page .day strong{font-size:25px;font-weight:700;color:var(--forest)}
+.planner-page .day span{color:var(--muted)}
+.planner-page .meal .name{font-size:clamp(20px,2vw,27px);font-weight:700;line-height:1.2}
+.planner-page .meal .recipe-link{color:#17652b;font-weight:700}
+.planner-page .meal .keep[aria-pressed="true"]{background:#e3efdc;color:var(--forest);border-color:#5a9161}
+.planner-page .meal-tags{color:#426345}
+.planner-page .panel{border-radius:17px;padding:clamp(17px,2.1vw,29px)}
+.planner-page .panel h2{color:var(--forest);font-size:clamp(26px,3vw,38px);font-weight:700}
+.planner-page .panel h3{color:var(--forest);font-weight:700}
+.planner-page .planner-score{
+  background:#edf1e7;
+  border:1px solid #d4decb;
+  border-radius:18px;
+  padding:24px;
+}
+.planner-page .score-number{color:#17652b}
+.planner-page .score-copy strong{color:var(--forest)}
+.planner-page .notice{background:#e8f1e5;color:#26492d;border:1px solid #d3e1d0}
+.planner-page .replacement-preview{border:2px solid #448257}
+.planner-page .history-week summary{font-weight:700;color:var(--forest)}
+.planner-page .shopping-item{border-color:var(--line)}
+.planner-page .support-note{
+  background:#edf1e7;
+  border:1px solid #d5dfd1;
+  color:#213a28;
+  border-radius:16px;
+  padding:18px 22px;
+}
+.planner-page .support-note a{color:#17652b}
+.planner-page main>footer{color:var(--muted)}
+.planner-page .privacy-footer{
+  background:#eee9df;
+  padding:28px 4%;
+  border:0;
+  color:#3d5144;
+}
+.planner-page a:focus-visible,.planner-page button:focus-visible,
+.planner-page input:focus-visible,.planner-page select:focus-visible{
+  outline:3px solid #d79323;
+  outline-offset:3px;
+}
+@media(max-width:1000px){
+  .planner-page .home-header nav{gap:clamp(9px,1.7vw,16px)}
+  .planner-page .home-header nav a{font-size:clamp(13px,1.6vw,15px)}
+}
+@media(max-width:850px){
+  .planner-page .meal .thumb{width:67px;height:67px}
+  .planner-page .settings{grid-template-columns:1fr 1fr}
+}
+@media(max-width:767px){
+  .planner-page main{padding:20px 5% 42px}
+  .planner-page .home-header nav a{font-size:15px}
+  .planner-page .planner-intro-hero{
+    min-height:225px;
+    padding:28px 23px;
+    border-radius:16px;
+  }
+  .planner-page .planner-intro-hero:after{
+    background:linear-gradient(90deg,#142a1cf5 0%,#142a1cda 74%,#142a1c84 100%);
+  }
+  .planner-page .planner-intro-hero h1{font-size:clamp(32px,7vw,44px)}
+  .planner-page .tabs{gap:8px;margin:19px 0}
+  .planner-page .tabs button{padding:9px 14px;font-size:14px}
+  .planner-page .settings{padding:17px;gap:16px}
+  .planner-page .meal{box-shadow:0 3px 12px #392f1709}
+  .planner-page .meal .name{font-size:20px}
+  .planner-page .planner-score{padding:17px}
+  .planner-page .privacy-footer{padding:25px 5%}
+}
+@media(max-width:540px){
+  .planner-page .settings{grid-template-columns:1fr}
+  .planner-page .meal .thumb{width:50px;height:57px}
+  .planner-page .meal{padding:13px}
+  .planner-page .actions button{min-height:44px}
+  .planner-page .tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .planner-page .tabs button{padding:9px 5px}
+}
+@media(prefers-reduced-motion:reduce){
+  .planner-page .meal{transition:none}
+}
+@media print{
+  .planner-page{background:#fff;color:#000}
+  .planner-page .home-header,.planner-page .planner-kicker{display:none!important}
+  .planner-page main{max-width:none;padding:0}
+  .planner-page .planner-intro-hero{min-height:0;display:block;padding:0;margin:0 0 14px;background:none;border:0;box-shadow:none}
+  .planner-page .planner-intro-hero:before,.planner-page .planner-intro-hero:after{display:none}
+  .planner-page .planner-intro-hero h1{font-size:26pt;color:#000}
+  .planner-page .planner-intro-hero .intro{display:none}
+  .planner-page .meal,.planner-page .panel{background:#fff;border-radius:0;box-shadow:none}
+}
