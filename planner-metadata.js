@@ -1824,7 +1824,8 @@
     "category": "Comfort",
     "dishType": "Bake",
     "cookingMethods": [
-      "roasted"
+      "roasted",
+      "chilled"
     ],
     "flavours": [
       "savoury",
@@ -1838,8 +1839,8 @@
     ],
     "richness": "balanced",
     "spiceLevel": "mild",
-    "prepMinutes": 10,
-    "cookMinutes": null,
+    "prepMinutes": 15,
+    "cookMinutes": 40,
     "totalMinutes": 55,
     "timeEstimated": false,
     "timeNote": "",
@@ -1847,6 +1848,9 @@
     "effort": "regular",
     "keyIngredients": [
       "chicken",
+      "tomato",
+      "pepper",
+      "courgette",
       "potato",
       "lemon",
       "garlic"
@@ -1858,7 +1862,7 @@
     },
     "dependencies": [],
     "evidence": {
-      "ingredients": 10,
+      "ingredients": 17,
       "methodSteps": 6,
       "source": "lemon-garlic-oregano-chicken-traybake.html"
     }
