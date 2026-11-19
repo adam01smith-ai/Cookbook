@@ -78,3 +78,7 @@
 .collection-page .home-header .coffee-link{color:#15341d}
 .collection-page .collection-moods strong{color:white}
 @media(max-width:767px){.collection-page .collection-hero .hero-photo{width:100%}.collection-page .collection-hero::after{background:linear-gradient(90deg,#18180dea 4%,#18180dbb 45%,#18180d44)}.collection-page .home-header nav{gap:3px}.collection-page .home-header nav a{font-size:16px}}
+@media(min-width:768px) and (max-width:1000px){
+ .collection-page .home-nav-wrap{flex-wrap:wrap;justify-content:center;gap:8px}
+ .collection-page .home-header nav{width:100%;justify-content:center;gap:clamp(12px,2.2vw,20px)}
+}
