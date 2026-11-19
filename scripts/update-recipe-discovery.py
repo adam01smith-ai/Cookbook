@@ -84,7 +84,11 @@ def build():
   s=re.sub(r'<span id="count"([^>]*)>.*?</span>',lambda m:'<span id="count"'+m[1]+'>'+str(len(files))+' recipes</span>',s,flags=re.S)
   s=s.replace('Search recipes by name or category','Search recipes or ingredients').replace('placeholder="Search your favourites"','placeholder="Search names or ingredients"')
   s=re.sub(r'(<input[^>]*id="search"[^>]*placeholder=")[^"]*',r'\1Search recipes or ingredients',s)
-  point=s.index('<section class="collection-moods">') if page=='recipes.html' else re.search(r'<div class="category-controls"|<div class="recipe-grid"',s).start();s=s[:point]+CONTROLS.replace('<button class="secondary"',('<label class="select-filter">Protein<select id="collection-protein"><option value="">Any protein</option></select></label><label class="select-filter">Sort by<select id="collection-sort"><option value="">Catalogue order</option><option value="name">A–Z</option><option value="time">Quickest first</option></select></label>' if page=='recipes.html' else '')+cuisine_controls+'<button class="secondary"')+s[point:]
+  controls=cuisine_controls
+  if page=='recipes.html':
+   controls=cuisine_controls.replace('<details class="cuisine-picker"><summary>Cuisines · choose any</summary>','<div class="cuisine-field"><span id="cuisine-label">Cuisine</span><details class="cuisine-picker"><summary aria-labelledby="cuisine-label cuisine-value"><span id="cuisine-value">Any cuisine</span></summary>')+'</div>'+'<label class="select-filter">Protein<select id="collection-protein"><option value="">Any protein</option></select></label><label class="select-filter">Sort by<select id="collection-sort"><option value="">Featured order</option><option value="name">A–Z</option><option value="time">Quickest first</option></select></label>'
+  point=s.index('<section class="collection-moods">') if page=='recipes.html' else re.search(r'<div class="category-controls"|<div class="recipe-grid"',s).start()
+  s=s[:point]+CONTROLS.replace('<button class="secondary"',controls+'<button class="secondary"')+s[point:]
   s=re.sub(r'recipe-index.js\?v=\d+','recipe-index.js?v=6',s)
   s=re.sub(r'featured-recipes.js\?v=\d+','featured-recipes.js?v=4',s)
   if 'recipe-discovery.css?v=2' not in s:s=s.replace('</head>','<link rel="stylesheet" href="recipe-discovery.css?v=2">\n</head>')

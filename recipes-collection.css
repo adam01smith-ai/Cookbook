@@ -82,3 +82,12 @@
  .collection-page .home-nav-wrap{flex-wrap:wrap;justify-content:center;gap:8px}
  .collection-page .home-header nav{width:100%;justify-content:center;gap:clamp(12px,2.2vw,20px)}
 }
+.collection-page .cuisine-field{align-self:end}
+.collection-page #cuisine-label{display:block;font-size:13px;font-weight:600;margin-bottom:7px}
+.collection-page .cuisine-field .cuisine-picker{background:transparent;border:0;padding:0;margin:0}
+.collection-page .cuisine-field summary{display:flex;align-items:center;justify-content:space-between;gap:6px;list-style:none;border:1px solid #d5c7af;border-radius:8px;background:#fffaf2;color:var(--ink,#173c37);min-height:38px;padding:10px 8px 10px 12px;font:inherit;font-size:16px;line-height:normal}
+.collection-page .cuisine-field summary::-webkit-details-marker{display:none}
+.collection-page .cuisine-field summary::after{content:"";width:6px;height:6px;flex:none;border:solid currentColor;border-width:0 1.7px 1.7px 0;transform:translateY(-2px) rotate(45deg)}
+.collection-page .cuisine-field details[open] summary::after{transform:rotate(225deg)}
+.collection-page .cuisine-field summary:focus-visible{outline:3px solid #bc6a29;outline-offset:2px}
+.collection-page .cuisine-field fieldset{left:auto;right:0;margin:4px 0 0}
