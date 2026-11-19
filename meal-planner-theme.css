@@ -98,13 +98,13 @@
 .planner-page .meal-options input{width:90px}
 .planner-page .portion-summary{padding:8px 0;border-bottom:1px solid var(--line)}
 .planner-page .meal-feedback summary{min-height:44px}
-.planner-page .planner-help{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#ebe7da;box-shadow:0 2px 3px #40351512}
-.planner-page .planner-help-copy{padding:24px 23px 22px}
-.planner-page .planner-help h2{font-size:27px;line-height:1.05;margin:0 0 12px;max-width:240px}
-.planner-page .planner-help p{font-size:13px;margin:0 0 18px}
-.planner-page .planner-help a{display:inline-flex;align-items:center;gap:15px;background:var(--forest);color:#fff;border-radius:7px;min-height:44px;padding:10px 13px;font-size:12px;font-weight:650;text-decoration:none}
-.planner-page .planner-portrait{position:relative;height:250px;overflow:hidden}
-.planner-page .planner-portrait img{position:absolute;width:205%;height:auto;max-width:none;left:-5%;top:-12%;border-radius:0;clip-path:none}
+.planner-page .planner-help{display:grid;grid-template-columns:1.1fr 1fr;min-height:300px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#ebe7da;box-shadow:0 2px 3px #40351512}
+.planner-page .planner-help-copy{position:relative;z-index:1;padding:23px 17px 21px}
+.planner-page .planner-help h2{font-size:25px;line-height:1.05;margin:0 0 12px;max-width:240px}
+.planner-page .planner-help p{font-size:12px;margin:0 0 18px}
+.planner-page .planner-help a{display:inline-flex;align-items:center;gap:15px;background:var(--forest);color:#fff;border-radius:7px;min-height:44px;padding:10px 11px;font-size:11px;font-weight:650;text-decoration:none}
+.planner-page .planner-portrait{position:relative;height:100%;min-height:300px;overflow:hidden}
+.planner-page .planner-portrait img{position:absolute;width:400%;height:auto;max-width:none;left:-38%;top:-22px;border-radius:0;clip-path:none}
 .planner-page .panel{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:22px}
 .planner-page .replacement-preview{border:2px solid #52824f}
 .planner-page .replacement-preview h3,.planner-page #variety-title{color:var(--forest)}
@@ -149,7 +149,7 @@
  .planner-page .planner-week-layout{grid-template-columns:minmax(0,1fr)}
  .planner-page .meals{grid-template-columns:repeat(3,minmax(0,1fr))}
  .planner-page .planner-help{display:grid;grid-template-columns:1fr 1fr}
- .planner-page .planner-portrait{height:280px}
+ .planner-page .planner-portrait{height:280px;min-height:280px}
  .planner-page .planner-portrait img{width:170%;left:0;top:-10%}
 }
 @media(max-width:767px){
@@ -178,7 +178,7 @@
  .planner-page .planner-shortcuts button{padding:14px 18px}
  .planner-page .score-copy>p{font-size:11px}
  .planner-page .planner-help-copy{padding:22px}
- .planner-page .planner-portrait{height:270px}
+ .planner-page .planner-portrait{height:270px;min-height:270px}
  .planner-page .planner-portrait img{width:240%;left:-10%;top:-5%}
 }
 @media(max-width:540px){
@@ -208,7 +208,7 @@
  .planner-page .planner-help{grid-template-columns:1fr}
  .planner-page .planner-help-copy{padding:24px}
  .planner-page .planner-help h2{max-width:270px}
- .planner-page .planner-portrait{height:250px}
+ .planner-page .planner-portrait{height:250px;min-height:250px}
  .planner-page .planner-portrait img{width:170%;left:0;top:-22%}
  .planner-page .planner-shortcuts strong{font-size:22px}
  .planner-page .history-row{grid-template-columns:minmax(0,1fr) 120px}
