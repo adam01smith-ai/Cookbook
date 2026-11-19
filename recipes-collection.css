@@ -65,3 +65,16 @@
 .coffee-panel p{width:58%;font-size:clamp(15px,1.28vw,19px);margin:14px 0 18px}
 .coffee-panel .coffee-link{width:100%;margin-top:8px}
 @media(max-width:767px){.collection-page .coffee-panel{max-width:480px;margin-inline:auto}.coffee-panel .coffee-portrait{object-position:center 25%}}
+.collection-page .index-main{display:flex;flex-direction:column}
+.collection-page .index-main>.personal-home-recent,.collection-page .index-main>[data-share-recipe]{order:1;align-self:center;max-width:95%}
+.collection-page .recipe-browser{width:100%}
+.collection-page .hero-photo,.collection-page .collection-moods img,.collection-page .coffee-portrait{object-fit:cover!important}
+.collection-page .collection-hero .hero-photo{inset:0 0 0 auto;width:80%;object-position:center 50%}
+.collection-page .collection-hero::after{background:linear-gradient(90deg,#20190eff 10%,#20190ef5 26%,#20190e74 49%,#20190e08 76%)}
+.collection-page .collection-moods img{object-view-box:inset(12%)}
+.collection-page .home-header .home-logo{font-size:clamp(25px,3.2vw,45px)}
+.collection-page .home-header nav a{font-size:clamp(12px,1.1vw,16px);white-space:nowrap}
+.collection-page .home-header nav{gap:clamp(12px,2.2vw,32px)}
+.collection-page .home-header .coffee-link{color:#15341d}
+.collection-page .collection-moods strong{color:white}
+@media(max-width:767px){.collection-page .collection-hero .hero-photo{width:100%}.collection-page .collection-hero::after{background:linear-gradient(90deg,#18180dea 4%,#18180dbb 45%,#18180d44)}.collection-page .home-header nav{gap:3px}.collection-page .home-header nav a{font-size:16px}}
