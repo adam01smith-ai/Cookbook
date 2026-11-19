@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Meal planner design review — Adam Cooks</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#e8e7e1;color:#213126;font:14px/1.5 system-ui,sans-serif}header{padding:16px 24px;background:#10351e;color:#fff}h1{font:700 22px Georgia,serif;margin:0 0 5px}p{margin:4px 0 12px}label{display:inline-flex;gap:12px;align-items:center}select,a{min-height:44px;padding:9px 12px;font:inherit}a{display:inline-flex;color:#fff}main{padding:20px 24px;overflow:visible}iframe{display:block;border:0;background:#f8f2e9;box-shadow:0 5px 25px #18251920}#result{font-size:12px}
+</style>
+</head>
+<body>
+<header><h1>Meal planner design review</h1><p>This preview uses its own browser storage. The meals and variety score are calculated by the planner.</p><label for="width">Review width<select id="width"><option>375</option><option selected>390</option><option>768</option><option>1280</option><option>1440</option></select></label><a href="../../meal-planner.html">Open planner at full width</a><p id="result" role="status"></p></header>
+<main><iframe id="planner" title="Working Adam Cooks meal planner" src="../../meal-planner.html" width="390" height="800"></iframe></main>
+<script>
+const frame=document.getElementById('planner'),width=document.getElementById('width'),result=document.getElementById('result');
+const selected=new URLSearchParams(location.search).get('width');
+if([...width.options].some(option=>option.value===selected))width.value=selected;
+let pending=false;
+function measure(){
+ pending=false;
+ const page=frame.contentDocument,view=frame.contentWindow;
+ if(!page?.body)return;
+ frame.height=Math.ceil(page.body.getBoundingClientRect().height);
+ const overflow=page.documentElement.scrollWidth>view.innerWidth;
+ result.textContent=view.innerWidth+'px · '+(overflow?'Horizontal overflow detected':'Fits the viewport')+' · '+page.querySelectorAll('.meal').length+' calendar days';
+}
+function schedule(){if(!pending){pending=true;requestAnimationFrame(measure);}}
+function resize(){frame.width=Number(width.value);schedule();}
+width.addEventListener('change',resize);
+frame.addEventListener('load',()=>{
+ resize();
+ new MutationObserver(schedule).observe(frame.contentDocument.body,{attributes:true,subtree:true,childList:true,characterData:true});
+ frame.contentDocument.fonts.ready.then(schedule);
+ for(const image of frame.contentDocument.images){image.loading='eager';image.addEventListener('load',schedule);}
+});
+resize();
+</script>
+</body>
+</html>

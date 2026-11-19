@@ -16,7 +16,7 @@ window.addEventListener('adam-cooks-consentchange',()=>{if(!privacy?.allowed('pl
 function show(which){tab=which;for(const b of document.querySelectorAll('[data-tab]')){const active=b.dataset.tab===which;b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;$(b.getAttribute('aria-controls')).hidden=!active;}if(which==='shopping')renderShopping();if(which==='history')renderHistory();}
 function dirty(){state.confirmed=false;state.checked=[];save();}
 function run(fn){try{fn();}catch(e){message(e.message,true);}}
-function settings(){$('vegetarian-target').checked=state.vegetarianTarget;$('variety-time').value=state.maxMinutes;$('week-start').value=state.week;$('people').value=state.people;$('people-value').textContent=state.people+(state.people===1?' person':' people');$('dinner-count').value=state.count;$('repeat-gap').value=state.gap;$('no-fish').checked=state.noFish;$('weekend-fakeaway').checked=state.weekendFakeaway;$('include-optional').checked=state.optional;$('extra-shopping').value=state.extras;$('generate').textContent=state.count===7?'Generate week':'Preview '+state.count+' dinner'+(state.count===1?'':'s');const n=state.days.filter(d=>d.type==='recipe').length;$('week-label').textContent=(state.confirmed?'Confirmed':'Draft')+' week · '+n+' cookbook dinner'+(n===1?'':'s');$('eligible-count').textContent=P.eligible(state,catalog).length+' eligible dinners after preferences and history';$('print-week').textContent='Week beginning '+dateLabel(state.week)+' · '+state.people+' people';}
+function settings(){$('vegetarian-target').checked=state.vegetarianTarget;$('variety-time').value=state.maxMinutes;$('week-start').value=state.week;$('people').value=state.people;$('people-value').textContent=state.people+(state.people===1?' person':' people');$('dinner-count').value=state.count;$('repeat-gap').value=state.gap;$('no-fish').checked=state.noFish;$('weekend-fakeaway').checked=state.weekendFakeaway;$('include-optional').checked=state.optional;$('extra-shopping').value=state.extras;$('generate').textContent='Preview '+state.count+' dinner'+(state.count===1?'':'s');const n=state.days.filter(d=>d.type==='recipe').length;$('week-label').textContent=(state.confirmed?'Confirmed · ':'')+'Your plan for '+P.parseDate(state.week).toLocaleDateString('en-GB',{day:'numeric',month:'short'})+' – '+P.parseDate(P.addDays(state.week,6)).toLocaleDateString('en-GB',{day:'numeric',month:'short'});$('eligible-count').textContent=(state.confirmed?'Confirmed':'Draft')+' · '+n+' cookbook dinner'+(n===1?'':'s')+' · ';$('eligible-count').textContent+=P.eligible(state,catalog).length+' eligible dinners after preferences and history';$('print-week').textContent='Week beginning '+dateLabel(state.week)+' · '+state.people+' people';}
 function dateLabel(s){return P.parseDate(s).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}
 function choices(index){const used=new Set(state.days.filter((_,i)=>i!==index).filter(d=>d.type==='recipe').map(d=>d.recipeId));return P.eligible(state,catalog).filter(r=>!used.has(r.id));}
 function recipeOptions(index){const d=state.days[index],available=choices(index);let html='<option value="">Choose a dinner…</option>';if(d.recipeId&&!available.some(r=>r.id===d.recipeId)){const r=catalog.find(r=>r.id===d.recipeId);html+='<option selected disabled value="'+esc(d.recipeId)+'">'+esc((r?r.mealName:'Unavailable recipe')+' — check repeat/preferences')+'</option>';}
@@ -32,7 +32,7 @@ const RATINGS={neutral:'Haven’t rated yet',love:'Loved it',again:'Would make a
 function context(){let favourites=[];try{const list=JSON.parse(localStorage.getItem('adam-cooks-favourites-v1')||'[]');if(Array.isArray(list))favourites=list.filter(x=>typeof x==='string');}catch{}return {...state,favourites};}
 function ratingOptions(id){return Object.entries(RATINGS).map(([key,label])=>'<option value="'+key+'"'+((state.feedback?.[id]?.rating||'neutral')===key?' selected':'')+'>'+label+'</option>').join('');}
 function mealMemory(r){const f=state.feedback?.[r.id];return '<details class="meal-feedback"><summary>How was it?'+(f?' · '+esc(RATINGS[f.rating]):'')+'</summary><label>Cooking preference <select data-action="rating" data-recipe="'+esc(r.id)+'">'+ratingOptions(r.id)+'</select></label><button type="button" class="secondary" data-action="cooked" data-recipe="'+esc(r.id)+'">Cooked today</button>'+(f?.cookedOn?'<span class="note">Last marked cooked '+esc(dateLabel(f.cookedOn))+'</span>':'')+'</details>';}
-function mealTags(r){const m=P.describe(r);return '<p class="meal-tags">'+esc([m.cuisine,m.primaryProtein,m.totalMinutes?(m.timeEstimated?'About ':'')+m.totalMinutes+' min total':null].filter(Boolean).join(' · '))+'</p>';}
+function mealTags(r){const m=P.describe(r);return '<p class="meal-tags">'+[m.totalMinutes?(m.timeEstimated?'About ':'')+m.totalMinutes+' min':null,m.cuisine,m.primaryProtein].filter(Boolean).map(tag=>'<span>'+esc(tag)+'</span>').join('')+'</p>';}
 function renderScore(){const report=P.varietyReport(state,catalog);$('variety-score').textContent=report.score===null?'—':report.score;$('score-summary').textContent=report.summary;$('score-notes').innerHTML=(report.notes.length?report.notes:['The selected dinners have useful contrast. No need to chase a perfect score.']).map(x=>'<li>'+esc(x)+'</li>').join('');$('score-coverage').textContent=report.coverage+' of 100 weighting points have usable data. Descriptors are culinary guides, not nutrition or dietary guarantees. Eating-out, custom meals and planned leftovers are not scored as new cookbook dinners.';}
 function renderMemory(){$('memory-list').innerHTML=Object.keys(state.feedback||{}).length?Object.entries(state.feedback).map(([id,f])=>{const r=catalog.find(r=>r.id===id);return '<div class="memory-row"><span>'+esc(r?.name||id)+(f.cookedOn?'<span class="note"> · Cooked '+esc(dateLabel(f.cookedOn))+'</span>':'')+'</span><select data-memory="'+esc(id)+'" aria-label="Cooking preference for '+esc(r?.name||id)+'">'+ratingOptions(id)+'</select></div>';}).join(''):'<p class="note">Rate a planned dinner or mark it cooked to start your cooking memory.</p>';}
 function previewReplacement(index,intent,seen=[]){const day=P.swap(context(),catalog,index,Math.random,intent,seen),r=catalog.find(r=>r.id===day.recipeId),draft={...state,days:P.clone(state.days)};draft.days[index]=day;pendingSwap={index,intent,day,seen:[...seen,day.recipeId]};$('replacement-title').textContent=weekday(state.week,index)+' · '+P.intents[intent];$('replacement-content').innerHTML='<img src="'+esc(r.image)+'" alt="'+esc(r.name)+'"><h4>'+esc(r.name)+'</h4>'+mealTags(r)+'<p class="note">'+esc(P.describe(r).timeNote)+'</p><a href="'+esc(r.file)+'" target="_blank" rel="noopener">Read recipe in a new tab</a><p class="note">'+esc(portionSummary(draft,index))+' Added side: '+esc(P.SIDES[day.side]?.name||'No added side')+'.</p><details><summary>Ingredients for '+P.portions(draft,index)+' portions</summary><ul>'+r.ingredients.filter(x=>state.optional||!x.optional).map(x=>'<li>'+esc(P.fmtItem(x,P.portions(draft,index)/r.baseServings))+'</li>').join('')+'</ul></details>';$('replacement-reason').textContent=P.varietyReport(state,catalog,draft.days).summary+'. Compare this idea with your week before deciding.';$('replacement-preview').hidden=false;$('replacement-title').focus();}
@@ -40,16 +40,16 @@ $('apply-replacement').onclick=()=>{if(!pendingSwap)return;const {index,day}=pen
 $('cancel-replacement').onclick=()=>{const index=pendingSwap?.index;pendingSwap=null;$('replacement-preview').hidden=true;document.querySelector('[data-action="swap"][data-i="'+index+'"]')?.focus();message('Replacement cancelled. Your plan and shopping list are unchanged.');};
 $('another-replacement').onclick=()=>run(()=>{if(pendingSwap)previewReplacement(pendingSwap.index,pendingSwap.intent,pendingSwap.seen);});
 $('memory-list').onchange=e=>{if(!e.target.dataset.memory)return;state=P.setFeedback(state,e.target.dataset.memory,e.target.value);save();redraw();message('Cooking preference updated.');};
-function renderMeals(){settings();renderCurryPrep();$('meals').innerHTML=state.days.map((d,i)=>{
+function renderMeals(){const expanded=new Set([...$('meals').querySelectorAll('.meal-edit[open]')].map(el=>Number(el.dataset.day)));settings();renderCurryPrep();$('meals').innerHTML=state.days.map((d,i)=>{
  const r=catalog.find(x=>x.id===d.recipeId);if(d.type==='recipe'){const side=P.sideFor(d,r);if(side!==d.side){d.side=side;d.sideAmount=null;}}const title=P.mealTitle(d,catalog,state.days),daydate=P.addDays(state.week,i);
- const image=d.type==='recipe'&&r?'<img class="thumb" src="'+esc(r.image+(r.image.includes('?')?'&':'?')+'v=whole-dish-2')+'" alt="'+esc(r.name)+' — AI-generated illustration" loading="lazy" decoding="async">':'<div class="thumb placeholder" aria-hidden="true">'+esc(d.type==='out'?'Out':d.type==='leftovers'?'Leftovers':d.type==='custom'?'Your meal':'Open')+'</div>';
- let copy='<div class="name">'+esc(title)+'</div>';
+ const image=d.type==='recipe'&&r?'<img class="thumb" src="'+esc(r.image)+'" alt="'+esc(r.name)+' — AI-generated illustration" loading="lazy" decoding="async">':'<div class="thumb placeholder" aria-hidden="true">'+esc(d.type==='out'?'Out':d.type==='leftovers'?'Leftovers':d.type==='custom'?'Your meal':'Open')+'</div>';
+ let copy='';
  if(d.type==='recipe'){
   copy+='<select aria-label="Recipe for '+weekday(state.week,i,'long')+'" data-i="'+i+'" data-action="recipe">'+recipeOptions(i)+'</select>';
   const servings=P.portions(state,i);copy+='<div class="meal-options"><label>Side <select data-action="side" data-i="'+i+'" aria-label="Side for '+weekday(state.week,i,'long')+'">'+P.sideOptions(r,d).map(([key,s])=>'<option value="'+key+'"'+(d.side===key?' selected':'')+'>'+s.name+'</option>').join('')+'</select></label>';
   if(d.side!=='none'){const s=P.SIDES[d.side];copy+='<label>'+s.unit+' per person <input type="number" min="0" max="2000" step="0.5" value="'+(d.sideAmount===null?s.amount:d.sideAmount)+'" data-action="side-amount" data-i="'+i+'" aria-label="Side amount per person for '+weekday(state.week,i,'long')+'"></label>';}
   if(d.side==='curry'||d.side==='microRice')copy+='<span class="note">Rice is bought in 250 g pouches'+(d.side==='curry'?'; plus one naan per person.':'.')+'</span>';copy+='</div>'+portionControl(d,i);
-  if(r)copy+='<a class="recipe-link" href="'+esc(r.file)+'">Open recipe</a>'+mealMemory(r)+mealTags(r);
+  if(r)copy+=mealMemory(r);
  }else if(d.type==='custom'){
   copy='<div class="print-only name">'+esc(title)+'</div><div class="custom"><label for="own-title-'+i+'">Meal name</label><input id="own-title-'+i+'" type="text" maxlength="200" placeholder="Homemade fajitas" value="'+esc(d.title)+'" data-action="title" data-i="'+i+'"><label for="own-ingredients-'+i+'">Ingredients for '+d.customBase+' people · one per line</label><textarea id="own-ingredients-'+i+'" data-action="ingredients" data-i="'+i+'" placeholder="1 chicken breast&#10;2 peppers&#10;4 tortillas">'+esc(d.ingredients)+'</textarea><div class="note">These quantities scale when you change people or add extra portions. No ingredients are added automatically.</div></div>'+portionControl(d,i);
  }else if(d.type==='out')copy+='<label class="note" for="out-title-'+i+'">Optional note</label><input id="out-title-'+i+'" type="text" maxlength="200" placeholder="Dinner out" value="'+esc(d.title)+'" data-action="title" data-i="'+i+'"><div class="note">Nothing added to shopping.</div>';
@@ -57,8 +57,41 @@ function renderMeals(){settings();renderCurryPrep();$('meals').innerHTML=state.d
  const sources=state.days.map((source,j)=>({source,j})).filter(({source,j})=>j<i&&source.type==='recipe'&&source.recipeId&&source.status!=='skipped');
  copy+='<select data-action="source" data-i="'+i+'" aria-label="Leftovers source for '+weekday(state.week,i,'long')+'"><option value="">Choose an earlier cooking day…</option>'+sources.map(({source,j})=>'<option value="'+j+'"'+(d.source===j?' selected':'')+'>'+weekday(state.week,j)+' — '+esc(P.mealTitle(source,catalog))+'</option>').join('')+'</select><div class="note">Extra portions are added to that cooking day. No second set of ingredients is added here.</div>';
  }else copy+='<div class="note">Leave open or choose a day type.</div>';
- const buttons=d.type==='recipe'?'<label class="replacement-intent">Fancy a change?<select id="swap-intent-'+i+'" aria-label="Replacement preference for '+weekday(state.week,i,'long')+'">'+Object.entries(P.intents).map(([k,v])=>'<option value="'+k+'">'+esc(v)+'</option>').join('')+'</select></label><div class="action-buttons"><button type="button" class="secondary keep" aria-label="Keep '+weekday(state.week,i,'long')+' meal" aria-pressed="'+d.locked+'" data-action="keep" data-i="'+i+'">'+(d.locked?'Kept':'Keep')+'</button><button type="button" class="secondary" data-action="swap" data-i="'+i+'"'+(d.locked?' disabled':'')+'>Swap</button></div>':'';
- return '<article class="meal'+(d.locked?' is-kept':'')+'"><div class="day"><strong>'+weekday(state.week,i)+'</strong><span>'+P.parseDate(daydate).toLocaleDateString('en-GB',{day:'numeric',month:'short'})+'</span></div>'+image+'<div>'+copy+'</div><div class="actions"><select data-action="type" data-i="'+i+'" aria-label="Day type for '+weekday(state.week,i,'long')+'">'+Object.entries(labels).map(([key,label])=>'<option value="'+key+'"'+(key===d.type?' selected':'')+'>'+label+'</option>').join('')+'</select>'+buttons+'</div></article>';
+ const typeControl = `
+  <label>Day type
+   <select data-action="type" data-i="${i}" aria-label="Day type for ${weekday(state.week,i,'long')}">
+    ${Object.entries(labels).map(([key,label]) => `<option value="${key}"${key===d.type?' selected':''}>${label}</option>`).join('')}
+   </select>
+  </label>`;
+ const intent = d.type==='recipe' ? `
+  <label class="replacement-intent">Swap preference
+   <select id="swap-intent-${i}" aria-label="Replacement preference for ${weekday(state.week,i,'long')}">
+    ${Object.entries(P.intents).map(([key,label]) => `<option value="${key}">${esc(label)}</option>`).join('')}
+   </select>
+  </label>` : '';
+ const actions = d.type==='recipe' ? `
+  <div class="action-buttons">
+   <button type="button" class="secondary keep" aria-label="Keep ${weekday(state.week,i,'long')} meal"
+    aria-pressed="${d.locked}" data-action="keep" data-i="${i}">${d.locked?'✓ Kept':'Keep'}</button>
+   <button type="button" class="secondary" data-action="swap" data-i="${i}"${d.locked?' disabled':''}>Swap</button>
+   ${r?`<a class="recipe-link" href="${esc(r.file)}">View recipe <span aria-hidden="true">→</span></a>`:''}
+  </div>` : '';
+ return `
+  <article class="meal${d.locked?' is-kept':''}">
+   <div class="day"><strong>${weekday(state.week,i)}</strong>
+    <span>${P.parseDate(daydate).toLocaleDateString('en-GB',{day:'numeric',month:'short'})}</span>
+   </div>
+   ${image}
+   <div class="meal-card-body">
+    <h3 class="name">${esc(title)}</h3>
+    ${r&&d.type==='recipe'?mealTags(r):''}
+    ${actions}
+    <details class="meal-edit" data-day="${i}"${expanded.has(i)||d.type!=='recipe'?' open':''}>
+     <summary>Edit meal &amp; portions<span class="sr-only"> for ${weekday(state.week,i,'long')}</span></summary>
+     <div class="meal-edit-content">${typeControl}${copy}${intent}</div>
+    </details>
+   </div>
+  </article>`;
  }).join('');}
 function renderShopping(){settings();renderCurryPrep();const rows=P.shopping(state,catalog),checks=rows.filter(r=>r.check).length;$('shopping-summary').textContent=(state.confirmed?'Confirmed':'Draft')+' week beginning '+dateLabel(state.week)+' · '+state.people+' people · '+rows.length+' shopping items';let html='';if(!state.confirmed)html+='<div class="notice">This is a draft list. Confirm your week before shopping.</div>';if(checks)html+='<div class="notice">'+checks+' item'+(checks===1?' needs':'s need')+' an amount or pack size checked. Vague cooking measures are not converted to invented gram weights.</div>';
 if(!rows.length)html+='<p class="empty">Add cookbook dinners or your own ingredients to build a list.</p>';
@@ -69,6 +102,7 @@ $('plain-toggle').onclick=()=>{plainOpen=!plainOpen;refreshPlainText();};$('sele
 $('copy-shopping').onclick=copyShopping;$('copy-list-quick').onclick=copyShopping;
 function renderHistory(){const records=state.history.slice().sort((a,b)=>b.week.localeCompare(a.week));$('history-list').innerHTML=records.length?records.map((w,index)=>'<details class="history-week panel"'+(index===0?' open':'')+'><summary>Week of '+dateLabel(w.week)+' · '+w.people+' people</summary>'+w.days.map((d,i)=>'<div class="history-row"><span class="history-day note">'+weekday(w.week,i)+'</span><span>'+esc(P.mealTitle(d,catalog,w.days))+(['recipe','custom'].includes(d.type)?'<span class="note" style="display:block">'+portionSummary(w,i)+'</span>':'')+'</span>'+(['recipe','custom','leftovers'].includes(d.type)?'<select aria-label="Cooking status for '+weekday(w.week,i)+' in week '+esc(w.week)+'" data-week="'+esc(w.week)+'" data-day="'+i+'">'+[['planned','Planned'],['cooked','Cooked'],['skipped','Skipped']].map(([key,label])=>'<option value="'+key+'"'+(d.status===key?' selected':'')+'>'+label+'</option>').join('')+'</select>':'<span class="note">'+esc(labels[d.type])+'</span>')+'</div>').join('')+'</details>').join(''):'<p class="empty">No confirmed weeks yet. Confirm a menu to start your history.</p>';}
 function redraw(){renderMeals();renderScore();renderMemory();if(tab==='shopping')renderShopping();if(tab==='history')renderHistory();}
+for(const link of document.querySelectorAll('[data-open-tab]'))link.onclick=()=>{show(link.dataset.openTab);$(link.dataset.openTab+'-tab').focus();};
 for(const button of document.querySelectorAll('[data-tab]')){button.onclick=()=>show(button.dataset.tab);button.onkeydown=e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const list=[...document.querySelectorAll('[data-tab]')],i=list.indexOf(button);const next=e.key==='Home'?0:e.key==='End'?list.length-1:(i+(e.key==='ArrowRight'?1:-1)+list.length)%list.length;show(list[next].dataset.tab);list[next].focus();};}
 $('weekend-fakeaway').onchange = () => { state.weekendFakeaway = $('weekend-fakeaway').checked; save(); };
 $('generate').onclick = () => {
@@ -94,6 +128,18 @@ $('include-optional').onchange=()=>{state.optional=$('include-optional').checked
 $('history-list').addEventListener('change',e=>{if(!e.target.dataset.week)return;const w=state.history.find(x=>x.week===e.target.dataset.week),i=Number(e.target.dataset.day);if(!w)return;w.days[i].status=e.target.value;if(w.week===state.week&&state.confirmed)state.days[i].status=e.target.value;save();settings();message(e.target.value==='skipped'?'Marked skipped. This meal no longer blocks a future suggestion.':'Cooking history updated.');});
 $('export-backup').onclick=()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='my-cookbook-planner-'+P.localDate(new Date())+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);message('Backup exported. Keep it somewhere safe.');};$('import-backup').onclick=()=>$('backup-file').click();$('backup-file').onchange=async()=>{try{const file=$('backup-file').files[0];if(!file)return;if(file.size>2000000)throw Error('Backup is too large. Choose a planner JSON backup under 2 MB.');const imported=P.validate(JSON.parse(await file.text()),catalog);if(!window.confirm('Replace this browser’s current plans and history with the imported backup? Export your existing plans first if you want to keep them.'))return;state=imported;save();redraw();message('Backup imported into this browser.');}catch(e){message(e.message,true);}finally{$('backup-file').value='';}};
 $('print-shopping').onclick=()=>{plainOpen=false,pendingDays=null;show('shopping');window.print();};$('print-menu').onclick=()=>{show('week');window.print();};
+// Keep the existing share control alongside the site tools in the footer.
+addEventListener('DOMContentLoaded', () => {
+ const share = document.querySelector('main > [data-share-recipe]');
+ const footer = document.querySelector('.privacy-footer');
+ if (share && footer) footer.append(share);
+});
+$('more-days').onclick=()=>{
+ const showing=$('meals').classList.toggle('all-days');
+ $('more-days').setAttribute('aria-expanded',String(showing));
+ $('more-days').textContent=showing?'Show first 3 days':'Show remaining 4 days';
+ if(showing) $('meals').children[3].querySelector('button,summary').focus();
+};
 redraw();show('week');
 const entry=new URLSearchParams(location.search).get('intent');if(['surprise','different'].includes(entry))$('generate').click();
 })();

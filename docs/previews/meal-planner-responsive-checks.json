@@ -1,0 +1,32 @@
+[
+  {
+    "width": 375,
+    "client": 360,
+    "scroll": 360,
+    "status": "375px · Fits the viewport · 7 calendar days"
+  },
+  {
+    "width": 390,
+    "client": 375,
+    "scroll": 375,
+    "status": "390px · Fits the viewport · 7 calendar days"
+  },
+  {
+    "width": 768,
+    "client": 768,
+    "scroll": 768,
+    "status": "768px · Fits the viewport · 7 calendar days"
+  },
+  {
+    "width": 1280,
+    "client": 1280,
+    "scroll": 1280,
+    "status": "1280px · Fits the viewport · 7 calendar days"
+  },
+  {
+    "width": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "status": "1440px · Fits the viewport · 7 calendar days"
+  }
+]
