@@ -128,6 +128,12 @@ $('include-optional').onchange=()=>{state.optional=$('include-optional').checked
 $('history-list').addEventListener('change',e=>{if(!e.target.dataset.week)return;const w=state.history.find(x=>x.week===e.target.dataset.week),i=Number(e.target.dataset.day);if(!w)return;w.days[i].status=e.target.value;if(w.week===state.week&&state.confirmed)state.days[i].status=e.target.value;save();settings();message(e.target.value==='skipped'?'Marked skipped. This meal no longer blocks a future suggestion.':'Cooking history updated.');});
 $('export-backup').onclick=()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='my-cookbook-planner-'+P.localDate(new Date())+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);message('Backup exported. Keep it somewhere safe.');};$('import-backup').onclick=()=>$('backup-file').click();$('backup-file').onchange=async()=>{try{const file=$('backup-file').files[0];if(!file)return;if(file.size>2000000)throw Error('Backup is too large. Choose a planner JSON backup under 2 MB.');const imported=P.validate(JSON.parse(await file.text()),catalog);if(!window.confirm('Replace this browser’s current plans and history with the imported backup? Export your existing plans first if you want to keep them.'))return;state=imported;save();redraw();message('Backup imported into this browser.');}catch(e){message(e.message,true);}finally{$('backup-file').value='';}};
 $('print-shopping').onclick=()=>{plainOpen=false,pendingDays=null;show('shopping');window.print();};$('print-menu').onclick=()=>{show('week');window.print();};
+// Keep the existing share control alongside the site tools in the footer.
+addEventListener('DOMContentLoaded', () => {
+ const share = document.querySelector('main > [data-share-recipe]');
+ const footer = document.querySelector('.privacy-footer');
+ if (share && footer) footer.append(share);
+});
 redraw();show('week');
 const entry=new URLSearchParams(location.search).get('intent');if(['surprise','different'].includes(entry))$('generate').click();
 })();
