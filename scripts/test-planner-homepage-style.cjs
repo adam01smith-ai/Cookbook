@@ -14,7 +14,7 @@ test('planner uses homepage branding and presentation-only styles',()=>{
   assert.match(html,/ADAM COOKS<span>REAL RECIPES FOR EVERYDAY COOKING<\/span>/);
   assert.match(html,/meal-planner\.html" aria-current="page"/);
   assert.match(html,/href="homepage\.css\?v=1"/);
-  assert.match(html,/href="meal-planner-theme\.css\?v=1"/);
+  assert.match(html,/href="meal-planner-theme\.css\?v=2"/);
   assert.match(html,/src="homepage\.js\?v=1"/);
   assert.match(style,/\.planner-page \.planner-intro-hero/);
   assert.match(style,/--forest:#0e351b/);

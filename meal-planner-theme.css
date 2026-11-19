@@ -1,253 +1,233 @@
-/* Adam Cooks meal planner visual alignment.
-   Presentation-only: planner state, scoring, dates, data and controls remain unchanged.
-   Keep this loaded after the legacy inline planner CSS and planner-2.css. */
-.planner-page{
+/* Meal planner presentation. Storage, recipe data and scoring stay in their existing modules. */
+.planner-page {
   --forest:#0e351b;
-  --accent:#17652b;
-  --bg:#faf6ee;
-  --paper:#fffdf8;
-  --ink:#202a20;
-  --muted:#596456;
-  --line:#e0dacd;
-  --soft:#eef2e8;
+  --accent:#17552e;
+  --bg:#f8f2e9;
+  --paper:#fffcf6;
+  --ink:#20271f;
+  --muted:#616657;
+  --line:#e1d8ca;
+  --soft:#eaf0e3;
   background:var(--bg);
   color:var(--ink);
-  font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 .planner-page .home-header{background:var(--forest);color:#fff;border:0}
-.planner-page .home-header .home-logo{color:#fff}
-.planner-page .home-header nav a{color:#fff;border:0}
-.planner-page .home-header nav a[aria-current="page"]{
-  text-decoration:underline;
-  text-decoration-thickness:2px;
-  text-underline-offset:10px;
+.planner-page .home-header .home-nav-wrap{min-height:76px;padding:13px 4%;gap:24px}
+.planner-page .home-header .home-logo{font-size:clamp(27px,2.8vw,40px);color:#fff;text-align:left}
+.planner-page .home-logo span{display:none}
+.planner-page .home-header nav{gap:clamp(16px,2.4vw,36px)}
+.planner-page .home-header nav a{font-size:15px;color:#fff;border:0}
+.planner-page .home-header nav a[aria-current="page"]{text-decoration:underline;text-decoration-color:#d9b574;text-decoration-thickness:3px;text-underline-offset:13px}
+.planner-page .home-header nav a[data-home-search]{border:0;padding-left:8px}
+.planner-page .home-header nav a:has(svg)>span{position:static;clip-path:none;width:auto;height:auto;overflow:visible;margin-left:8px}
+.planner-page .home-header nav svg{width:21px;height:21px}
+.planner-page main{max-width:1536px;margin:auto;padding:22px 2.6% 34px}
+.planner-page h1,.planner-page h2,.planner-page h3{font-family:Georgia,"Times New Roman",serif;font-weight:700}
+.planner-page .planner-intro-hero{display:flex;align-items:center;position:relative;isolation:isolate;min-height:240px;padding:28px 3.4%;margin:0 0 16px;overflow:hidden;border-radius:16px;color:#fff;background:#332b1f}
+.planner-page .planner-intro-hero::before{content:"";position:absolute;inset:0;z-index:-2;background:url("images/jack-daniels-glazed-chicken.webp") 79% 46%/cover no-repeat}
+.planner-page .planner-intro-hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#241e14f5 0%,#241e14eb 27%,#241e1499 49%,#241e1420 74%)}
+.planner-page .planner-intro-copy{max-width:610px}
+.planner-page .planner-kicker{margin:0 0 8px;color:#efcf91;font-size:11px;font-weight:750;letter-spacing:.17em;text-transform:uppercase}
+.planner-page .planner-intro-hero h1{font-size:clamp(36px,3.55vw,54px);line-height:1.02;letter-spacing:-.035em;margin:0 0 14px;color:#fff;max-width:560px}
+.planner-page .planner-intro-hero .intro{font-size:15px;line-height:1.5;max-width:560px;color:#fff8ee;margin:0}
+.planner-page .tabs{display:flex;gap:9px;margin:16px 0 14px;padding:0;flex-wrap:wrap}
+.planner-page .tabs button{min-width:165px;min-height:44px;padding:9px 22px;border:1px solid var(--line);border-radius:9px;background:transparent;color:var(--ink);font-weight:700;box-shadow:0 1px 2px #473a1710}
+.planner-page .tabs button[aria-selected="true"]{background:var(--forest);border-color:var(--forest);color:#fff}
+.planner-page .planner-settings{border:1px solid var(--line);border-radius:13px;padding:20px 28px 15px;background:#fffaf344}
+.planner-page .planner-settings h2{font-size:23px;margin:0 0 2px;color:#20271f}
+.planner-page .planner-settings>p{margin:0 0 12px;font-size:14px}
+.planner-page .settings{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding:0;background:none;border:0;border-radius:0}
+.planner-page .field{min-width:0}
+.planner-page .field label{display:block;font-size:13px;font-weight:650;margin:0 0 5px}
+.planner-page .field label strong{float:right;font-weight:500}
+.planner-page input[type=date],.planner-page input[type=text],.planner-page input[type=number],.planner-page select,.planner-page textarea{border:1px solid #cfc9bc;border-radius:7px;background:var(--paper);color:var(--ink);padding:8px 10px;min-width:0;max-width:100%;font-size:14px}
+.planner-page .field input[type=range]{width:100%;min-height:44px;margin:0;accent-color:var(--forest)}
+.planner-page #week-start-help{display:block;font-size:11px;margin-top:4px}
+.planner-page .planner-preferences{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 24px;margin:14px 0 10px}
+.planner-page .planner-preferences>label{min-width:0;min-height:46px;border:1px solid var(--line);padding:8px 12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-radius:8px;font-size:13px;margin:0}
+.planner-page .planner-preferences input[type=checkbox]{appearance:none;position:relative;order:2;margin:0 0 0 auto;width:36px;height:22px;flex:0 0 36px;background:#b8b5ab;border:1px solid #b8b5ab;border-radius:30px;cursor:pointer}
+.planner-page .planner-preferences input[type=checkbox]::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;background:#fff;border-radius:50%;box-shadow:0 1px 3px #0003;transition:transform .15s}
+.planner-page .planner-preferences input:checked{background:var(--accent);border-color:var(--accent)}
+.planner-page .planner-preferences input:checked::after{transform:translateX(14px)}
+.planner-page .planner-preferences .note{flex-basis:100%;order:3;font-size:10px}
+.planner-page .planner-preferences>label:last-child{display:grid;gap:3px}
+.planner-page .planner-preferences select{width:100%;font-size:13px;min-height:36px;padding:4px 6px}
+.planner-page .planner-settings .planner-settings-help{font-size:11px;line-height:1.45;margin:10px 0 0;color:var(--muted);max-width:1100px}
+.planner-page .planner-week-heading{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(330px,1fr);gap:22px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line);margin:0 0 18px}
+.planner-page .toolbar{margin:0;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.planner-page #week-label{font:700 clamp(21px,2vw,29px)/1.2 Georgia,serif;color:var(--ink)}
+.planner-page #eligible-count{font-size:11px;margin-top:6px}
+.planner-page .primary,.planner-page #use-variety{background:var(--forest);border:1px solid var(--forest);color:white;font-weight:650;border-radius:8px;padding:10px 17px;min-height:44px}
+.planner-page .primary:hover,.planner-page #use-variety:hover{background:#1b5632}
+.planner-page #generate{white-space:nowrap}
+.planner-page .secondary{background:var(--paper);border:1px solid #c1c5b5;border-radius:7px;color:var(--forest);font-weight:600}
+.planner-page .secondary:hover{background:#eef1e8}
+.planner-page .planner-score{display:flex;align-items:center;gap:18px;margin:0;padding:14px 20px;background:#eaeada;border:0;border-radius:12px}
+.planner-page .score-number{font:700 38px/1 Georgia,serif;color:var(--forest);min-width:105px}
+.planner-page .score-number small{font:600 10px/1.4 system-ui;letter-spacing:.08em;text-transform:uppercase;margin-top:5px}
+.planner-page .score-copy{font-size:12px;min-width:0;border-left:1px solid #c9ccb7;padding-left:18px}
+.planner-page .score-copy strong{font-weight:600}
+.planner-page .score-copy>p{font-size:10px;margin:3px 0}
+.planner-page .score-copy details{font-size:11px}
+.planner-page .score-copy details summary{cursor:pointer;padding:5px 0}
+.planner-page .planner-week-layout{display:grid;grid-template-columns:minmax(0,3fr) minmax(270px,1.2fr);gap:22px;align-items:start}
+.planner-page .meals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start}
+.planner-page .meal{position:relative;display:flex;flex-direction:column;gap:0;padding:0;border:1px solid var(--line);border-radius:11px;overflow:hidden;box-shadow:0 2px 3px #40351515;background:var(--paper);min-width:0}
+.planner-page .meal.is-kept{border:1px solid #43824c;box-shadow:0 0 0 1px #43824c}
+.planner-page .meal>.day{position:absolute;z-index:1;left:10px;top:10px;background:#fffaf4f2;padding:4px 9px;border-radius:6px;display:flex;align-items:center;gap:7px;color:#23281e;font-size:10px}
+.planner-page .meal .day strong{font:750 12px system-ui;text-transform:uppercase;color:#23281e}
+.planner-page .meal .day span{font-size:10px;color:#53584d}
+.planner-page .meal>.thumb{display:block;width:100%;height:auto;aspect-ratio:1.65;object-fit:cover!important;object-view-box:none;clip-path:none;border-radius:0;background:#e9e6db}
+.planner-page .meal>.placeholder{display:grid;height:auto;aspect-ratio:1.65;place-items:center;font:italic 22px Georgia;color:#5b6655;background:linear-gradient(135deg,#e8eddf,#f6f1e6)}
+.planner-page .meal .meal-card-body{padding:12px;min-width:0;width:100%;grid-column:auto}
+.planner-page .meal .name{font:700 clamp(18px,1.35vw,21px)/1.15 Georgia,serif;margin:0 0 8px;overflow-wrap:normal;color:#20271f}
+.planner-page .meal-tags{font-size:10px;color:#4d5a45;margin:0 0 12px;line-height:1.5}
+.planner-page .action-buttons{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:0 0 8px}
+.planner-page .action-buttons button{padding:5px 9px;min-height:44px;font-size:12px;flex:0 1 auto}
+.planner-page .action-buttons .keep[aria-pressed=true]{color:white;background:var(--forest);border-color:var(--forest)}
+.planner-page .recipe-link{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:5px;color:var(--ink);font-size:11px;text-decoration:none;margin-left:auto}
+.planner-page .recipe-link:hover{text-decoration:underline}
+.planner-page .meal-edit{border-top:1px solid var(--line);font-size:12px;min-width:0}
+.planner-page .meal-edit>summary{cursor:pointer;min-height:44px;padding:12px 0;color:#516547;font-weight:600}
+.planner-page .meal-edit-content{padding:0 0 8px;min-width:0}
+.planner-page .meal-edit-content>label{display:block;margin:6px 0 10px;font-size:12px}
+.planner-page .meal-edit-content select,.planner-page .meal-edit-content input{font-size:13px}
+.planner-page .meal-options{display:flex;gap:8px;align-items:start;margin:10px 0;flex-wrap:wrap}
+.planner-page .meal-options label{display:block;font-size:12px;min-width:0}
+.planner-page .meal-options input{width:90px}
+.planner-page .portion-summary{padding:8px 0;border-bottom:1px solid var(--line)}
+.planner-page .meal-feedback summary{min-height:44px}
+.planner-page .planner-help{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#ebe7da;box-shadow:0 2px 3px #40351512}
+.planner-page .planner-help-copy{padding:24px 23px 22px}
+.planner-page .planner-help h2{font-size:27px;line-height:1.05;margin:0 0 12px;max-width:240px}
+.planner-page .planner-help p{font-size:13px;margin:0 0 18px}
+.planner-page .planner-help a{display:inline-flex;align-items:center;gap:15px;background:var(--forest);color:#fff;border-radius:7px;min-height:44px;padding:10px 13px;font-size:12px;font-weight:650;text-decoration:none}
+.planner-page .planner-portrait{position:relative;height:250px;overflow:hidden}
+.planner-page .planner-portrait img{position:absolute;width:205%;height:auto;max-width:none;left:-5%;top:-12%;border-radius:0;clip-path:none}
+.planner-page .panel{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:22px}
+.planner-page .replacement-preview{border:2px solid #52824f}
+.planner-page .replacement-preview h3,.planner-page #variety-title{color:var(--forest)}
+.planner-page .notice{background:#edf0e4;color:#344b30;border:1px solid #d3dcc6}
+.planner-page #suggest-feedback:empty{display:none}
+.planner-page .savebar{margin-top:22px;padding:20px 0 0}
+.planner-page .savebar .note{max-width:600px}
+.planner-page .planner-shortcuts{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:24px}
+.planner-page .planner-shortcuts button{display:flex;align-items:center;text-align:left;gap:18px;min-width:0;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:14px 22px;box-shadow:0 2px 3px #40351510}
+.planner-page .planner-shortcuts button>span:first-child{font:34px Georgia;color:var(--forest)}
+.planner-page .planner-shortcuts strong{display:block;font:700 22px Georgia,serif}
+.planner-page .planner-shortcuts small{display:block;font-size:12px;margin-top:3px}
+.planner-page .planner-shortcuts button>span:last-child{margin-left:auto;font-size:22px}
+.planner-page .shopping-header{padding:12px 0}
+.planner-page .shopping-header h2,.planner-page #history-panel>h2{font-size:34px}
+.planner-page .shopping-group{padding:20px 24px;background:var(--paper);border:1px solid var(--line);border-radius:12px}
+.planner-page .shopping-group h3{font-size:23px}
+.planner-page .shopping-item:last-child{border-bottom:0}
+.planner-page .shopping-item input{accent-color:var(--forest)}
+.planner-page .history-week summary{font-size:24px;font-weight:700;color:var(--forest)}
+.planner-page .support-note{background:#edf0e4;border-color:var(--line)}
+.planner-page .privacy-footer{background:var(--forest);color:#f6f2e5;border:0;margin:0;padding:24px 4%;gap:18px}
+.planner-page .privacy-footer a,.planner-page .privacy-footer button{color:#f6f2e5}
+.planner-page .privacy-footer .recipe-share-button{border-color:#f6f2e588;background:transparent}
+.planner-page main>footer{font-size:11px;color:var(--muted)}
+.planner-page :is(a,button,input,select,textarea,summary):focus-visible{outline:3px solid #be8a29;outline-offset:3px}
+.planner-page .sr-only{position:absolute;clip-path:inset(50%);width:1px;height:1px;overflow:hidden;white-space:nowrap}
+@media(max-width:1200px){
+ .planner-page .planner-week-layout{grid-template-columns:minmax(0,1fr) 270px;gap:18px}
+ .planner-page .meals{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .planner-page .planner-week-heading{grid-template-columns:minmax(0,1fr);gap:14px}
+ .planner-page .planner-score{max-width:none}
+ .planner-page .home-header nav{gap:17px}
+ .planner-page .home-header nav a{font-size:13px}
+ .planner-page .planner-preferences,.planner-page .settings{gap:14px}
 }
-.planner-page .home-header nav a[data-home-search]{color:#fff}
-.planner-page main{max-width:1440px;margin:auto;padding:34px 4.2% 56px}
-.planner-page h1,.planner-page h2,.planner-page h3,
-.planner-page .day strong,.planner-page .name{font-family:Georgia,"Times New Roman",serif}
-.planner-page .planner-intro-hero{
-  display:flex;
-  align-items:center;
-  isolation:isolate;
-  position:relative;
-  min-height:248px;
-  padding:38px clamp(24px,4vw,54px);
-  margin:0 0 25px;
-  overflow:hidden;
-  border-radius:23px;
-  background:#263520;
-  color:#fff;
-}
-.planner-page .planner-intro-hero:before{
-  content:"";
-  position:absolute;
-  z-index:-2;
-  inset:0;
-  background:url("images/karahi.webp") center 45%/cover no-repeat;
-}
-.planner-page .planner-intro-hero:after{
-  content:"";
-  position:absolute;
-  z-index:-1;
-  inset:0;
-  background:linear-gradient(90deg,#142a1cef 0%,#183020e8 38%,#183020a6 66%,#18302036 100%);
-}
-.planner-page .planner-intro-copy{max-width:780px}
-.planner-page .planner-kicker{
-  margin:0 0 12px;
-  color:#dcebd8;
-  font-size:12px;
-  font-weight:750;
-  letter-spacing:.17em;
-  text-transform:uppercase;
-}
-.planner-page .planner-intro-hero h1{
-  margin:0 0 13px;
-  font:700 clamp(36px,4.4vw,58px)/1.1 Georgia,"Times New Roman",serif;
-  letter-spacing:-.035em;
-  color:#fff;
-}
-.planner-page .planner-intro-hero .intro{
-  max-width:690px;
-  margin:0;
-  font-size:clamp(15px,1.35vw,18px);
-  line-height:1.58;
-  color:#f0f2e9;
-}
-.planner-page .tabs{
-  display:flex;
-  gap:11px;
-  margin:24px 0;
-  padding-bottom:5px;
-  flex-wrap:wrap;
-}
-.planner-page .tabs button{
-  min-height:46px;
-  padding:9px 22px;
-  border:1px solid #d0d7cc;
-  border-radius:999px;
-  background:var(--paper);
-  color:var(--forest);
-  font-weight:650;
-  box-shadow:0 2px 6px #20332307;
-}
-.planner-page .tabs button[aria-selected="true"]{
-  color:#fff;
-  background:var(--forest);
-  border-color:var(--forest);
-}
-.planner-page .tabs button:hover:not([aria-selected="true"]){background:#edf1e8}
-.planner-page .settings,.planner-page .panel,.planner-page .meal{
-  background:var(--paper);
-  border:1px solid var(--line);
-  box-shadow:0 5px 18px #392f170a;
-}
-.planner-page .settings{border-radius:18px;padding:25px;gap:24px}
-.planner-page .field label{font-size:14px;font-weight:650;color:var(--forest)}
-.planner-page .field input[type=date],
-.planner-page select,.planner-page input[type=text],
-.planner-page input[type=number],.planner-page textarea{
-  border:1px solid #cbd6cb;
-  border-radius:10px;
-  background:#fff;
-  color:var(--ink);
-}
-.planner-page input[type=range],.planner-page input[type=checkbox]{accent-color:#17652b}
-.planner-page .check,.planner-page .planner-variety-controls{color:#394b3b}
-.planner-page .check{margin:17px 0}
-.planner-page .note,.planner-page .intro{color:var(--muted)}
-.planner-page .planner-intro-hero .intro{color:#f0f2e9}
-.planner-page .toolbar{
-  margin:25px 0 10px;
-  padding:0 2px;
-  align-items:center;
-}
-.planner-page #week-label{
-  font:700 clamp(22px,2.4vw,29px)/1.2 Georgia,"Times New Roman",serif;
-  color:var(--forest);
-}
-.planner-page .primary,.planner-page #use-variety{
-  background:#17652b;
-  border:1px solid #17652b;
-  color:#fff;
-  font-weight:700;
-  border-radius:11px;
-  padding:11px 21px;
-  min-height:48px;
-}
-.planner-page .primary:hover,.planner-page #use-variety:hover{background:#104b22}
-.planner-page .secondary,.planner-page .actions button,.planner-page .meal-feedback button{
-  background:#fffdf8;
-  border:1px solid #bfcdbf;
-  border-radius:10px;
-  color:var(--forest);
-  font-weight:600;
-}
-.planner-page .secondary:hover,.planner-page .actions button:hover,.planner-page .meal-feedback button:hover{background:#edf1e8}
-.planner-page .plain{color:var(--accent)}
-.planner-page .meal{
-  padding:clamp(15px,1.7vw,24px);
-  border-radius:17px;
-  gap:clamp(11px,1.4vw,19px);
-  transition:box-shadow .15s ease,border-color .15s ease;
-}
-.planner-page .meal:hover{border-color:#c2d1c1;box-shadow:0 8px 25px #392f1712}
-.planner-page .meal.is-kept{border-left:4px solid #17652b}
-.planner-page .meal .thumb{
-  width:83px;
-  height:77px;
-  object-fit:cover!important;
-  border-radius:11px!important;
-  clip-path:none!important;
-}
-.planner-page .day strong{font-size:25px;font-weight:700;color:var(--forest)}
-.planner-page .day span{color:var(--muted)}
-.planner-page .meal .name{font-size:clamp(20px,2vw,27px);font-weight:700;line-height:1.2}
-.planner-page .meal .recipe-link{color:#17652b;font-weight:700}
-.planner-page .meal .keep[aria-pressed="true"]{background:#e3efdc;color:var(--forest);border-color:#5a9161}
-.planner-page .meal-tags{color:#426345}
-.planner-page .panel{border-radius:17px;padding:clamp(17px,2.1vw,29px)}
-.planner-page .panel h2{color:var(--forest);font-size:clamp(26px,3vw,38px);font-weight:700}
-.planner-page .panel h3{color:var(--forest);font-weight:700}
-.planner-page .planner-score{
-  background:#edf1e7;
-  border:1px solid #d4decb;
-  border-radius:18px;
-  padding:24px;
-}
-.planner-page .score-number{color:#17652b}
-.planner-page .score-copy strong{color:var(--forest)}
-.planner-page .notice{background:#e8f1e5;color:#26492d;border:1px solid #d3e1d0}
-.planner-page .replacement-preview{border:2px solid #448257}
-.planner-page .history-week summary{font-weight:700;color:var(--forest)}
-.planner-page .shopping-item{border-color:var(--line)}
-.planner-page .support-note{
-  background:#edf1e7;
-  border:1px solid #d5dfd1;
-  color:#213a28;
-  border-radius:16px;
-  padding:18px 22px;
-}
-.planner-page .support-note a{color:#17652b}
-.planner-page main>footer{color:var(--muted)}
-.planner-page .privacy-footer{
-  background:#eee9df;
-  padding:28px 4%;
-  border:0;
-  color:#3d5144;
-}
-.planner-page a:focus-visible,.planner-page button:focus-visible,
-.planner-page input:focus-visible,.planner-page select:focus-visible{
-  outline:3px solid #d79323;
-  outline-offset:3px;
-}
-@media(max-width:1000px){
-  .planner-page .home-header nav{gap:clamp(9px,1.7vw,16px)}
-  .planner-page .home-header nav a{font-size:clamp(13px,1.6vw,15px)}
-}
-@media(max-width:850px){
-  .planner-page .meal .thumb{width:67px;height:67px}
-  .planner-page .settings{grid-template-columns:1fr 1fr}
+@media(max-width:900px){
+ .planner-page .home-header nav{gap:12px}
+ .planner-page .home-header nav a:has(svg)>span{position:absolute;clip-path:inset(50%);width:1px;height:1px;overflow:hidden}
+ .planner-page .settings{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .planner-page .planner-preferences{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .planner-page .planner-week-layout{grid-template-columns:minmax(0,1fr)}
+ .planner-page .meals{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .planner-page .planner-help{display:grid;grid-template-columns:1fr 1fr}
+ .planner-page .planner-portrait{height:280px}
+ .planner-page .planner-portrait img{width:170%;left:0;top:-10%}
 }
 @media(max-width:767px){
-  .planner-page main{padding:20px 5% 42px}
-  .planner-page .home-header nav a{font-size:15px}
-  .planner-page .planner-intro-hero{
-    min-height:225px;
-    padding:28px 23px;
-    border-radius:16px;
-  }
-  .planner-page .planner-intro-hero:after{
-    background:linear-gradient(90deg,#142a1cf5 0%,#142a1cda 74%,#142a1c84 100%);
-  }
-  .planner-page .planner-intro-hero h1{font-size:clamp(32px,7vw,44px)}
-  .planner-page .tabs{gap:8px;margin:19px 0}
-  .planner-page .tabs button{padding:9px 14px;font-size:14px}
-  .planner-page .settings{padding:17px;gap:16px}
-  .planner-page .meal{box-shadow:0 3px 12px #392f1709}
-  .planner-page .meal .name{font-size:20px}
-  .planner-page .planner-score{padding:17px}
-  .planner-page .privacy-footer{padding:25px 5%}
+ .planner-page main{padding:16px 4% 24px}
+ .planner-page .home-header .home-nav-wrap{min-height:72px;padding:12px 5%}
+ .planner-page .home-header nav a{font-size:15px;padding:7px 0}
+ .planner-page .home-header nav a:has(svg)>span{position:static;clip-path:none;width:auto;height:auto;overflow:visible}
+ .planner-page .home-header nav a[aria-current="page"]{text-underline-offset:5px}
+ .planner-page .home-header nav{gap:0}
+ .planner-page .planner-intro-hero{min-height:270px;padding:25px 22px;border-radius:12px}
+ .planner-page .planner-intro-hero::before{background-position:65% center}
+ .planner-page .planner-intro-hero::after{background:linear-gradient(90deg,#241e14ed,#241e14a6)}
+ .planner-page .planner-intro-hero h1{font-size:39px;max-width:360px}
+ .planner-page .planner-intro-hero .intro{font-size:14px;max-width:380px}
+ .planner-page .tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+ .planner-page .tabs button{min-width:0;min-height:46px;font-size:13px;padding:8px 4px}
+ .planner-page .planner-settings{padding:18px}
+ .planner-page .planner-settings h2{font-size:23px}
+ .planner-page .planner-settings>p{font-size:13px}
+ .planner-page .meals{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+ .planner-page .meal .meal-card-body{padding:12px}
+ .planner-page .meal .name{font-size:21px}
+ .planner-page .meal .recipe-link{font-size:12px}
+ .planner-page .planner-shortcuts{grid-template-columns:1fr;gap:12px}
+ .planner-page .planner-help h2{font-size:27px}
+ .planner-page .planner-shortcuts button{padding:14px 18px}
+ .planner-page .score-copy>p{font-size:11px}
+ .planner-page .planner-help-copy{padding:22px}
+ .planner-page .planner-portrait{height:270px}
+ .planner-page .planner-portrait img{width:240%;left:-10%;top:-5%}
 }
 @media(max-width:540px){
-  .planner-page .settings{grid-template-columns:1fr}
-  .planner-page .meal .thumb{width:50px;height:57px}
-  .planner-page .meal{padding:13px}
-  .planner-page .actions button{min-height:44px}
-  .planner-page .tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
-  .planner-page .tabs button{padding:9px 5px}
+ .planner-page .settings{grid-template-columns:minmax(0,1fr);gap:12px}
+ .planner-page .planner-preferences{grid-template-columns:minmax(0,1fr);gap:9px}
+ .planner-page .planner-preferences>label:last-child{grid-template-columns:1fr 1.2fr;align-items:center}
+ .planner-page .planner-preferences .note{font-size:11px}
+ .planner-page .planner-preferences select{min-height:44px}
+ .planner-page .planner-week-heading{padding-top:23px}
+ .planner-page .toolbar{display:grid;grid-template-columns:1fr;gap:14px}
+ .planner-page #week-label{font-size:26px}
+ .planner-page #generate{width:100%}
+ .planner-page .planner-score{padding:16px;gap:14px;align-items:flex-start}
+ .planner-page .score-number{font-size:36px;min-width:85px}
+ .planner-page .score-copy{padding-left:14px}
+ .planner-page .meals{grid-template-columns:minmax(0,1fr);gap:18px}
+ .planner-page .meal>.thumb{aspect-ratio:1.65}
+ .planner-page .meal .meal-card-body{padding:15px}
+ .planner-page .meal>.day{left:12px;top:12px;padding:6px 10px}
+ .planner-page .meal .day strong{font-size:13px}
+ .planner-page .meal .day span{font-size:12px}
+ .planner-page .meal .action-buttons button{font-size:14px;padding:8px 17px}
+ .planner-page .meal-tags{font-size:12px}
+ .planner-page .meal-edit-content select,.planner-page .meal-edit-content input,.planner-page select,.planner-page input[type=date],.planner-page textarea{font-size:16px}
+ .planner-page .meal-options{flex-direction:row}
+ .planner-page .meal .recipe-link{font-size:13px}
+ .planner-page .planner-help{grid-template-columns:1fr}
+ .planner-page .planner-help-copy{padding:24px}
+ .planner-page .planner-help h2{max-width:270px}
+ .planner-page .planner-portrait{height:250px}
+ .planner-page .planner-portrait img{width:170%;left:0;top:-22%}
+ .planner-page .planner-shortcuts strong{font-size:22px}
+ .planner-page .history-row{grid-template-columns:minmax(0,1fr) 120px}
+ .planner-page .shopping-group{padding:18px}
+ .planner-page .savebar>.primary{width:100%}
 }
-@media(prefers-reduced-motion:reduce){
-  .planner-page .meal{transition:none}
-}
+@media(prefers-reduced-motion:reduce){.planner-page .planner-preferences input::after{transition:none}}
 @media print{
-  .planner-page{background:#fff;color:#000}
-  .planner-page .home-header,.planner-page .planner-kicker{display:none!important}
-  .planner-page main{max-width:none;padding:0}
-  .planner-page .planner-intro-hero{min-height:0;display:block;padding:0;margin:0 0 14px;background:none;border:0;box-shadow:none}
-  .planner-page .planner-intro-hero:before,.planner-page .planner-intro-hero:after{display:none}
-  .planner-page .planner-intro-hero h1{font-size:26pt;color:#000}
-  .planner-page .planner-intro-hero .intro{display:none}
-  .planner-page .meal,.planner-page .panel{background:#fff;border-radius:0;box-shadow:none}
+ .planner-page{background:#fff;color:#000}
+ .planner-page .home-header,.planner-page .planner-settings,.planner-page .planner-score,.planner-page .planner-help,.planner-page .meal-edit{display:none!important}
+ .planner-page main{max-width:none;padding:0}
+ .planner-page .planner-intro-hero{min-height:0;padding:0;margin:0 0 14px;background:none;display:block}
+ .planner-page .planner-intro-hero::before,.planner-page .planner-intro-hero::after,.planner-page .planner-kicker,.planner-page .planner-intro-hero .intro{display:none}
+ .planner-page .planner-intro-hero h1{font-size:24pt;color:#000;max-width:none}
+ .planner-page .planner-week-heading,.planner-page .planner-week-layout,.planner-page .meals{display:block;border:0;margin:0;padding:0}
+ .planner-page .meal{display:block;border:0;border-bottom:1px solid #ccc;border-radius:0;box-shadow:none;break-inside:avoid;padding:12px 0}
+ .planner-page .meal>.day{position:static;display:block;padding:0;background:none}
+ .planner-page .meal>.thumb,.planner-page .meal .action-buttons{display:none!important}
+ .planner-page .meal .meal-card-body{padding:5px 0}
+ .planner-page .meal .name{font-size:16pt}
+ .planner-page .shopping-group{padding:0;background:none;border:0}
 }
