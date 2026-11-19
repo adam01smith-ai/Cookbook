@@ -20,7 +20,7 @@ function measure(){
  pending=false;
  const page=frame.contentDocument,view=frame.contentWindow;
  if(!page?.body)return;
- frame.height=Math.ceil(page.documentElement.scrollHeight);
+ frame.height=Math.ceil(page.body.getBoundingClientRect().height);
  const overflow=page.documentElement.scrollWidth>view.innerWidth;
  result.textContent=view.innerWidth+'px · '+(overflow?'Horizontal overflow detected':'Fits the viewport')+' · '+page.querySelectorAll('.meal').length+' calendar days';
 }
@@ -31,7 +31,7 @@ frame.addEventListener('load',()=>{
  resize();
  new MutationObserver(schedule).observe(frame.contentDocument.body,{attributes:true,subtree:true,childList:true,characterData:true});
  frame.contentDocument.fonts.ready.then(schedule);
- for(const image of frame.contentDocument.images)image.addEventListener('load',schedule);
+ for(const image of frame.contentDocument.images){image.loading='eager';image.addEventListener('load',schedule);}
 });
 resize();
 </script>

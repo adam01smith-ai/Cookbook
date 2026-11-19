@@ -55,3 +55,32 @@ for(const width of [375,390,768,1280,1440]){
     w.close();
   });
 }
+
+test('photographic cards retain editing, portions, feedback and accessible tab shortcuts',()=>{
+  const dom=new JSDOM(html,{url:'https://www.adamcooks.co.uk/meal-planner.html',runScripts:'outside-only'});
+  const w=dom.window,d=w.document;
+  w.CookbookPrivacy={allowed:()=>false,storage:{get:()=>null}};
+  for(const file of ['recipe-data.js','planner-metadata.js','planner-intelligence.js','planner-core.js','planner-app.js']){
+    w.eval(fs.readFileSync(path.join(root,file),'utf8'));
+  }
+  assert.equal(d.querySelectorAll('.meal').length,7);
+  const edit=d.querySelector('.meal-edit');
+  edit.open=true;
+  const portions=edit.querySelector('[data-action="extra-portions"]');
+  portions.value='3';
+  portions.dispatchEvent(new w.Event('change',{bubbles:true}));
+  assert(d.querySelector('.meal-edit').open,'editing stays expanded after a change');
+  assert.match(d.querySelector('.portion-summary').textContent,/5 portions/);
+  assert(d.querySelector('.meal-edit [data-action="rating"]'));
+  assert(d.querySelector('.meal-edit [data-action="side"]'));
+  assert(d.querySelector('.meal-edit [data-action="type"]'));
+  d.querySelector('[data-open-tab="shopping"]').click();
+  assert.equal(d.querySelector('#shopping-panel').hidden,false);
+  assert.equal(d.activeElement,d.querySelector('#shopping-tab'));
+  d.querySelector('[data-open-tab="history"]').click();
+  assert.equal(d.querySelector('#history-panel').hidden,false);
+  assert.equal(d.activeElement,d.querySelector('#history-tab'));
+  assert.equal(d.querySelector('.planner-help a').getAttribute('href'),'how-to-use.html#plan');
+  assert.equal(d.querySelector('.planner-portrait img').getAttribute('src'),'images/adam-planner-support.jpg');
+  w.close();
+});
