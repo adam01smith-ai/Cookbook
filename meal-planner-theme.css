@@ -98,13 +98,9 @@
 .planner-page .meal-options input{width:90px}
 .planner-page .portion-summary{padding:8px 0;border-bottom:1px solid var(--line)}
 .planner-page .meal-feedback summary{min-height:44px}
-.planner-page .planner-help{display:grid;grid-template-columns:1.1fr 1fr;min-height:300px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#ebe7da;box-shadow:0 2px 3px #40351512}
-.planner-page .planner-help-copy{position:relative;z-index:1;padding:23px 17px 21px}
 .planner-page .planner-help h2{font-size:25px;line-height:1.05;margin:0 0 12px;max-width:240px}
 .planner-page .planner-help p{font-size:12px;margin:0 0 18px}
 .planner-page .planner-help a{display:inline-flex;align-items:center;gap:15px;background:var(--forest);color:#fff;border-radius:7px;min-height:44px;padding:10px 11px;font-size:11px;font-weight:650;text-decoration:none}
-.planner-page .planner-portrait{position:relative;height:100%;min-height:300px;overflow:hidden}
-.planner-page .planner-portrait img{position:absolute;width:400%;height:auto;max-width:none;left:-38%;top:-22px;border-radius:0;clip-path:none}
 .planner-page .panel{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:22px}
 .planner-page .replacement-preview{border:2px solid #52824f}
 .planner-page .replacement-preview h3,.planner-page #variety-title{color:var(--forest)}
@@ -148,9 +144,6 @@
  .planner-page .planner-preferences{grid-template-columns:repeat(2,minmax(0,1fr))}
  .planner-page .planner-week-layout{grid-template-columns:minmax(0,1fr)}
  .planner-page .meals{grid-template-columns:repeat(3,minmax(0,1fr))}
- .planner-page .planner-help{display:grid;grid-template-columns:1fr 1fr}
- .planner-page .planner-portrait{height:280px;min-height:280px}
- .planner-page .planner-portrait img{width:170%;left:0;top:-10%}
 }
 @media(max-width:767px){
  .planner-page main{padding:16px 4% 24px}
@@ -177,9 +170,6 @@
  .planner-page .planner-help h2{font-size:27px}
  .planner-page .planner-shortcuts button{padding:14px 18px}
  .planner-page .score-copy>p{font-size:11px}
- .planner-page .planner-help-copy{padding:22px}
- .planner-page .planner-portrait{height:270px;min-height:270px}
- .planner-page .planner-portrait img{width:240%;left:-10%;top:-5%}
 }
 @media(max-width:540px){
  .planner-page .settings{grid-template-columns:minmax(0,1fr);gap:12px}
@@ -205,17 +195,82 @@
  .planner-page .meal-edit-content select,.planner-page .meal-edit-content input,.planner-page select,.planner-page input[type=date],.planner-page textarea{font-size:16px}
  .planner-page .meal-options{flex-direction:row}
  .planner-page .meal .recipe-link{font-size:13px}
- .planner-page .planner-help{grid-template-columns:1fr}
- .planner-page .planner-help-copy{padding:24px}
  .planner-page .planner-help h2{max-width:270px}
- .planner-page .planner-portrait{height:250px;min-height:250px}
- .planner-page .planner-portrait img{width:170%;left:0;top:-22%}
  .planner-page .planner-shortcuts strong{font-size:22px}
  .planner-page .history-row{grid-template-columns:minmax(0,1fr) 120px}
  .planner-page .shopping-group{padding:18px}
  .planner-page .savebar>.primary{width:100%}
 }
 @media(prefers-reduced-motion:reduce){.planner-page .planner-preferences input::after{transition:none}}
+
+/* The support photograph includes the cream space for the live help text. */
+.planner-page .planner-help{position:relative;isolation:isolate;min-height:248px;overflow:hidden;border:1px solid var(--line);border-radius:11px;background:#f1e5d3;align-content:center}
+.planner-page .planner-portrait{position:absolute;inset:0;z-index:-1}
+.planner-page .planner-portrait img{width:100%;height:100%;object-fit:cover;object-position:70% center;border-radius:0;clip-path:none}
+.planner-page .planner-help-copy{width:58%;padding:18px 0 18px 18px}
+.planner-page .planner-help h2{font:700 23px/1.06 Georgia,serif;color:#201d16;max-width:175px}
+.planner-page .planner-help p{font-size:12px;line-height:1.45}
+.planner-page .planner-help a{padding:8px 10px;gap:7px;min-height:38px}
+.planner-page .settings-guide,.planner-page .portion-guide{font-size:12px;color:var(--muted)}
+.planner-page .settings-guide summary,.planner-page .portion-guide summary{cursor:pointer}
+.planner-page .portion-guide{margin-top:8px}
+.planner-page .score-number small{display:block;margin:0 0 4px;font-size:10px;color:var(--ink)}
+.planner-page .score-number em{font:400 16px system-ui;color:var(--ink)}
+.planner-page .meal-tags{display:flex;flex-wrap:wrap;gap:4px}
+.planner-page .meal-tags span{background:#eee9da;padding:2px 6px;border-radius:8px;font-size:10px;color:#383b31}
+.planner-page .footer-wordmark{font:bold 24px system-ui;letter-spacing:-1px}
+.planner-page .savebar{align-items:center;gap:12px}
+.planner-page #more-days{padding:8px 15px;min-height:44px}
+@media screen{
+ .planner-page #meals:not(.all-days)>.meal:nth-child(n+4){display:none}
+}
+@media(min-width:901px){
+ .planner-page .home-header .home-nav-wrap{min-height:57px;padding:7px 5%}
+ .planner-page .home-header .home-logo{font-size:33px}
+ .planner-page .home-header nav{width:68%;justify-content:space-between}
+ .planner-page .home-header nav a[data-home-search]{margin-left:auto}
+ .planner-page .home-header nav a{margin-right:clamp(0px,1.2vw,18px)}
+ .planner-page main{padding-top:14px;padding-bottom:15px}
+ .planner-page .planner-intro-hero{min-height:216px;padding-block:18px;border-radius:13px}
+ .planner-page .planner-intro-hero::before{background-image:url("images/lemon-garlic-oregano-chicken-traybake.webp");background-size:cover;background-position:center 49%}
+ .planner-page .tabs{margin:14px 0 12px}
+ .planner-page .tabs button{min-height:39px;padding-block:6px}
+ .planner-page .planner-settings{position:relative;padding:12px 2.3%}
+ .planner-page .planner-settings h2{font-size:21px;line-height:1.2}
+ .planner-page .planner-settings>p{margin:0 0 6px}
+ .planner-page .settings-guide{position:absolute;right:2.3%;top:13px}
+ .planner-page .settings-guide[open]{position:static;margin-top:8px}
+ .planner-page .field input,.planner-page .field select{width:100%;height:36px;padding:5px 10px}
+ .planner-page .planner-preferences{margin:15px 0 0}
+ .planner-page .planner-preferences>label{min-height:38px;padding:4px 12px}
+ .planner-page .planner-preferences>label:last-child{display:flex;flex-wrap:nowrap}
+ .planner-page .planner-preferences select{margin-left:auto;width:auto;min-width:0;max-width:55%;min-height:29px}
+ .planner-page .planner-week-heading{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:3%;padding:14px 0;margin:0 0 17px}
+ .planner-page #week-label{font-size:clamp(19px,1.8vw,27px)}
+ .planner-page #generate{min-width:clamp(150px,18vw,270px);font-size:16px}
+ .planner-page .planner-score{padding:10px 20px;min-height:76px}
+ .planner-page .planner-week-layout{grid-template-columns:minmax(0,2.4fr) minmax(305px,1fr);gap:20px}
+ .planner-page .meals{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+ .planner-page .meal>.thumb,.planner-page .meal>.placeholder{aspect-ratio:2.14;object-fit:cover}
+ .planner-page .meal>.thumb{object-view-box:inset(13%)}
+ .planner-page .meal .meal-card-body{padding:8px 12px 9px}
+ .planner-page .meal .name{font-size:17px;line-height:1.15;margin:0 0 6px}
+ .planner-page .meal .meal-tags{margin:0 0 6px}
+ .planner-page .action-buttons{margin:0;gap:8px}
+ .planner-page .action-buttons button,.planner-page .recipe-link{min-height:31px}
+ .planner-page .meal-edit:not([open]){border:0}
+ .planner-page .meal-edit:not([open])>summary{position:absolute;top:10px;right:8px;background:#fff9edee;border-radius:5px;padding:4px 7px;min-height:24px;font-size:11px;list-style:none}
+ .planner-page .savebar{padding:10px 0 0;margin-top:6px}
+ .planner-page .planner-shortcuts{margin-top:12px}
+ .planner-page .planner-shortcuts button{padding:7px 20px}
+ .planner-page .meal-edit[open]>summary{padding:8px 0}
+}
+@media(max-width:900px){
+ .planner-page .planner-help{width:min(100%,460px);min-height:235px;margin-inline:auto}
+ .planner-page .settings-guide{margin-top:8px}
+}
+@media print{.planner-page .portion-guide,.planner-page #more-days{display:none}}
+
 @media print{
  .planner-page{background:#fff;color:#000}
  .planner-page .home-header,.planner-page .planner-settings,.planner-page .planner-score,.planner-page .planner-help,.planner-page .meal-edit{display:none!important}

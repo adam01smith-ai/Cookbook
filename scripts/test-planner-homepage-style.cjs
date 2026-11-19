@@ -14,7 +14,7 @@ test('planner uses homepage branding and presentation-only styles',()=>{
   assert.match(html,/ADAM COOKS<span>REAL RECIPES FOR EVERYDAY COOKING<\/span>/);
   assert.match(html,/meal-planner\.html" aria-current="page"/);
   assert.match(html,/href="homepage\.css\?v=1"/);
-  assert.match(html,/href="meal-planner-theme\.css\?v=2"/);
+  assert.match(html,/href="meal-planner-theme\.css\?v=3"/);
   assert.match(html,/src="homepage\.js\?v=1"/);
   assert.match(style,/\.planner-page \.planner-intro-hero/);
   assert.match(style,/--forest:#0e351b/);
@@ -64,6 +64,9 @@ test('photographic cards retain editing, portions, feedback and accessible tab s
     w.eval(fs.readFileSync(path.join(root,file),'utf8'));
   }
   assert.equal(d.querySelectorAll('.meal').length,7);
+  d.querySelector('#more-days').click();
+  assert.equal(d.querySelector('#more-days').getAttribute('aria-expanded'),'true');
+  assert(d.querySelector('#meals').classList.contains('all-days'));
   const edit=d.querySelector('.meal-edit');
   edit.open=true;
   const portions=edit.querySelector('[data-action="extra-portions"]');
