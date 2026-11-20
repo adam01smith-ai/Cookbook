@@ -1734,14 +1734,15 @@
     "category": "Comfort",
     "dishType": "Comfort",
     "cookingMethods": [
-      "simmered"
+      "pan-fried",
+      "simmered",
+      "boiled"
     ],
     "flavours": [
       "savoury",
       "garlicky",
       "creamy",
-      "tangy",
-      "fresh"
+      "tangy"
     ],
     "carbohydrates": [],
     "richness": "rich",
@@ -1755,6 +1756,8 @@
     "effort": "regular",
     "keyIngredients": [
       "chicken",
+      "beans",
+      "broccoli",
       "cream",
       "lemon",
       "garlic"
@@ -1766,7 +1769,7 @@
     },
     "dependencies": [],
     "evidence": {
-      "ingredients": 10,
+      "ingredients": 12,
       "methodSteps": 8,
       "source": "creamy-garlic-chicken.html"
     }
