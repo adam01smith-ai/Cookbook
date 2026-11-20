@@ -2196,11 +2196,11 @@
     "carbohydrates": [],
     "richness": "rich",
     "spiceLevel": "mild",
-    "prepMinutes": 15,
+    "prepMinutes": 10,
     "cookMinutes": null,
-    "totalMinutes": 75,
-    "timeEstimated": false,
-    "timeNote": "Uses prepared ragù; includes resting. Allow extra time to make the ragù from scratch.",
+    "totalMinutes": 225,
+    "timeEstimated": true,
+    "timeNote": "Includes simmering the ragù, baking and resting.",
     "difficulty": null,
     "effort": "involved",
     "keyIngredients": [
@@ -2220,7 +2220,7 @@
     "dependencies": [],
     "evidence": {
       "ingredients": 23,
-      "methodSteps": 9,
+      "methodSteps": 12,
       "source": "sofritto-ragu-lasagne.html"
     }
   },
@@ -2245,13 +2245,13 @@
     "carbohydrates": [],
     "richness": "balanced",
     "spiceLevel": "mild",
-    "prepMinutes": 5,
+    "prepMinutes": 10,
     "cookMinutes": null,
-    "totalMinutes": 20,
-    "timeEstimated": false,
-    "timeNote": "Uses prepared ragù. Allow extra time to make the ragù from scratch.",
+    "totalMinutes": 160,
+    "timeEstimated": true,
+    "timeNote": "Includes simmering the ragù. Cook the pasta as the sauce finishes.",
     "difficulty": null,
-    "effort": "regular",
+    "effort": "involved",
     "keyIngredients": [
       "beef",
       "pork",
@@ -2269,7 +2269,7 @@
     "dependencies": [],
     "evidence": {
       "ingredients": 19,
-      "methodSteps": 7,
+      "methodSteps": 10,
       "source": "sofritto-ragu-tagliatelle.html"
     }
   },
