@@ -2,6 +2,7 @@
 'use strict';
 const TYPES=['recipe','out','leftovers','custom','empty'];
 const SIDES={none:{name:'No added side',amount:0,unit:'',ingredient:''},rice:{name:'Koshihikari rice',amount:75,unit:'g',ingredient:'Koshihikari rice'},pasta:{name:'Pasta',amount:75,unit:'g',ingredient:'pasta'},potatoes:{name:'Potatoes',amount:250,unit:'g',ingredient:'potatoes'},bread:{name:'Bread',amount:2,unit:'slice',ingredient:'bread'}};
+SIDES.babyNewPotatoes={name:'Baby new potatoes',amount:250,unit:'g',ingredient:'baby new potatoes'};
 SIDES.microRice={name:'Microwave basmati rice',amount:125,unit:'g',ingredient:'microwave basmati rice'};
 SIDES.curry={name:'Microwave basmati rice & naan',amount:125,unit:'g rice',ingredient:'microwave basmati rice'};
 const clone=x=>JSON.parse(JSON.stringify(x));
@@ -28,7 +29,7 @@ function validateFeedback(raw,catalog){
 function setFeedback(state,id,rating,cookedOn){const next=clone(state),old=next.feedback?.[id]||{};next.feedback=next.feedback||{};if(rating==='cooked')next.feedback[id]={rating:old.rating||'neutral',tried:true,cookedOn:localDate(parseDate(cookedOn||localDate(new Date())))};else next.feedback[id]={rating,tried:rating==='untried'?false:old.tried===true||['love','again'].includes(rating),cookedOn:rating==='untried'?null:old.cookedOn||null};return next;}
 function usesBaseGravy(recipe){return !!recipe&&recipe.ingredients.some(item=>/\bbase gravy\b/i.test(item.template));}
 function sideFor(day,recipe){if(day.keepSide===true)return SIDES[day.side]?day.side:'none';if(day.side==='rice'&&recipe?.category!=='Rice & Bowls')return usesBaseGravy(recipe)?'curry':'microRice';return SIDES[day.side]?day.side:'none';}
-function sideOptions(recipe,day){return Object.entries(SIDES).filter(([key])=>(day?.keepSide===true&&key===day.side)||(key!=='rice'||recipe?.category==='Rice & Bowls')&&(key!=='curry'||usesBaseGravy(recipe)));}
+function sideOptions(recipe,day){return Object.entries(SIDES).filter(([key])=>(day?.keepSide===true&&key===day.side)||(key!=='rice'||recipe?.category==='Rice & Bowls')&&(key!=='curry'||usesBaseGravy(recipe))&&(key!=='babyNewPotatoes'||recipe?.id==='creamy-garlic-chicken'||day?.side===key));}
 function gravyNeeds(state,catalog){const needs={min:0,max:0,servings:0,meals:[]};state.days.forEach((d,i)=>{if(d.type!=='recipe'||d.status==='skipped')return;const r=catalog.find(r=>r.id===d.recipeId);if(!r)return;let needed=false;for(const item of r.ingredients){if(!/\bbase gravy\b/i.test(item.template)||!item.amounts[0]||(item.optional&&!state.optional))continue;const factor=portions(state,i)/r.baseServings;needs.min+=item.amounts[0].min*factor;needs.max+=item.amounts[0].max*factor;needed=true;}if(needed){needs.servings+=portions(state,i);needs.meals.push(r.name);}});return needs;}
 function recommendedGravyBatches(state,catalog){const needs=gravyNeeds(state,catalog),base=catalog.find(r=>r.id==='basegravy');const yieldMl=Number(base?.yieldMl);return needs.max>0?(Number.isFinite(yieldMl)&&yieldMl>0?Math.ceil(needs.max/yieldMl):1):0;}
 function gravyBatchCount(state,catalog){const recommended=recommendedGravyBatches(state,catalog);return recommended?Math.max(recommended,Math.max(1,Math.min(20,Math.floor(Number(state.gravyBatches)||1)))):0;}
