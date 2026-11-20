@@ -276,16 +276,16 @@
     "note": ""
   },
   "sofritto-ragu-lasagne.html": {
-    "minMinutes": 65,
-    "maxMinutes": 75,
-    "estimated": false,
-    "note": "Uses prepared ragù; includes resting. Allow extra time to make the ragù from scratch."
+    "minMinutes": 180,
+    "maxMinutes": 225,
+    "estimated": true,
+    "note": "Includes simmering the ragù, baking and resting."
   },
   "sofritto-ragu-tagliatelle.html": {
-    "minMinutes": 15,
-    "maxMinutes": 20,
-    "estimated": false,
-    "note": "Uses prepared ragù. Allow extra time to make the ragù from scratch."
+    "minMinutes": 120,
+    "maxMinutes": 160,
+    "estimated": true,
+    "note": "Includes simmering the ragù. Cook the pasta as the sauce finishes."
   },
   "jack-daniels-glazed-chicken.html": {
     "minMinutes": 105,
