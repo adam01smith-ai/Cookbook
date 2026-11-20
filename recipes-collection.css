@@ -91,3 +91,12 @@
 .collection-page .cuisine-field details[open] summary::after{transform:rotate(225deg)}
 .collection-page .cuisine-field summary:focus-visible{outline:3px solid #bc6a29;outline-offset:2px}
 .collection-page .cuisine-field fieldset{left:auto;right:0;margin:4px 0 0}
+
+/* Two low-pressure support choices; both use the same existing payment destination. */
+.collection-page .coffee-actions{display:grid;gap:9px;position:relative;z-index:1}
+.collection-page .coffee-panel .coffee-actions .coffee-link{display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px;margin:0;padding:10px 13px;border:0;background:#ffe16c;color:#102d1c;font-weight:750;font-size:14px;text-align:center;white-space:normal}
+.collection-page .coffee-panel .coffee-actions .beer-link{background:#ffc43a}
+.collection-page .coffee-panel .coffee-actions .coffee-link:hover{filter:brightness(.96)}
+.collection-page .coffee-panel .coffee-actions svg{width:23px;height:23px;flex:none}
+.collection-page .coffee-panel .coffee-note{position:relative;z-index:1;width:100%;max-width:none;font:12px/1.5 system-ui,-apple-system,sans-serif;margin:12px 0 0;color:#f1eedf}
+@media(max-width:767px){.collection-page .coffee-panel .coffee-actions .coffee-link{min-height:48px}}
